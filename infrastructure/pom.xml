@@ -306,6 +306,13 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- ecommerce-checkout - core -->
+        <dependency>
+            <groupId>br.com.alc</groupId>
+            <artifactId>api-ecommerce-checkout-core</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+
     </dependencies>
 
     <build>

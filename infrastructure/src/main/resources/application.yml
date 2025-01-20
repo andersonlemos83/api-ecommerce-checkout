@@ -1,0 +1,125 @@
+logging:
+  level:
+    br.com.alc.ecommerce.checkout.infrastructure: DEBUG
+    org.springframework:
+      ampq: TRACE
+      boot.context: INFO
+      ws.client: TRACE
+      ws.soap: TRACE
+      web: WARN
+
+spring:
+  application:
+    name: api-ecommerce-checkout
+  messages:
+    basename: i18n/messages
+  jmx:
+    default-domain: ~project.artifactId~
+  main:
+    allow-bean-definition-overriding: true
+  cache:
+    redis:
+      time-to-live: 172800
+    type: redis
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: null
+    password: null
+    virtual-host: ecommerce-checkout
+    listener:
+      simple:
+        auto-startup: false
+    sale-exchange: sale-exchange
+    authorize-sale-queue: authorize-sale-queue
+  datasource:
+    driver-class-name: oracle.jdbc.OracleDriver
+    hikari:
+      minimum-idle: 10
+      maximum-pool-size: 30
+    url: jdbc:oracle:thin:@localhost:1521:ORCL
+    username: null
+    password: null
+  jpa:
+    properties:
+      hibernate:
+        default_schema: ECOMMERCE_CHECKOUT_OWNER
+        jdbc:
+          batch_size: 10
+        order_inserts: true
+        order_updates: true
+    database-platform: org.hibernate.dialect.OracleDialect
+    hibernate:
+      ddl-auto: none
+    show-sql: false
+  web:
+    locale: en_US
+    locale-resolver: accept_header
+  mvc:
+    pathmatch:
+      matching-strategy: path_pattern_parser
+  data:
+    jdbc:
+      repositories:
+        enabled: false
+    redis:
+      repositories:
+        enabled: false
+      host: localhost
+      port: 6379
+      password: null
+
+server:
+  compression:
+    enabled: true
+  port: 8095
+  servlet:
+    context-path: /
+
+endpoints:
+  prometheus:
+    id: metrics
+    enabled: true
+    sensitive: false
+
+springfox:
+  documentation:
+    info:
+      title: ~project.artifactId~
+      description: API Ecommerce Checkout Documentation
+      version: ~project.version~
+    base-package: br.com.alc.ecommerce.checkout.infrastructure.web.controller
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 15000
+        readTimeout: 15000
+        loggerLevel: BASIC # NONE, BASIC, HEADERS, FULL
+
+management:
+  server:
+    port: 9191
+  endpoints:
+    web:
+      base-path: /
+      path-mapping:
+        prometheus: /metrics
+      exposure:
+        include: '*'
+        exclude: metrics
+  prometheus:
+    metrics:
+      export:
+        enabled: true
+  endpoint:
+    health:
+      show-details: always
+    prometheus:
+      enabled: true
+  health:
+    redis:
+      enabled: false
+
+listenersDisabled: ""
