@@ -9,9 +9,11 @@
         <groupId>br.com.alc</groupId>
         <artifactId>api-ecommerce-checkout</artifactId>
         <version>0.0.1-SNAPSHOT</version>
+        <relativePath/>
     </parent>
 
     <artifactId>api-ecommerce-checkout-infrastructure</artifactId>
+    <packaging>jar</packaging>
 
     <properties>
         <java.version>21</java.version>

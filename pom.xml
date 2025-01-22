@@ -15,7 +15,6 @@
 	<artifactId>api-ecommerce-checkout</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>api-ecommerce-checkout</name>
-	<description>Demo project for Spring Boot</description>
     <modules>
         <module>core</module>
 		<module>infrastructure</module>

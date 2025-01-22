@@ -13,6 +13,6 @@ import java.time.LocalDateTime;
 public class SaleResponse implements Serializable {
 
     private SaleStatus status;
-    private LocalDateTime billingDate;
+    private LocalDateTime date;
 
 }

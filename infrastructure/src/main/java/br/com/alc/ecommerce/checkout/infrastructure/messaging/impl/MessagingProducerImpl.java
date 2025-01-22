@@ -9,7 +9,7 @@ import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
-import static br.com.alc.ecommerce.checkout.core.application.util.ObjectMapperUtils.generateJson;
+import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtils.generateJson;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.springframework.amqp.core.MessageProperties.CONTENT_TYPE_JSON;
 

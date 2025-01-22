@@ -1,4 +1,4 @@
-package br.com.alc.ecommerce.checkout.core.application.util;
+package br.com.alc.ecommerce.checkout.infrastructure.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
@@ -31,12 +31,12 @@ public final class ObjectMapperUtils {
         return objectMapper;
     }
 
-    public static String generateJson(Object objeto) {
+    public static String generateJson(Object object) {
         try {
-            return getInstance().writeValueAsString(objeto);
+            return getInstance().writeValueAsString(object);
         } catch (Exception exception) {
             log.error(exception.getMessage(), exception);
-            return objeto.toString();
+            return object.toString();
         }
     }
 }

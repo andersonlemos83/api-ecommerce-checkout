@@ -1,6 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.configuration;
 
-import br.com.alc.ecommerce.checkout.core.application.util.ObjectMapperUtils;
+import br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtils;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

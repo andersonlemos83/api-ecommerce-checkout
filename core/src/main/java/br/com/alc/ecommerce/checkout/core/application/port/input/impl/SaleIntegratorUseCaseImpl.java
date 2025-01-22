@@ -28,7 +28,7 @@ public class SaleIntegratorUseCaseImpl implements SaleIntegratorUseCase {
     private SaleResponse buildSaleResponse() {
         return SaleResponse.builder()
                 .status(IN_PROCESSING)
-                .billingDate(watchService.nowLocalDateTime())
+                .date(watchService.nowLocalDateTime())
                 .build();
     }
 }
