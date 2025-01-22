@@ -13,7 +13,6 @@
     </parent>
 
     <artifactId>api-ecommerce-checkout-infrastructure</artifactId>
-    <packaging>jar</packaging>
 
     <properties>
         <java.version>21</java.version>
@@ -312,7 +311,7 @@
         <dependency>
             <groupId>br.com.alc</groupId>
             <artifactId>api-ecommerce-checkout-core</artifactId>
-            <version>0.0.1-SNAPSHOT</version>
+            <version>${project.version}</version>
         </dependency>
 
     </dependencies>
