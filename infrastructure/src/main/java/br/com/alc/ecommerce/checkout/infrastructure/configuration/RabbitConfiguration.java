@@ -1,6 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.configuration;
 
-import br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtils;
+import br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil;
 import org.springframework.amqp.core.*;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
@@ -28,7 +28,7 @@ public class RabbitConfiguration {
 
     @Bean
     public MessageConverter messageConverter() {
-        return new Jackson2JsonMessageConverter(ObjectMapperUtils.getInstance().copy().findAndRegisterModules());
+        return new Jackson2JsonMessageConverter(ObjectMapperUtil.getInstance().copy().findAndRegisterModules());
     }
 
     @Bean

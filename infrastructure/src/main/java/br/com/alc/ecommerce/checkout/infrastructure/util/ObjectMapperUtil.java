@@ -10,7 +10,7 @@ import static com.fasterxml.jackson.databind.DeserializationFeature.*;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
 
 @Log4j2
-public final class ObjectMapperUtils {
+public final class ObjectMapperUtil {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
 
@@ -24,7 +24,7 @@ public final class ObjectMapperUtils {
         objectMapper.registerModule(new JavaTimeModule());
     }
 
-    private ObjectMapperUtils() {
+    private ObjectMapperUtil() {
     }
 
     public static ObjectMapper getInstance() {

@@ -5,19 +5,15 @@ import br.com.alc.ecommerce.checkout.core.application.port.output.SaleIntegrator
 import br.com.alc.ecommerce.checkout.core.application.service.watch.WatchService;
 import br.com.alc.ecommerce.checkout.core.domain.model.SaleRequest;
 import br.com.alc.ecommerce.checkout.core.domain.model.SaleResponse;
+import lombok.AllArgsConstructor;
 
 import static br.com.alc.ecommerce.checkout.core.domain.model.SaleStatus.IN_PROCESSING;
 
+@AllArgsConstructor
 public class SaleIntegratorUseCaseImpl implements SaleIntegratorUseCase {
 
     private final SaleIntegratorOutPort saleIntegratorOutPort;
     private final WatchService watchService;
-
-    public SaleIntegratorUseCaseImpl(SaleIntegratorOutPort saleIntegratorOutPort,
-                                     WatchService watchService) {
-        this.saleIntegratorOutPort = saleIntegratorOutPort;
-        this.watchService = watchService;
-    }
 
     @Override
     public SaleResponse execute(SaleRequest saleRequest) {

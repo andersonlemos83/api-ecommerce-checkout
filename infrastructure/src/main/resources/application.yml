@@ -53,7 +53,7 @@ spring:
       ddl-auto: none
     show-sql: false
   web:
-    locale: en_US
+    locale: pt_BR
     locale-resolver: accept_header
   mvc:
     pathmatch:

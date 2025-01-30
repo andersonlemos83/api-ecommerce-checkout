@@ -15,47 +15,47 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class CustomerDto implements Serializable {
 
-    @NotBlank(message = "was not provided")
+    @NotBlank(message = "não foi informado")
     @ApiModelProperty(value = "Customer's full name", example = "Martin Kauê Lopes", required = true)
     private String name;
 
-    @NotBlank(message = "was not provided")
+    @NotBlank(message = "não foi informado")
     @ApiModelProperty(value = "Customer's document number", example = "60778532402", required = true)
     private String document;
 
-    @NotBlank(message = "was not provided")
+    @NotBlank(message = "não foi informado")
     @ApiModelProperty(value = "Customer's document type", example = "CPF", required = true)
     private String documentType;
 
-    @NotBlank(message = "was not provided")
+    @NotBlank(message = "não foi informado")
     @ApiModelProperty(value = "Customer's address", example = "Rua Projetada 913", required = true)
     private String address;
 
-    @NotBlank(message = "was not provided")
+    @NotBlank(message = "não foi informado")
     @ApiModelProperty(value = "Customer's address number", example = "622", required = true)
     private String addressNumber;
 
     @ApiModelProperty(value = "Customer's address complement", example = "Apt 202")
     private String addressComplement;
 
-    @NotBlank(message = "was not provided")
+    @NotBlank(message = "não foi informado")
     @ApiModelProperty(value = "Customer's neighborhood", example = "Antares", required = true)
     private String neighborhood;
 
-    @NotBlank(message = "was not provided")
+    @NotBlank(message = "não foi informado")
     @ApiModelProperty(value = "Customer's city", example = "Maceió", required = true)
     private String city;
 
-    @NotBlank(message = "was not provided")
+    @NotBlank(message = "não foi informado")
     @Size(max = 2, min = 2)
     @ApiModelProperty(value = "Customer's state", example = "AL", required = true)
     private String state;
 
-    @NotBlank(message = "was not provided")
+    @NotBlank(message = "não foi informado")
     @ApiModelProperty(value = "Customer's country", example = "Brazil", required = true)
     private String country;
 
-    @NotBlank(message = "was not provided")
+    @NotBlank(message = "não foi informado")
     @ApiModelProperty(value = "Customer's ZIP code", example = "57048434", required = true)
     private String zipCode;
 

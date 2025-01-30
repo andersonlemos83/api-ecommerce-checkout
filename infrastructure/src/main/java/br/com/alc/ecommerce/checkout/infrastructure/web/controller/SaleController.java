@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtils.generateJson;
+import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil.generateJson;
 import static org.springframework.http.HttpStatus.OK;
 
 @Log4j2

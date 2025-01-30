@@ -21,15 +21,15 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PaymentDto implements Serializable {
 
-    @NotBlank(message = "was not provided")
+    @NotBlank(message = "não foi informado")
     @ApiModelProperty(value = "Payment method", example = "CREDIT", required = true)
     private String paymentMethod;
 
-    @NotBlank(message = "was not provided")
+    @NotBlank(message = "não foi informado")
     @ApiModelProperty(value = "Transaction authorization code", required = true)
     private String authorizationCode;
 
-    @NotNull(message = "was not provided")
+    @NotNull(message = "não foi informado")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
     @ApiModelProperty(value = "Payment date", example = "2025-01-22T20:08:56.194", required = true)
@@ -42,7 +42,7 @@ public class PaymentDto implements Serializable {
     private String sitefNsu;
 
     @Min(0)
-    @NotNull(message = "was not provided")
+    @NotNull(message = "não foi informado")
     @ApiModelProperty(value = "Payment value", example = "100.01", required = true)
     private BigDecimal value;
 

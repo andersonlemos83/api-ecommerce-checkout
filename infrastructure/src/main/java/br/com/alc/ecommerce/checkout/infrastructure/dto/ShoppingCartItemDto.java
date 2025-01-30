@@ -17,17 +17,17 @@ import java.math.BigInteger;
 public class ShoppingCartItemDto implements Serializable {
 
     @Min(1)
-    @NotNull(message = "was not provided")
+    @NotNull(message = "não foi informado")
     @ApiModelProperty(value = "Item code", example = "1002319335599", required = true)
     private BigInteger sku;
 
     @Min(1)
-    @NotNull(message = "was not provided")
+    @NotNull(message = "não foi informado")
     @ApiModelProperty(value = "Quantity of items", example = "2", required = true)
     private Integer quantity;
 
     @Min(0)
-    @NotNull(message = "was not provided")
+    @NotNull(message = "não foi informado")
     @ApiModelProperty(value = "Item value", example = "100.01", required = true)
     private BigDecimal value;
 
