@@ -1,4 +1,4 @@
-package br.com.alc.ecommerce.checkout.infrastructure.dto;
+package br.com.alc.ecommerce.checkout.infrastructure.dto.sale;
 
 import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.Valid;
@@ -27,11 +27,11 @@ public class SaleRequestDto implements Serializable {
 
     @NotBlank(message = "não foi informado")
     @Size(min = 3, max = 3)
-    @ApiModelProperty(value = "Store code (composed of 3 digits, possibly with leading zeros)", example = "099", required = true)
+    @ApiModelProperty(value = "Store code (composed of 3 digits, possibly with leading zeros)", example = "100", required = true)
     private String storeCode;
 
     @Min(1)
-    @ApiModelProperty(value = "Point of sale (POS)", example = "001")
+    @ApiModelProperty(value = "Point of sale (POS)", example = "105")
     private Integer pos;
 
     @Valid
@@ -47,7 +47,7 @@ public class SaleRequestDto implements Serializable {
 
     @Min(0)
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Freight amount", example = "10.01", required = true)
+    @ApiModelProperty(value = "Freight amount", example = "5.05", required = true)
     private BigDecimal freightAmount;
 
     @Valid

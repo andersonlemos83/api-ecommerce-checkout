@@ -1,4 +1,4 @@
-package br.com.alc.ecommerce.checkout.core.domain.model;
+package br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.sale;
 
 import lombok.*;
 
@@ -11,9 +11,9 @@ import java.math.BigInteger;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShoppingCartItem implements Serializable {
+public class ShoppingCartItemDataTable implements Serializable {
 
-    private BigInteger sku;
+    private BigInteger code;
     private Integer quantity;
     private BigDecimal value;
 

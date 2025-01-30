@@ -3,11 +3,11 @@ package br.com.alc.ecommerce.checkout.core.application.port.input.impl;
 import br.com.alc.ecommerce.checkout.core.application.port.input.SaleIntegratorUseCase;
 import br.com.alc.ecommerce.checkout.core.application.port.output.SaleIntegratorOutPort;
 import br.com.alc.ecommerce.checkout.core.application.service.watch.WatchService;
-import br.com.alc.ecommerce.checkout.core.domain.model.SaleRequest;
-import br.com.alc.ecommerce.checkout.core.domain.model.SaleResponse;
+import br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleRequest;
+import br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleResponse;
 import lombok.AllArgsConstructor;
 
-import static br.com.alc.ecommerce.checkout.core.domain.model.SaleStatus.IN_PROCESSING;
+import static br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleStatus.IN_PROCESSING;
 
 @AllArgsConstructor
 public class SaleIntegratorUseCaseImpl implements SaleIntegratorUseCase {

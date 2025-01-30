@@ -1,4 +1,4 @@
-package br.com.alc.ecommerce.checkout.core.domain.model;
+package br.com.alc.ecommerce.checkout.core.domain.model.sale;
 
 import lombok.*;
 
@@ -14,10 +14,10 @@ import java.time.LocalDateTime;
 public class Payment implements Serializable {
 
     private String paymentMethod;
-    private String authorizationCode;
     private LocalDateTime paymentDate;
+    private String authorizationCode;
     private String cardNumber;
-    private String sitefNsu;
+    private String nsu;
     private BigDecimal value;
 
 }

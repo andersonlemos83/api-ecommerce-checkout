@@ -1,7 +1,7 @@
 package br.com.alc.ecommerce.checkout.infrastructure.adapter.output.producer;
 
 import br.com.alc.ecommerce.checkout.core.application.port.output.SaleIntegratorOutPort;
-import br.com.alc.ecommerce.checkout.core.domain.model.SaleRequest;
+import br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleRequest;
 import br.com.alc.ecommerce.checkout.infrastructure.messaging.MessagingProducer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

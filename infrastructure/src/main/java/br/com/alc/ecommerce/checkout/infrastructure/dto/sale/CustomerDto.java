@@ -1,4 +1,4 @@
-package br.com.alc.ecommerce.checkout.infrastructure.dto;
+package br.com.alc.ecommerce.checkout.infrastructure.dto.sale;
 
 import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.constraints.Email;
@@ -52,7 +52,7 @@ public class CustomerDto implements Serializable {
     private String state;
 
     @NotBlank(message = "não foi informado")
-    @ApiModelProperty(value = "Customer's country", example = "Brazil", required = true)
+    @ApiModelProperty(value = "Customer's country", example = "Brasil", required = true)
     private String country;
 
     @NotBlank(message = "não foi informado")

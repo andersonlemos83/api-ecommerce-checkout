@@ -1,6 +1,6 @@
-package br.com.alc.ecommerce.checkout.infrastructure.dto;
+package br.com.alc.ecommerce.checkout.infrastructure.dto.sale;
 
-import br.com.alc.ecommerce.checkout.core.domain.model.SaleStatus;
+import br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleStatus;
 import com.fasterxml.jackson.annotation.JsonInclude;
 import io.swagger.annotations.ApiModelProperty;
 import lombok.*;

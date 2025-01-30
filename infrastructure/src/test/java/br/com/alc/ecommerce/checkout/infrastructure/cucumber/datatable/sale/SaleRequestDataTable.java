@@ -1,4 +1,4 @@
-package br.com.alc.ecommerce.checkout.core.domain.model;
+package br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.sale;
 
 import lombok.*;
 
@@ -11,7 +11,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaleRequest implements Serializable {
+public class SaleRequestDataTable implements Serializable {
 
     private String channelCode;
     private String companyCode;
@@ -20,8 +20,8 @@ public class SaleRequest implements Serializable {
     private String numberOrder;
     private BigDecimal totalAmount;
     private BigDecimal freightAmount;
-    private Customer customer;
-    private List<ShoppingCartItem> items;
-    private List<Payment> payments;
+    private CustomerDataTable customer;
+    private List<ShoppingCartItemDataTable> items;
+    private List<PaymentDataTable> payments;
 
 }

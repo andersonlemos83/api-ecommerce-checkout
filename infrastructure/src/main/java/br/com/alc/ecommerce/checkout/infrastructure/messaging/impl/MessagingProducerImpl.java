@@ -6,7 +6,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.core.Message;
 import org.springframework.amqp.core.MessageBuilder;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
-import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Component;
 
 import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil.generateJson;
@@ -20,7 +19,7 @@ public class MessagingProducerImpl implements MessagingProducer {
 
     private final RabbitTemplate rabbitTemplate;
 
-    @Async
+//    @Async
     @Override
     public void publish(String exchange, String queue, Object request) {
         try {

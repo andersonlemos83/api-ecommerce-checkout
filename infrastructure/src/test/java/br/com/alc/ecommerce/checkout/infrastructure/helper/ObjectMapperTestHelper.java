@@ -1,15 +1,18 @@
 package br.com.alc.ecommerce.checkout.infrastructure.helper;
 
+import br.com.alc.ecommerce.checkout.infrastructure.dto.sale.SaleResponseDto;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;
+import org.springframework.test.web.servlet.ResultActions;
 
 import java.io.InputStream;
 import java.util.TimeZone;
 
 import static com.fasterxml.jackson.databind.DeserializationFeature.*;
 import static com.fasterxml.jackson.databind.SerializationFeature.WRITE_DATES_AS_TIMESTAMPS;
+import static java.nio.charset.StandardCharsets.UTF_8;
 
 public final class ObjectMapperTestHelper {
 
@@ -45,5 +48,9 @@ public final class ObjectMapperTestHelper {
 
     public static JsonNode generateJsonNode(InputStream inputStream) throws Exception {
         return objectMapper.readValue(inputStream, JsonNode.class);
+    }
+
+    public static SaleResponseDto generateSaleResponseDto(ResultActions result) throws Exception {
+        return objectMapper.readValue(result.andReturn().getResponse().getContentAsString(UTF_8), SaleResponseDto.class);
     }
 }

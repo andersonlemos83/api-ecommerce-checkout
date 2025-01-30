@@ -25,7 +25,7 @@ import java.util.Map;
 @WebAppConfiguration
 @ActiveProfiles("test")
 @CucumberContextConfiguration
-@AutoConfigureMockMvc(printOnlyOnFailure = true) // Set false for debug
+@AutoConfigureMockMvc(printOnlyOnFailure = false) // Set false for debug
 @SpringBootTest(classes = EcommerceCheckoutInfrastructureApplication.class)
 @ContextConfiguration(classes = {EcommerceCheckoutInfrastructureApplication.class, EcommerceCheckoutInfrastructureConfigurationTest.class, RabbitConfigurationTest.class, WireMockConfigurationTest.class})
 public class SpringContextStepDefs extends StepDefs {
