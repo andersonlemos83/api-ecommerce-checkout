@@ -26,6 +26,8 @@ jobs:
       - name: Unit And Acceptance Tests
         run: mvn -U -B -V clean test -DargLine="-Xms512M -Xmx2G -Xss4M" --quiet
       - name: Sonar
-        run: mvn -X -U -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization="andersonlemos83" -Dsonar.projectKey=andersonlemos83_api-ecommerce-checkout -Dsonar.host.url=https://sonarcloud.io -Dsonar.login="22a692b9ef48e5540fa771551e2e4e1f475e061c" -DargLine="-Xms512M -Xmx2G -Xss4M" --quiet
+        env:
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+        run: mvn -X -U -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization="andersonlemos83" -Dsonar.projectKey=andersonlemos83_api-ecommerce-checkout -Dsonar.host.url=https://sonarcloud.io -DargLine="-Xms512M -Xmx2G -Xss4M" --quiet
       - name: Package
         run: mvn -B clean package -Dmaven.test.skip=true -DargLine="-Xms512M -Xmx2G -Xss4M"
