@@ -18,6 +18,22 @@
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <resource.delimiter>~</resource.delimiter>
+
+        <!-- sonar -->
+        <sonar.projectName>api-ecommerce-checkout-core</sonar.projectName>
+        <sonar.junit.reportsPath>target/surefire-reports</sonar.junit.reportsPath>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.language>java</sonar.language>
+        <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+        <sonar.exclusions>
+            src/test/java/**/*,
+            src/main/java/br/com/alc/ecommerce/checkout/core/EcommerceCheckoutCoreApplication.java
+        </sonar.exclusions>
+        <sonar.inclusions>
+            src/main/java/br/com/alc/ecommerce/checkout/core/**
+        </sonar.inclusions>
     </properties>
 
     <dependencyManagement>

@@ -19,6 +19,22 @@
         <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
         <resource.delimiter>~</resource.delimiter>
 
+        <!-- sonar -->
+        <sonar.projectName>api-ecommerce-checkout-infrastructure</sonar.projectName>
+        <sonar.junit.reportsPath>target/surefire-reports</sonar.junit.reportsPath>
+        <sonar.java.coveragePlugin>jacoco</sonar.java.coveragePlugin>
+        <sonar.dynamicAnalysis>reuseReports</sonar.dynamicAnalysis>
+        <sonar.jacoco.reportPath>${project.basedir}/../target/jacoco.exec</sonar.jacoco.reportPath>
+        <sonar.language>java</sonar.language>
+        <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
+        <sonar.exclusions>
+            src/test/java/**/*,
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/EcommerceCheckoutInfrastructureApplication.java
+        </sonar.exclusions>
+        <sonar.inclusions>
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/**
+        </sonar.inclusions>
+
         <!-- versions -->
         <oracle.database.version>19.11.0.0</oracle.database.version>
     </properties>

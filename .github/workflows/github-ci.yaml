@@ -22,5 +22,7 @@ jobs:
         run: mvn --batch-mode --update-snapshots verify -Dmaven.test.skip=true
       - name: Unit And Acceptance Tests
         run: mvn -U -B -V clean test -DargLine="-Xms512M -Xmx2G -Xss4M" --quiet
+      - name: Sonar
+        run: mvn -U -B clean verify sonar:sonar -Dsonar.projectKey=br.com.alc:api-ecommerce-checkout -Dsonar.host.url=https://sonarcloud.io -Dsonar.login="cb486c028e8fec20011c9040437ba9b4c7617796" -DargLine="-Xms512M -Xmx2G -Xss4M" --quiet
       - name: Package
         run: mvn -B clean package -Dmaven.test.skip=true -DargLine="-Xms512M -Xmx2G -Xss4M"
