@@ -19,6 +19,8 @@ jobs:
           architecture: x64
           cache: maven
       - name: Verify
-        run: mvn --batch-mode --update-snapshots verify
+        run: mvn --batch-mode --update-snapshots verify -Dmaven.test.skip=true
+      - name: Unit And Acceptance Tests
+        run: mvn -U -B -V clean test -DargLine="-Xms512M -Xmx2G -Xss4M" --quiet
       - name: Package
         run: mvn -B clean package -Dmaven.test.skip=true -DargLine="-Xms512M -Xmx2G -Xss4M"
