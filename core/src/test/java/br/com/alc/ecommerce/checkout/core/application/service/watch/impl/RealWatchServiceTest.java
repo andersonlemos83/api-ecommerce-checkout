@@ -1,0 +1,22 @@
+package br.com.alc.ecommerce.checkout.core.application.service.watch.impl;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import java.time.LocalDateTime;
+
+import static org.junit.jupiter.api.Assertions.assertTrue;
+
+@ExtendWith(SpringExtension.class)
+public class RealWatchServiceTest {
+
+    @Test
+    void nowLocalDateTime_ShouldReturnCurrentDateTime() {
+        LocalDateTime expected = LocalDateTime.now();
+        LocalDateTime returned = new RealWatchService().nowLocalDateTime();
+
+        boolean acceptableRange = expected.minusSeconds(1).isBefore(returned) && expected.plusSeconds(1).isAfter(returned);
+        assertTrue(acceptableRange, "The returned time is not within an acceptable range");
+    }
+}
