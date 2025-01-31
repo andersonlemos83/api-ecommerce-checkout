@@ -6,9 +6,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Primary;
 
-@SuppressWarnings("squid:S2187")
 @Configuration
-public class RabbitConfigurationTest {
+public class RabbitConfig {
 
     @Primary
     @Bean(value = "rabbitAdmin")

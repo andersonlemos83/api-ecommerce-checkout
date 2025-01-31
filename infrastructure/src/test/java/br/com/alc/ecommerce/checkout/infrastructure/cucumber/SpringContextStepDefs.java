@@ -1,9 +1,9 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber;
 
 import br.com.alc.ecommerce.checkout.infrastructure.EcommerceCheckoutInfrastructureApplication;
-import br.com.alc.ecommerce.checkout.infrastructure.config.EcommerceCheckoutInfrastructureConfigurationTest;
-import br.com.alc.ecommerce.checkout.infrastructure.config.RabbitConfigurationTest;
-import br.com.alc.ecommerce.checkout.infrastructure.config.WireMockConfigurationTest;
+import br.com.alc.ecommerce.checkout.infrastructure.config.EcommerceCheckoutInfrastructureConfig;
+import br.com.alc.ecommerce.checkout.infrastructure.config.RabbitConfig;
+import br.com.alc.ecommerce.checkout.infrastructure.config.WireMockConfig;
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.stepdefs.StepDefs;
 import br.com.alc.ecommerce.checkout.infrastructure.helper.ObjectMapperTestHelper;
 import br.com.alc.ecommerce.checkout.infrastructure.testcontainers.ContainerManager;
@@ -27,7 +27,7 @@ import java.util.Map;
 @CucumberContextConfiguration
 @AutoConfigureMockMvc(printOnlyOnFailure = false) // Set false for debug
 @SpringBootTest(classes = EcommerceCheckoutInfrastructureApplication.class)
-@ContextConfiguration(classes = {EcommerceCheckoutInfrastructureApplication.class, EcommerceCheckoutInfrastructureConfigurationTest.class, RabbitConfigurationTest.class, WireMockConfigurationTest.class})
+@ContextConfiguration(classes = {EcommerceCheckoutInfrastructureApplication.class, EcommerceCheckoutInfrastructureConfig.class, RabbitConfig.class, WireMockConfig.class})
 public class SpringContextStepDefs extends StepDefs {
 
     @DefaultParameterTransformer

@@ -31,13 +31,12 @@ public class SaleRequestDto implements Serializable {
     private String storeCode;
 
     @Min(1)
-    @ApiModelProperty(value = "Point of sale (POS)", example = "105")
+    @NotNull(message = "não foi informado")
+    @ApiModelProperty(value = "Point of sale (POS)", example = "105", required = true)
     private Integer pos;
 
-    @Valid
     @NotBlank(message = "não foi informado")
-    @Pattern(regexp = "^[0-9]+(-[0-9]+)?$", message = "must follow the positive numeric pattern with a separator digit (e.g., 987654321-1)")
-    @ApiModelProperty(value = "Number Order", example = "987654321-1", required = true)
+    @ApiModelProperty(value = "Number Order", example = "987654321", required = true)
     private String numberOrder;
 
     @Min(0)

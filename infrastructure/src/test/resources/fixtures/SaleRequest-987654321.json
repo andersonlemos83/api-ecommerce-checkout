@@ -3,7 +3,7 @@
   "companyCode": "001",
   "storeCode": "100",
   "pos": 105,
-  "numberOrder": "987654321-1",
+  "numberOrder": "987654321",
   "totalAmount": 100.01,
   "freightAmount": 5.05,
   "customer": {

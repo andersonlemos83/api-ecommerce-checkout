@@ -28,8 +28,8 @@ public class SpringFoxConfiguration {
     @Bean
     @Primary
     public RequestHandlerProvider entityServicesProvider() {
-        // fix para usar o Springfox 3.0.0 com Spring Boot maior que 2.6.0 e não tem ambiguidade entre métodos
-        // Ver AbstractDocumentationPluginsBootstrapper
+        // Fix to use Springfox 3.0.0 with Spring Boot versions greater than 2.6.0 and avoid ambiguity between methods
+        // See AbstractDocumentationPluginsBootstrapper
         return () -> EMPTY_LIST;
     }
 
