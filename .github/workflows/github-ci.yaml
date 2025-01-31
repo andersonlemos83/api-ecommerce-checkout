@@ -27,7 +27,7 @@ jobs:
         run: mvn -U -B -V clean test -DargLine="-Xms512M -Xmx2G -Xss4M" --quiet
       - name: Sonar
         env:
-          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
+          SONAR_TOKEN: ba6e23433fcfe7d9b3c81a479d49d1142103a90e
         run: mvn -X -U -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization="andersonlemos83" -Dsonar.projectKey=andersonlemos83_api-ecommerce-checkout -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -DargLine="-Xms512M -Xmx2G -Xss4M" --quiet
       - name: Package
         run: mvn -B clean package -Dmaven.test.skip=true -DargLine="-Xms512M -Xmx2G -Xss4M"
