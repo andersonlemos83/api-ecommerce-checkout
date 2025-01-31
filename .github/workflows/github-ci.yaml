@@ -18,7 +18,7 @@ jobs:
           distribution: 'temurin'
           architecture: x64
           cache: maven
-      - name: Dependency Resolve
-        run: mvn dependency:resolve -U
+      - name: Verify
+        run: mvn --batch-mode --update-snapshots verify
       - name: Package
         run: mvn -B clean package -Dmaven.test.skip=true -DargLine="-Xms512M -Xmx2G -Xss4M"
