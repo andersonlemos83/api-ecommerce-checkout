@@ -39,7 +39,7 @@ Funcionalidade: Autorizar Venda
       | Http Status | Message                                                                                                                                                                                                                                                                                                                                                                           |
       | BAD_REQUEST | O campo channelCode não foi informado, O campo companyCode não foi informado, O campo customer não foi informado, O campo freightAmount não foi informado, O campo items não foi informado, O campo numberOrder não foi informado, O campo payments não foi informado, O campo pos não foi informado, O campo storeCode não foi informado, O campo totalAmount não foi informado. |
     E nao deveria publicar nenhum JSON na fila
-      | Nome Fila            |
+      | Queue Name           |
       | authorize-sale-queue |
 
   Cenario: 03 - Autorizar venda com os dados Customer nao informados - Fluxo excepcional
@@ -62,7 +62,7 @@ Funcionalidade: Autorizar Venda
       | Http Status | Message                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
       | BAD_REQUEST | O campo customer.address não foi informado, O campo customer.addressNumber não foi informado, O campo customer.city não foi informado, O campo customer.country não foi informado, O campo customer.document não foi informado, O campo customer.documentType não foi informado, O campo customer.name não foi informado, O campo customer.neighborhood não foi informado, O campo customer.state não foi informado, O campo customer.zipCode não foi informado. |
     E nao deveria publicar nenhum JSON na fila
-      | Nome Fila            |
+      | Queue Name           |
       | authorize-sale-queue |
 
   Cenario: 04 - Autorizar venda com os dados Shopping Cart Item nao informados - Fluxo excepcional
@@ -83,7 +83,7 @@ Funcionalidade: Autorizar Venda
       | Http Status | Message                                                                                                                         |
       | BAD_REQUEST | O campo items[0].code não foi informado, O campo items[0].quantity não foi informado, O campo items[0].value não foi informado. |
     E nao deveria publicar nenhum JSON na fila
-      | Nome Fila            |
+      | Queue Name           |
       | authorize-sale-queue |
 
   Cenario: 05 - Autorizar venda com os dados Payment nao informados - Fluxo excepcional
@@ -106,5 +106,5 @@ Funcionalidade: Autorizar Venda
       | Http Status | Message                                                                                                                                                                                                       |
       | BAD_REQUEST | O campo payments[0].authorizationCode não foi informado, O campo payments[0].paymentDate não foi informado, O campo payments[0].paymentMethod não foi informado, O campo payments[0].value não foi informado. |
     E nao deveria publicar nenhum JSON na fila
-      | Nome Fila            |
+      | Queue Name           |
       | authorize-sale-queue |
