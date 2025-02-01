@@ -34,7 +34,7 @@ import static org.springframework.amqp.core.MessageProperties.CONTENT_TYPE_JSON;
 @Log4j2
 @Component
 @AllArgsConstructor
-@SuppressWarnings("squid:S2925")
+@SuppressWarnings("squid:S2925") // "Thread.sleep" should not be used in tests
 public class RabbitMqManagerImpl implements RabbitMqManager {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();

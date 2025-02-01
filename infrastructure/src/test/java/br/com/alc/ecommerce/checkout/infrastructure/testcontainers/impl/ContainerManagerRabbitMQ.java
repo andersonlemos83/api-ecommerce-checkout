@@ -14,6 +14,7 @@ import static java.util.Arrays.asList;
 import static java.util.Collections.singletonList;
 
 @Log4j2
+@SuppressWarnings("squid:S2925") // "Thread.sleep" should not be used in tests
 public class ContainerManagerRabbitMQ extends AbstractContainerManager {
 
     private static final int SERVICE_PORT = 5672;

@@ -9,7 +9,7 @@ import org.testcontainers.containers.GenericContainer;
 import java.util.concurrent.TimeUnit;
 
 @Log4j2
-@SuppressWarnings("squid:S2925")
+@SuppressWarnings("squid:S2925") // "Thread.sleep" should not be used in tests
 public abstract class AbstractContainerManager implements ContainerManager {
 
     private final GenericContainer container;
