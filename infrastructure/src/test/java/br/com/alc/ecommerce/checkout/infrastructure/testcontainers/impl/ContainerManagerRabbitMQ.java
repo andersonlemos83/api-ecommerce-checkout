@@ -40,12 +40,13 @@ public class ContainerManagerRabbitMQ extends AbstractContainerManager {
     }
 
     @SneakyThrows
+    @Override
     protected void executeInContainer() {
         while (!getInstance().isRunning()) {
             TimeUnit.MILLISECONDS.sleep(100);
         }
 
-        COMMANDS.forEach((cmd) -> {
+        COMMANDS.forEach(cmd -> {
             try {
                 Container.ExecResult execResult = getInstance().execInContainer(cmd.toArray(new String[0]));
                 if (execResult.getExitCode() != 0) {

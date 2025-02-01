@@ -9,6 +9,7 @@ import org.testcontainers.containers.GenericContainer;
 import java.util.concurrent.TimeUnit;
 
 @Log4j2
+@SuppressWarnings("squid:S2925")
 public abstract class AbstractContainerManager implements ContainerManager {
 
     private final GenericContainer container;

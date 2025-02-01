@@ -20,6 +20,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.TimeZone;
+import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 import static com.fasterxml.jackson.databind.DeserializationFeature.*;
@@ -28,13 +29,12 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Comparator.naturalOrder;
-import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.springframework.amqp.core.MessageProperties.CONTENT_TYPE_JSON;
-import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 
 @Log4j2
 @Component
 @AllArgsConstructor
+@SuppressWarnings("squid:S2925")
 public class RabbitMqManagerImpl implements RabbitMqManager {
 
     private static final ObjectMapper objectMapper = new ObjectMapper();
@@ -64,7 +64,7 @@ public class RabbitMqManagerImpl implements RabbitMqManager {
     public void disableListener(final String queueName) {
         rabbitListenerEndpointRegistry.getListenerContainers()
                 .stream()
-                .map(listener -> (SimpleMessageListenerContainer) listener)
+                .map(SimpleMessageListenerContainer.class::cast)
                 .filter(listener -> asList(listener.getQueueNames()).contains(queueName))
                 .forEach(MessageListenerContainer::stop);
     }
@@ -72,7 +72,7 @@ public class RabbitMqManagerImpl implements RabbitMqManager {
     public void enableListener(final String queueName) {
         rabbitListenerEndpointRegistry.getListenerContainers()
                 .stream()
-                .map(listener -> (SimpleMessageListenerContainer) listener)
+                .map(SimpleMessageListenerContainer.class::cast)
                 .filter(listener -> asList(listener.getQueueNames()).contains(queueName))
                 .forEach(MessageListenerContainer::start);
     }
@@ -95,7 +95,7 @@ public class RabbitMqManagerImpl implements RabbitMqManager {
             List<Message> mensagens = new ArrayList<>();
             Integer messageCount = getMessageCount(queueName);
             for (int i = 0; i < messageCount; i++) {
-                await().atMost(10, MILLISECONDS);
+                TimeUnit.MILLISECONDS.sleep(10);
                 Message message = rabbitTemplate.receive(queueName);
                 if (message != null) {
                     mensagens.add(message);
@@ -105,7 +105,7 @@ public class RabbitMqManagerImpl implements RabbitMqManager {
                     .map(gerarJsonMessageFunction())
                     .sorted(naturalOrder())
                     .toList();
-        } catch (IllegalArgumentException | UncategorizedAmqpException exception) {
+        } catch (InterruptedException | IllegalArgumentException | UncategorizedAmqpException exception) {
             log.error("Error getMessages: " + exception.getMessage());
             return emptyList();
         }
