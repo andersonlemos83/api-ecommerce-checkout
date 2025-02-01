@@ -15,11 +15,6 @@ public class RabbitConfig {
         RabbitAdmin rabbitAdmin = new RabbitAdmin(connectionFactory);
         rabbitAdmin.setAutoStartup(true);
         rabbitAdmin.initialize();
-        configureExchangeAndQueue(rabbitAdmin);
         return rabbitAdmin;
-    }
-
-    private void configureExchangeAndQueue(RabbitAdmin rabbitAdmin) {
-
     }
 }

@@ -25,10 +25,10 @@ public class OracleManagerImpl implements OracleManager {
                 .parallel()
                 .filter(constraint -> "R".equals(constraint.get("CONSTRAINT_TYPE")))
                 .forEach(constraint -> {
-                    String table_schema = (String) constraint.get("OWNER");
-                    String table_name = (String) constraint.get("TABLE_NAME");
-                    String constraint_name = (String) constraint.get("CONSTRAINT_NAME");
-                    String sql = format("ALTER TABLE {0}.{1} DISABLE CONSTRAINT {2}", table_schema, table_name, constraint_name);
+                    String tableSchema = (String) constraint.get("OWNER");
+                    String tableName = (String) constraint.get("TABLE_NAME");
+                    String constraintName = (String) constraint.get("CONSTRAINT_NAME");
+                    String sql = format("ALTER TABLE {0}.{1} DISABLE CONSTRAINT {2}", tableSchema, tableName, constraintName);
                     log.info("--> {}", sql);
                     jdbcTemplate.execute(sql);
                 });
@@ -40,9 +40,9 @@ public class OracleManagerImpl implements OracleManager {
         tables.stream()
                 .parallel()
                 .forEach(table -> {
-                    String table_schema = (String) table.get("OWNER");
-                    String table_name = (String) table.get("TABLE_NAME");
-                    String sql = format("TRUNCATE TABLE {0}.{1}", table_schema, table_name);
+                    String tableSchema = (String) table.get("OWNER");
+                    String tableName = (String) table.get("TABLE_NAME");
+                    String sql = format("TRUNCATE TABLE {0}.{1}", tableSchema, tableName);
                     log.info("--> {}", sql);
                     jdbcTemplate.execute(sql);
                 });
@@ -52,14 +52,14 @@ public class OracleManagerImpl implements OracleManager {
     public void resetSequences() {
         List<Map<String, Object>> sequences = jdbcTemplate.queryForList("SELECT * FROM ALL_SEQUENCES WHERE SEQUENCE_OWNER IN ('ECOMMERCE_CHECKOUT_OWNER')");
         sequences.forEach(sequence -> {
-            String sequence_schema = (String) sequence.get("SEQUENCE_OWNER");
-            String sequence_name = (String) sequence.get("SEQUENCE_NAME");
+            String sequenceSchema = (String) sequence.get("SEQUENCE_OWNER");
+            String sequenceName = (String) sequence.get("SEQUENCE_NAME");
 
-            String dropSql = format("DROP SEQUENCE {0}.{1}", sequence_schema, sequence_name);
+            String dropSql = format("DROP SEQUENCE {0}.{1}", sequenceSchema, sequenceName);
             log.info("--> {}", dropSql);
             jdbcTemplate.execute(dropSql);
 
-            String createSql = format("CREATE SEQUENCE {0}.{1} START WITH 1 INCREMENT BY 1", sequence_schema, sequence_name);
+            String createSql = format("CREATE SEQUENCE {0}.{1} START WITH 1 INCREMENT BY 1", sequenceSchema, sequenceName);
             log.info("--> {}", createSql);
             jdbcTemplate.execute(createSql);
         });

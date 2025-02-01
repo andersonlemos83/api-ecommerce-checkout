@@ -63,6 +63,7 @@ public class SpringContextStepDefs extends StepDefs {
     }
 
     @Before
+    @Override
     public void initializeContext() {
         super.initializeContext();
     }

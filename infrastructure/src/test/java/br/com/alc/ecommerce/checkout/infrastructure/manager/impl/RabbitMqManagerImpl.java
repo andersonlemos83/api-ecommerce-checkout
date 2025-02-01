@@ -20,7 +20,6 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 import java.util.TimeZone;
-import java.util.concurrent.TimeUnit;
 import java.util.function.Function;
 
 import static com.fasterxml.jackson.databind.DeserializationFeature.*;
@@ -29,8 +28,9 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static java.util.Arrays.asList;
 import static java.util.Collections.emptyList;
 import static java.util.Comparator.naturalOrder;
-import static java.util.stream.Collectors.toList;
+import static java.util.concurrent.TimeUnit.MILLISECONDS;
 import static org.springframework.amqp.core.MessageProperties.CONTENT_TYPE_JSON;
+import static org.testcontainers.shaded.org.awaitility.Awaitility.await;
 
 @Log4j2
 @Component
@@ -95,7 +95,7 @@ public class RabbitMqManagerImpl implements RabbitMqManager {
             List<Message> mensagens = new ArrayList<>();
             Integer messageCount = getMessageCount(queueName);
             for (int i = 0; i < messageCount; i++) {
-                TimeUnit.MILLISECONDS.sleep(10);
+                await().atMost(10, MILLISECONDS);
                 Message message = rabbitTemplate.receive(queueName);
                 if (message != null) {
                     mensagens.add(message);
@@ -104,8 +104,8 @@ public class RabbitMqManagerImpl implements RabbitMqManager {
             return mensagens.stream()
                     .map(gerarJsonMessageFunction())
                     .sorted(naturalOrder())
-                    .collect(toList());
-        } catch (InterruptedException | IllegalArgumentException | UncategorizedAmqpException exception) {
+                    .toList();
+        } catch (IllegalArgumentException | UncategorizedAmqpException exception) {
             log.error("Error getMessages: " + exception.getMessage());
             return emptyList();
         }

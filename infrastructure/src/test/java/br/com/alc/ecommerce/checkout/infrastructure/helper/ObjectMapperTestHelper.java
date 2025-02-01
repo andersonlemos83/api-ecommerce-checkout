@@ -29,7 +29,7 @@ public final class ObjectMapperTestHelper {
         objectMapper.registerModule(new JavaTimeModule());
 
         objectMapper.configure(USE_BIG_DECIMAL_FOR_FLOATS, true);
-        objectMapper.setNodeFactory(JsonNodeFactory.withExactBigDecimals(true));
+        objectMapper.setNodeFactory(new JsonNodeFactory(true));
     }
 
     private ObjectMapperTestHelper() {
