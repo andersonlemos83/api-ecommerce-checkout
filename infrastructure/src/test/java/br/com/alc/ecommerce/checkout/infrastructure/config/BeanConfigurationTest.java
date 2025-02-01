@@ -9,11 +9,12 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import static org.junit.Assert.assertTrue;
 
+@SuppressWarnings("java:S5786") // Public required for JUnit test suite
 @ExtendWith(SpringExtension.class)
 public class BeanConfigurationTest {
 
     @Test
-    public void whenExecutingWatchServiceMethodShouldReturnAnInstanceOfRealWatchService() {
+    void whenExecutingWatchServiceMethodShouldReturnAnInstanceOfRealWatchService() {
         BeanConfiguration beanConfiguration = new BeanConfiguration();
         WatchService watchService = beanConfiguration.watchService();
         assertTrue("", watchService instanceof RealWatchService);

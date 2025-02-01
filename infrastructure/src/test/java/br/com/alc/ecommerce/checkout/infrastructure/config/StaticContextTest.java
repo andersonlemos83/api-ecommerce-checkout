@@ -6,13 +6,18 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.TimeZone;
 
+import static org.junit.Assert.assertEquals;
+
+@SuppressWarnings("java:S5786") // Public required for JUnit test suite
 @ExtendWith(SpringExtension.class)
-public class StaticContext {
+public class StaticContextTest {
 
     @Test
-    public void initializeStaticContext() {
+    void initializeStaticContext() {
         System.out.println("TimeZone Default: " + TimeZone.getDefault());
         TimeZone.setDefault(TimeZone.getTimeZone("America/Fortaleza"));
         System.out.println("TimeZone Atualizado: " + TimeZone.getDefault());
+
+        assertEquals("America/Fortaleza", TimeZone.getDefault().getID());
     }
 }

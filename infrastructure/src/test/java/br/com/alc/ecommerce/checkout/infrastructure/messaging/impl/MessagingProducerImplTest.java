@@ -15,6 +15,7 @@ import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.mockito.Mockito.*;
 import static org.springframework.amqp.core.MessageProperties.CONTENT_TYPE_JSON;
 
+@SuppressWarnings("java:S5786") // Public required for JUnit test suite
 @ExtendWith(SpringExtension.class)
 public class MessagingProducerImplTest {
 
@@ -25,7 +26,7 @@ public class MessagingProducerImplTest {
     private RabbitTemplate rabbitTemplate;
 
     @Test
-    public void whenExecutingPublishMethodGivenThatItThrowsAnyExceptionShouldGenerateAnErrorLog() {
+    void whenExecutingPublishMethodGivenThatItThrowsAnyExceptionShouldGenerateAnErrorLog() {
         String exchange = "exchange";
         String queue = "queue";
         ErrorResponseDto errorResponseDto = ErrorResponseDto.builder().build();
