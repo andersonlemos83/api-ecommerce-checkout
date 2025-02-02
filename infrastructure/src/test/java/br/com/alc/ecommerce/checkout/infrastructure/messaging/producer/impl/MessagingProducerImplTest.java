@@ -1,4 +1,4 @@
-package br.com.alc.ecommerce.checkout.infrastructure.messaging.impl;
+package br.com.alc.ecommerce.checkout.infrastructure.messaging.producer.impl;
 
 import br.com.alc.ecommerce.checkout.infrastructure.dto.error.ErrorResponseDto;
 import org.junit.jupiter.api.Test;

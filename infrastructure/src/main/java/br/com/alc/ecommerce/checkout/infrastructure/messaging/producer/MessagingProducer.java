@@ -1,4 +1,4 @@
-package br.com.alc.ecommerce.checkout.infrastructure.messaging;
+package br.com.alc.ecommerce.checkout.infrastructure.messaging.producer;
 
 public interface MessagingProducer {
 

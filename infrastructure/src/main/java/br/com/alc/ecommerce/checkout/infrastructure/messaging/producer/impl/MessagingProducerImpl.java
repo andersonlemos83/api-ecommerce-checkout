@@ -1,6 +1,6 @@
-package br.com.alc.ecommerce.checkout.infrastructure.messaging.impl;
+package br.com.alc.ecommerce.checkout.infrastructure.messaging.producer.impl;
 
-import br.com.alc.ecommerce.checkout.infrastructure.messaging.MessagingProducer;
+import br.com.alc.ecommerce.checkout.infrastructure.messaging.producer.MessagingProducer;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.core.Message;
