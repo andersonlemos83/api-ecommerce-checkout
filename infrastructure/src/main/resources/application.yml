@@ -32,6 +32,7 @@ spring:
         auto-startup: false
     sale-exchange: sale-exchange
     authorize-sale-queue: authorize-sale-queue
+    sale-callback-queue: sale-callback-queue
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     hikari:
@@ -122,4 +123,8 @@ management:
     redis:
       enabled: false
 
-listenersDisabled: ""
+client:
+  tax:
+    url: http://localhost:9091/api-tax/
+  mid-client:
+    url: http://localhost:9092/api-mid-client/

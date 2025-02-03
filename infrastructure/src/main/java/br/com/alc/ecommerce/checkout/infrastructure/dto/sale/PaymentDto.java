@@ -1,5 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.dto.sale;
 
+import br.com.alc.ecommerce.checkout.core.domain.model.sale.PaymentMethod;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
@@ -21,9 +22,9 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PaymentDto implements Serializable {
 
-    @NotBlank(message = "não foi informado")
+    @NotNull(message = "não foi informado")
     @ApiModelProperty(value = "Payment method", example = "CREDIT", required = true)
-    private String paymentMethod;
+    private PaymentMethod paymentMethod;
 
     @NotNull(message = "não foi informado")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
@@ -38,12 +39,12 @@ public class PaymentDto implements Serializable {
     @ApiModelProperty(value = "Card number", example = "3556777163651312")
     private String cardNumber;
 
-    @ApiModelProperty(value = "Sequential number", example = "123456")
-    private String nsu;
+    @ApiModelProperty(value = "PIX key", example = "82992344475")
+    private String pixKey;
 
     @Min(0)
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Payment value", example = "100.01", required = true)
+    @ApiModelProperty(value = "Payment value", example = "105.04", required = true)
     private BigDecimal value;
 
 }

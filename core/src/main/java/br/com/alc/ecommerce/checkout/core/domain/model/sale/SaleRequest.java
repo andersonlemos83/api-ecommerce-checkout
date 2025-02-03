@@ -5,6 +5,10 @@ import lombok.*;
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.util.List;
+import java.util.Optional;
+
+import static java.math.BigDecimal.ZERO;
+import static java.util.Collections.emptyList;
 
 @Data
 @Builder
@@ -18,10 +22,37 @@ public class SaleRequest implements Serializable {
     private String storeCode;
     private Integer pos;
     private String numberOrder;
-    private BigDecimal totalAmount;
-    private BigDecimal freightAmount;
+    private BigDecimal totalValue;
+    private BigDecimal freightValue;
     private Customer customer;
     private List<ShoppingCartItem> items;
     private List<Payment> payments;
 
+    public String getTerminalNumber() {
+        return Optional.ofNullable(pos)
+                .map(String::valueOf)
+                .orElse(null);
+    }
+
+    public BigDecimal getTotalValueMinusFreightValue() {
+        BigDecimal total = Optional.ofNullable(totalValue).orElse(ZERO);
+        BigDecimal freight = Optional.ofNullable(freightValue).orElse(ZERO);
+        return total.subtract(freight);
+    }
+
+    public BigDecimal getTotalItemValue() {
+        return Optional.ofNullable(items)
+                .orElse(emptyList())
+                .stream()
+                .map(ShoppingCartItem::getTotalItemValue)
+                .reduce(ZERO, BigDecimal::add);
+    }
+
+    public BigDecimal getTotalPaymentValue() {
+        return Optional.ofNullable(payments)
+                .orElse(emptyList())
+                .stream()
+                .map(Payment::getValue)
+                .reduce(ZERO, BigDecimal::add);
+    }
 }

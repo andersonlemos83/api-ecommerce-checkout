@@ -40,4 +40,8 @@ feign:
       default:
         loggerLevel: FULL # NONE, BASIC, HEADERS, FULL
 
-listenersDisabled: ""
+client:
+  tax:
+    url: http://localhost:9090/
+  mid-client:
+    url: http://localhost:9090/

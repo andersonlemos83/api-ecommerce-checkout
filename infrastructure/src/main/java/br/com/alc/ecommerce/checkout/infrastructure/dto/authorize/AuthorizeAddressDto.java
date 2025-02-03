@@ -1,6 +1,5 @@
-package br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.sale;
+package br.com.alc.ecommerce.checkout.infrastructure.dto.authorize;
 
-import br.com.alc.ecommerce.checkout.core.domain.model.sale.DocumentType;
 import lombok.*;
 
 import java.io.Serializable;
@@ -10,11 +9,8 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class CustomerDataTable implements Serializable {
+public class AuthorizeAddressDto implements Serializable {
 
-    private String name;
-    private String document;
-    private DocumentType documentType;
     private String address;
     private String addressNumber;
     private String addressComplement;
@@ -23,7 +19,5 @@ public class CustomerDataTable implements Serializable {
     private String state;
     private String country;
     private String zipCode;
-    private String phone;
-    private String email;
 
 }

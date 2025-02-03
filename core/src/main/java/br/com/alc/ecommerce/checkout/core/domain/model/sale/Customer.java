@@ -1,5 +1,6 @@
 package br.com.alc.ecommerce.checkout.core.domain.model.sale;
 
+import br.com.alc.ecommerce.checkout.core.application.util.EnumUtil;
 import lombok.*;
 
 import java.io.Serializable;
@@ -13,7 +14,7 @@ public class Customer implements Serializable {
 
     private String name;
     private String document;
-    private String documentType;
+    private DocumentType documentType;
     private String address;
     private String addressNumber;
     private String addressComplement;
@@ -25,4 +26,7 @@ public class Customer implements Serializable {
     private String phone;
     private String email;
 
+    public String getNameDocumentType() {
+        return EnumUtil.toName(documentType);
+    }
 }

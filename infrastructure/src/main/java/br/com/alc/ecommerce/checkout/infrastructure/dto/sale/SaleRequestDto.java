@@ -41,13 +41,13 @@ public class SaleRequestDto implements Serializable {
 
     @Min(0)
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Total amount", example = "100.01", required = true)
-    private BigDecimal totalAmount;
+    @ApiModelProperty(value = "Total value", example = "105.04", required = true)
+    private BigDecimal totalValue;
 
     @Min(0)
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Freight amount", example = "5.05", required = true)
-    private BigDecimal freightAmount;
+    @ApiModelProperty(value = "Freight value", example = "5.05", required = true)
+    private BigDecimal freightValue;
 
     @Valid
     @NotNull(message = "não foi informado")

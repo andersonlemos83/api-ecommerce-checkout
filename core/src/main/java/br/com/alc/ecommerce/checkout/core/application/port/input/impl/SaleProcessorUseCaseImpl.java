@@ -4,13 +4,15 @@ import br.com.alc.ecommerce.checkout.core.application.port.input.SaleProcessorUs
 import br.com.alc.ecommerce.checkout.core.application.port.output.MostRecentSaleOrderFinderOutPort;
 import br.com.alc.ecommerce.checkout.core.application.port.output.SaleCallbackIntegrateOutPort;
 import br.com.alc.ecommerce.checkout.core.application.port.output.SaleOrderInserterOutPort;
-import br.com.alc.ecommerce.checkout.core.application.service.SaleAuthorizerService;
+import br.com.alc.ecommerce.checkout.core.application.service.authorize.SaleAuthorizerService;
 import br.com.alc.ecommerce.checkout.core.application.service.validator.SaleValidatorService;
 import br.com.alc.ecommerce.checkout.core.application.service.watch.WatchService;
-import br.com.alc.ecommerce.checkout.core.domain.model.SaleAuthorizeResponse;
+import br.com.alc.ecommerce.checkout.core.domain.model.authorize.AuthorizeSaleResponse;
+import br.com.alc.ecommerce.checkout.core.domain.model.callback.SaleCallbackRequest;
 import br.com.alc.ecommerce.checkout.core.domain.model.order.SaleOrder;
 import br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleRequest;
 import lombok.AllArgsConstructor;
+import org.apache.commons.lang3.StringUtils;
 
 import java.util.Optional;
 
@@ -33,7 +35,7 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
         Optional<SaleOrder> saleOrderOptional = mostRecentSaleOrderFinderOutPort.execute(saleRequest.getNumberOrder());
 
         if (saleOrderOptional.filter(SaleOrder::isProcessed).isPresent()) {
-            saleCallbackIntegrateOutPort.execute(saleOrderOptional.get());
+            integrateSaleCallback(saleOrderOptional.get());
             return;
         }
 
@@ -44,17 +46,18 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
                 SaleOrder prossingSaleOrdersaleOrder = buildProssingSaleOrder(saleRequest);
                 saleOrderInserterOutPort.execute(prossingSaleOrdersaleOrder);
 
-                SaleAuthorizeResponse saleAuthorizeResponse = saleAuthorizerService.execute(saleRequest);
+                AuthorizeSaleResponse authorizeSaleResponse = saleAuthorizerService.execute(saleRequest);
 
-                SaleOrder processedSaleOrder = buildProcessedSaleOrder(saleRequest, saleAuthorizeResponse);
+                SaleOrder processedSaleOrder = buildProcessedSaleOrder(saleRequest, authorizeSaleResponse);
                 saleOrderInserterOutPort.execute(processedSaleOrder);
 
-                saleCallbackIntegrateOutPort.execute(processedSaleOrder);
+                integrateSaleCallback(processedSaleOrder);
 
             } catch (Exception exception) {
                 SaleOrder saleOrder = buildErrorSaleOrder(saleRequest, exception);
                 saleOrderInserterOutPort.execute(saleOrder);
-                saleCallbackIntegrateOutPort.execute(saleOrder);
+
+                integrateSaleCallback(saleOrder);
             }
         }
     }
@@ -70,17 +73,17 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
         SaleOrder.SaleOrderBuilder saleOrderBuilder = buildSaleOrder(saleRequest);
         return saleOrderBuilder
                 .status(ERROR)
-                .errorReason(getRootCauseMessage(exception))
+                .errorReason(StringUtils.truncate(getRootCauseMessage(exception), 999))
                 .build();
     }
 
-    private SaleOrder buildProcessedSaleOrder(SaleRequest saleRequest, SaleAuthorizeResponse saleAuthorizeResponse) {
+    private SaleOrder buildProcessedSaleOrder(SaleRequest saleRequest, AuthorizeSaleResponse authorizeSaleResponse) {
         SaleOrder.SaleOrderBuilder saleOrderBuilder = buildSaleOrder(saleRequest);
         return saleOrderBuilder
-                .invoiceKey(saleAuthorizeResponse.getInvoiceKey())
-                .invoiceNumber(saleAuthorizeResponse.getInvoiceNumber())
-                .issuanceDate(saleAuthorizeResponse.getIssuanceDate())
-                .invoiceBase64(saleAuthorizeResponse.getInvoiceBase64())
+                .invoiceKey(authorizeSaleResponse.getInvoiceKey())
+                .invoiceNumber(authorizeSaleResponse.getInvoiceNumber())
+                .issuanceDate(authorizeSaleResponse.getIssuanceDate())
+                .invoiceBase64(authorizeSaleResponse.getInvoiceBase64())
                 .status(IN_PROCESSING)
                 .build();
     }
@@ -92,9 +95,26 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
                 .storeCode(saleRequest.getStoreCode())
                 .pos(saleRequest.getPos())
                 .numberOrder(saleRequest.getNumberOrder())
-                .totalAmount(saleRequest.getTotalAmount())
-                .freightAmount(saleRequest.getFreightAmount())
+                .totalAmount(saleRequest.getTotalValue())
+                .freightAmount(saleRequest.getFreightValue())
                 .createdDate(watchService.nowLocalDateTime())
                 .updatedDate(watchService.nowLocalDateTime());
+    }
+
+    private void integrateSaleCallback(SaleOrder saleOrder) {
+        SaleCallbackRequest saleCallbackRequest = buildSaleCallbackRequest(saleOrder);
+        saleCallbackIntegrateOutPort.execute(saleCallbackRequest);
+    }
+
+    private SaleCallbackRequest buildSaleCallbackRequest(SaleOrder saleOrder) {
+        return SaleCallbackRequest.builder()
+                .numberOrder(saleOrder.getNumberOrder())
+                .invoiceKey(saleOrder.getInvoiceKey())
+                .invoiceNumber(saleOrder.getInvoiceNumber())
+                .issuanceDate(saleOrder.getIssuanceDate())
+                .invoiceBase64(saleOrder.getInvoiceBase64())
+                .status(saleOrder.getStatus())
+                .errorReason(saleOrder.getErrorReason())
+                .build();
     }
 }

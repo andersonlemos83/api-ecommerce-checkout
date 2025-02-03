@@ -63,7 +63,7 @@ public class SaleOrderEntity implements Serializable {
     @Column(name = "STATUS", nullable = false)
     private SaleStatus status;
 
-    @Column(name = "ERROR_REASON")
+    @Column(name = "ERROR_REASON", length = 1000)
     private String errorReason;
 
     @Column(name = "CREATED_DATE", nullable = false)

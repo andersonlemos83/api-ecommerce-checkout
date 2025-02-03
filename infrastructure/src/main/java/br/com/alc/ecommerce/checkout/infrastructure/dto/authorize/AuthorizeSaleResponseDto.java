@@ -1,4 +1,4 @@
-package br.com.alc.ecommerce.checkout.core.domain.model;
+package br.com.alc.ecommerce.checkout.infrastructure.dto.authorize;
 
 import lombok.*;
 
@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaleAuthorizeResponse implements Serializable {
+public class AuthorizeSaleResponseDto implements Serializable {
 
     private String invoiceKey;
     private String invoiceNumber;

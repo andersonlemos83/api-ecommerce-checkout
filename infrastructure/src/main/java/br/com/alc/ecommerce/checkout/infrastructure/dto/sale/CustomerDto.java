@@ -1,8 +1,10 @@
 package br.com.alc.ecommerce.checkout.infrastructure.dto.sale;
 
+import br.com.alc.ecommerce.checkout.core.domain.model.sale.DocumentType;
 import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import jakarta.validation.constraints.Size;
 import lombok.*;
 
@@ -23,9 +25,9 @@ public class CustomerDto implements Serializable {
     @ApiModelProperty(value = "Customer's document number", example = "60778532402", required = true)
     private String document;
 
-    @NotBlank(message = "não foi informado")
+    @NotNull(message = "não foi informado")
     @ApiModelProperty(value = "Customer's document type", example = "CPF", required = true)
-    private String documentType;
+    private DocumentType documentType;
 
     @NotBlank(message = "não foi informado")
     @ApiModelProperty(value = "Customer's address", example = "Rua Projetada 913", required = true)

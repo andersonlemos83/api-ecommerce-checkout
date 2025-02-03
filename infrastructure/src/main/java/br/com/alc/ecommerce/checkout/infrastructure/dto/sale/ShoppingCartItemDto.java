@@ -23,12 +23,12 @@ public class ShoppingCartItemDto implements Serializable {
 
     @Min(1)
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Quantity of items", example = "2", required = true)
+    @ApiModelProperty(value = "Quantity of items", example = "1", required = true)
     private Integer quantity;
 
     @Min(0)
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Item value", example = "100.01", required = true)
+    @ApiModelProperty(value = "Item value", example = "99.99", required = true)
     private BigDecimal value;
 
 }
