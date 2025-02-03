@@ -36,8 +36,8 @@ Funcionalidade: Autorizar Venda
       |              |              |            |     |              |             |               |
     Quando autorizar venda
     Entao deveria receber os dados de Error Response
-      | Http Status | Message                                                                                                                                                                                                                                                                                                                                                                           |
-      | BAD_REQUEST | O campo channelCode não foi informado, O campo companyCode não foi informado, O campo customer não foi informado, O campo freightAmount não foi informado, O campo items não foi informado, O campo numberOrder não foi informado, O campo payments não foi informado, O campo pos não foi informado, O campo storeCode não foi informado, O campo totalAmount não foi informado. |
+      | Http Status | Message                                                                                                                                                                                                                                                                                                                                                                         |
+      | BAD_REQUEST | O campo channelCode não foi informado, O campo companyCode não foi informado, O campo customer não foi informado, O campo freightValue não foi informado, O campo items não foi informado, O campo numberOrder não foi informado, O campo payments não foi informado, O campo pos não foi informado, O campo storeCode não foi informado, O campo totalValue não foi informado. |
     E nao deveria publicar nenhum JSON na fila
       | Queue Name           |
       | authorize-sale-queue |

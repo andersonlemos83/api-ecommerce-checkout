@@ -9,6 +9,6 @@ public class WireMockConfig {
 
     @Bean(initMethod = "start", destroyMethod = "stop")
     public WireMockServer wireMockServer() {
-        return new WireMockServer(8090);
+        return new WireMockServer(9090);
     }
 }

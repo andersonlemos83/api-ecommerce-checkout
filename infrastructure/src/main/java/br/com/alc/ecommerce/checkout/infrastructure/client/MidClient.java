@@ -8,7 +8,7 @@ import org.springframework.web.bind.annotation.PostMapping;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@FeignClient(name = "api-mid-client", url = "${client.sefaz.url}")
+@FeignClient(name = "api-mid-client", url = "${client.mid-client.url}")
 public interface MidClient {
 
     @Headers("Content-Type: " + APPLICATION_JSON_VALUE)
