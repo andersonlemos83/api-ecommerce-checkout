@@ -8,7 +8,7 @@ import br.com.alc.ecommerce.checkout.infrastructure.dto.tax.TaxResponseDto;
 import feign.FeignException;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.beans.BeanUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.retry.support.RetryTemplate;
 import org.springframework.stereotype.Component;
@@ -43,8 +43,6 @@ public class TaxFinderOutPortImpl implements TaxFinderOutPort {
     }
 
     private TaxResponse buildTaxResponseDto(TaxResponseDto taxResponseDto) {
-        TaxResponse taxResponse = TaxResponse.builder().build();
-        BeanUtils.copyProperties(taxResponseDto, taxResponse);
-        return taxResponse;
+        return new ModelMapper().map(taxResponseDto, TaxResponse.class);
     }
 }

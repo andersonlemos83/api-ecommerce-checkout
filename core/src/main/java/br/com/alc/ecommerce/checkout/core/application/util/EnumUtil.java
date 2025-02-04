@@ -7,7 +7,7 @@ public final class EnumUtil {
     private EnumUtil() {
     }
 
-    public static String toName(Enum enumeration) {
+    public static String toName(Enum<?> enumeration) {
         return Optional.ofNullable(enumeration)
                 .map(Enum::name)
                 .orElse(null);

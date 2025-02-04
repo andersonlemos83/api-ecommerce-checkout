@@ -4,7 +4,7 @@ import br.com.alc.ecommerce.checkout.core.application.port.output.SaleCallbackIn
 import br.com.alc.ecommerce.checkout.core.domain.model.callback.SaleCallbackRequest;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.callback.SaleCallbackRequestDto;
 import br.com.alc.ecommerce.checkout.infrastructure.messaging.producer.MessagingProducer;
-import org.springframework.beans.BeanUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
@@ -28,8 +28,6 @@ public class SaleCallbackIntegrateOutPortImpl implements SaleCallbackIntegrateOu
     }
 
     private SaleCallbackRequestDto buildSaleCallbackRequestDto(SaleCallbackRequest saleCallbackRequest) {
-        SaleCallbackRequestDto saleCallbackRequestDto = SaleCallbackRequestDto.builder().build();
-        BeanUtils.copyProperties(saleCallbackRequest, saleCallbackRequestDto);
-        return saleCallbackRequestDto;
+        return new ModelMapper().map(saleCallbackRequest, SaleCallbackRequestDto.class);
     }
 }

@@ -5,7 +5,7 @@ import br.com.alc.ecommerce.checkout.core.domain.model.order.SaleOrder;
 import br.com.alc.ecommerce.checkout.infrastructure.persistence.entity.SaleOrderEntity;
 import br.com.alc.ecommerce.checkout.infrastructure.persistence.repository.SaleOrderRepository;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.BeanUtils;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
@@ -23,8 +23,6 @@ public class MostRecentSaleOrderFinderOutPortImpl implements MostRecentSaleOrder
     }
 
     private SaleOrder buildSaleOrder(SaleOrderEntity saleOrderEntity) {
-        SaleOrder saleOrder = SaleOrder.builder().build();
-        BeanUtils.copyProperties(saleOrderEntity, saleOrder);
-        return saleOrder;
+        return new ModelMapper().map(saleOrderEntity, SaleOrder.class);
     }
 }

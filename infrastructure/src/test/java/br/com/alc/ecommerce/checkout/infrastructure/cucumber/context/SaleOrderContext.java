@@ -9,8 +9,6 @@ import org.springframework.stereotype.Component;
 
 import java.util.List;
 
-import static java.util.stream.Collectors.toList;
-
 @Component
 @AllArgsConstructor
 public class SaleOrderContext {
@@ -18,7 +16,7 @@ public class SaleOrderContext {
     private final SaleOrderRepositoryHelper saleOrderRepositoryHelper;
 
     public void insert(List<SaleOrderDataTable> orderDataTableList) {
-        List<SaleOrderEntity> saleOrderEntityList = orderDataTableList.stream().map(this::buildSaleOrderEntity).collect(toList());
+        List<SaleOrderEntity> saleOrderEntityList = orderDataTableList.stream().map(this::buildSaleOrderEntity).toList();
         saleOrderRepositoryHelper.saveAll(saleOrderEntityList);
     }
 
