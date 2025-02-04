@@ -2,6 +2,7 @@ package br.com.alc.ecommerce.checkout.infrastructure.helper;
 
 import br.com.alc.ecommerce.checkout.infrastructure.dto.error.ErrorResponseDto;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.sale.SaleResponseDto;
+import br.com.alc.ecommerce.checkout.infrastructure.dto.tax.TaxResponseDto;
 import com.fasterxml.jackson.databind.JsonNode;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.databind.node.JsonNodeFactory;
@@ -57,5 +58,9 @@ public final class ObjectMapperTestHelper {
 
     public static ErrorResponseDto generateErrorResponseDto(ResultActions result) throws Exception {
         return objectMapper.readValue(result.andReturn().getResponse().getContentAsString(UTF_8), ErrorResponseDto.class);
+    }
+
+    public static TaxResponseDto generateTaxResponseDto(String json) throws Exception {
+        return objectMapper.readValue(json, TaxResponseDto.class);
     }
 }

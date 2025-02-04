@@ -14,9 +14,9 @@ public class ObjectMapperUtilTest {
 
     @Test
     void whenExecutingGenerateJsonMethodGivenThatTheObjectIsSerializableShouldReturnASerializedObject() {
-        ErrorResponseDto errorResponseDto = ErrorResponseDto.builder().httpStatus(OK).message("O campo totalAmount não foi informado.").build();
+        ErrorResponseDto errorResponseDto = ErrorResponseDto.builder().httpStatus(OK).message("O campo totalValue não foi informado.").build();
         String jsonReturned = ObjectMapperUtil.generateJson(errorResponseDto);
-        assertEquals("{\"httpStatus\":\"OK\",\"message\":\"O campo totalAmount não foi informado.\"}", jsonReturned);
+        assertEquals("{\"httpStatus\":\"OK\",\"message\":\"O campo totalValue não foi informado.\"}", jsonReturned);
     }
 
     @Test

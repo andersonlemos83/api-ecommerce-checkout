@@ -17,7 +17,7 @@ import static java.util.Arrays.asList;
 @AllArgsConstructor
 public class EnvironmentConfigurator {
 
-    private static final List<String> QUEUES = asList("authorize-sale-queue");
+    private static final List<String> QUEUES = asList("authorize-sale-queue", "sale-callback-queue");
 
     private final OracleManager oracleManager;
     private final RabbitMqManager rabbitMqManager;

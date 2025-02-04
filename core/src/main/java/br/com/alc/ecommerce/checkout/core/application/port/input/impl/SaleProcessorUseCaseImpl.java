@@ -16,8 +16,7 @@ import org.apache.commons.lang3.StringUtils;
 
 import java.util.Optional;
 
-import static br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleStatus.ERROR;
-import static br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleStatus.IN_PROCESSING;
+import static br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleStatus.*;
 import static org.apache.commons.lang3.exception.ExceptionUtils.getRootCauseMessage;
 
 @AllArgsConstructor
@@ -84,7 +83,7 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
                 .invoiceNumber(authorizeSaleResponse.getInvoiceNumber())
                 .issuanceDate(authorizeSaleResponse.getIssuanceDate())
                 .invoiceBase64(authorizeSaleResponse.getInvoiceBase64())
-                .status(IN_PROCESSING)
+                .status(PROCESSED)
                 .build();
     }
 
@@ -95,8 +94,8 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
                 .storeCode(saleRequest.getStoreCode())
                 .pos(saleRequest.getPos())
                 .numberOrder(saleRequest.getNumberOrder())
-                .totalAmount(saleRequest.getTotalValue())
-                .freightAmount(saleRequest.getFreightValue())
+                .totalValue(saleRequest.getTotalValue())
+                .freightValue(saleRequest.getFreightValue())
                 .createdDate(watchService.nowLocalDateTime())
                 .updatedDate(watchService.nowLocalDateTime());
     }

@@ -11,11 +11,11 @@ public class SaleValidatorServiceImpl implements SaleValidatorService {
 
     @Override
     public void execute(SaleRequest saleRequest) {
-        if (saleRequest.getTotalPaymentValue().compareTo(saleRequest.getTotalValue()) == 0) {
+        if (saleRequest.getTotalPaymentValue().compareTo(saleRequest.getTotalValue()) != 0) {
             throw new TotalPaymentValueMismatchException();
         }
 
-        if (saleRequest.getTotalItemValue().compareTo(saleRequest.getTotalValueMinusFreightValue()) == 0) {
+        if (saleRequest.getTotalItemValue().compareTo(saleRequest.getTotalValueMinusFreightValue()) != 0) {
             throw new TotalItemValueMismatchException();
         }
     }

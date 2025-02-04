@@ -41,11 +41,11 @@ public class SaleOrderEntity implements Serializable {
     @Column(name = "NUMBER_ORDER", nullable = false)
     private String numberOrder;
 
-    @Column(name = "TOTAL_AMOUNT", nullable = false)
-    private BigDecimal totalAmount;
+    @Column(name = "TOTAL_VALUE", nullable = false)
+    private BigDecimal totalValue;
 
-    @Column(name = "FREIGHT_AMOUNT", nullable = false)
-    private BigDecimal freightAmount;
+    @Column(name = "FREIGHT_VALUE", nullable = false)
+    private BigDecimal freightValue;
 
     @Column(name = "INVOICE_KEY")
     private String invoiceKey;
@@ -56,6 +56,7 @@ public class SaleOrderEntity implements Serializable {
     @Column(name = "ISSUANCE_DATE")
     private LocalDateTime issuanceDate;
 
+    @Lob
     @Column(name = "INVOICE_BASE64")
     private String invoiceBase64;
 

@@ -29,7 +29,7 @@ spring:
     virtual-host: ecommerce-checkout
     listener:
       simple:
-        auto-startup: false
+        auto-startup: true
     sale-exchange: sale-exchange
     authorize-sale-queue: authorize-sale-queue
     sale-callback-queue: sale-callback-queue

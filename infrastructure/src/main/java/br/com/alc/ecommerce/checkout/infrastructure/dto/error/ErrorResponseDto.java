@@ -20,7 +20,7 @@ public final class ErrorResponseDto implements Serializable {
     @ApiModelProperty(value = "Response HTTP status", example = "BAD_REQUEST", required = true)
     private HttpStatus httpStatus;
 
-    @ApiModelProperty(value = "Response error message", example = "O campo totalAmount não foi informado.", required = true)
+    @ApiModelProperty(value = "Response error message", example = "O campo totalValue não foi informado.", required = true)
     private String message;
 
 }

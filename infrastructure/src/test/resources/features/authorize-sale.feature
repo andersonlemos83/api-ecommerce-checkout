@@ -20,8 +20,8 @@ Funcionalidade: Autorizar Venda
       | 874631202305 | 2        | 17.68 |
       | 392084657819 | 3        | 19.18 |
     E que seja informado os dados de Payment
-      | Payment Method | Payment Date            | Authorization Code | Card Number      | Pix Key | Value  |
-      | CREDIT         | 2025-01-30T13:45:01.450 | 270606             | 3556777163651312 |         | 105.04 |
+      | Payment Method | Payment Date        | Authorization Code | Card Number      | Pix Key | Value  |
+      | CREDIT         | 2025-01-30T13:45:01 | 270606             | 3556777163651312 |         | 105.04 |
     Quando autorizar venda
     Entao deveria receber os dados de Sale Response
       | Status        | Date                |
@@ -55,8 +55,8 @@ Funcionalidade: Autorizar Venda
       | 874631202305 | 2        | 17.68 |
       | 392084657819 | 3        | 19.18 |
     E que seja informado os dados de Payment
-      | Payment Method | Payment Date            | Authorization Code | Card Number      | Pix Key | Value  |
-      | CREDIT         | 2025-01-30T13:45:01.450 | 270606             | 3556777163651312 |         | 105.04 |
+      | Payment Method | Payment Date        | Authorization Code | Card Number      | Pix Key | Value  |
+      | CREDIT         | 2025-01-30T13:45:01 | 270606             | 3556777163651312 |         | 105.04 |
     Quando autorizar venda
     Entao deveria receber os dados de Error Response
       | Http Status | Message                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -76,8 +76,8 @@ Funcionalidade: Autorizar Venda
       | Code | Quantity | Value |
       |      |          |       |
     E que seja informado os dados de Payment
-      | Payment Method | Payment Date            | Authorization Code | Card Number      | Pix Key | Value  |
-      | CREDIT         | 2025-01-30T13:45:01.450 | 270606             | 3556777163651312 |         | 105.04 |
+      | Payment Method | Payment Date        | Authorization Code | Card Number      | Pix Key | Value  |
+      | CREDIT         | 2025-01-30T13:45:01 | 270606             | 3556777163651312 |         | 105.04 |
     Quando autorizar venda
     Entao deveria receber os dados de Error Response
       | Http Status | Message                                                                                                                         |

@@ -1,21 +1,21 @@
-package br.com.alc.ecommerce.checkout.core.domain.model.order;
+package br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.order;
 
 import br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleStatus;
+import br.com.alc.ecommerce.checkout.infrastructure.fixture.ResourceFixture;
 import lombok.*;
 
 import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleStatus.ERROR;
-import static br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleStatus.PROCESSED;
+import static lombok.AccessLevel.NONE;
 
 @Data
 @Builder
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaleOrder implements Serializable {
+public class SaleOrderDataTable implements Serializable {
 
     private Long id;
     private String channelCode;
@@ -29,6 +29,8 @@ public class SaleOrder implements Serializable {
     private String invoiceKey;
     private String invoiceNumber;
     private LocalDateTime issuanceDate;
+
+    @Getter(NONE)
     private String invoiceBase64;
 
     private SaleStatus status;
@@ -36,11 +38,10 @@ public class SaleOrder implements Serializable {
     private LocalDateTime createdDate;
     private LocalDateTime updatedDate;
 
-    public boolean isProcessed() {
-        return PROCESSED.equals(status);
-    }
-
-    public boolean isError() {
-        return ERROR.equals(status);
+    public String getInvoiceBase64() {
+        if (invoiceBase64.startsWith("/fixtures/")) {
+            return ResourceFixture.getContentFromResource(invoiceBase64);
+        }
+        return invoiceBase64;
     }
 }

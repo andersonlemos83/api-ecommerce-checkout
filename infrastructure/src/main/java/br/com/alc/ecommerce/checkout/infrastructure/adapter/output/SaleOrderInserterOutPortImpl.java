@@ -8,6 +8,8 @@ import lombok.AllArgsConstructor;
 import org.springframework.beans.BeanUtils;
 import org.springframework.stereotype.Component;
 
+import java.util.Optional;
+
 @Component
 @AllArgsConstructor
 public class SaleOrderInserterOutPortImpl implements SaleOrderInserterOutPort {
@@ -17,6 +19,8 @@ public class SaleOrderInserterOutPortImpl implements SaleOrderInserterOutPort {
     @Override
     public void execute(SaleOrder saleOrder) {
         SaleOrderEntity saleOrderEntity = buildSaleOrderEntity(saleOrder);
+        Optional<SaleOrderEntity> optional = saleOrderRepository.findFirstByNumberOrderAndStatusInProcessing(saleOrder.getNumberOrder());
+        optional.ifPresent(entity -> saleOrderEntity.setId(entity.getId()));
         saleOrderRepository.saveAndFlush(saleOrderEntity);
     }
 

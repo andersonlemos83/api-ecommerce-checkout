@@ -84,7 +84,7 @@ public class SaleAuthorizerServiceImpl implements SaleAuthorizerService {
     }
 
     private List<AuthorizeItem> buildAuthorizeItemList(List<ShoppingCartItem> items) {
-        final AtomicInteger sequence = new AtomicInteger();
+        final AtomicInteger sequence = new AtomicInteger(1);
         return items.stream()
                 .map(i -> buildAuthorizeItem(i, sequence.getAndIncrement()))
                 .toList();
@@ -93,6 +93,7 @@ public class SaleAuthorizerServiceImpl implements SaleAuthorizerService {
     private AuthorizeItem buildAuthorizeItem(ShoppingCartItem item, int sequence) {
         TaxResponse taxResponse = taxFinderOutPort.execute(item.getCode());
         return AuthorizeItem.builder()
+                .sequence(sequence)
                 .sku(item.getCode())
                 .amount(item.getQuantity())
                 .value(item.getValue())
@@ -102,7 +103,7 @@ public class SaleAuthorizerServiceImpl implements SaleAuthorizerService {
     }
 
     private List<AuthorizePayment> buildAuthorizePaymentList(List<Payment> payments) {
-        final AtomicInteger sequence = new AtomicInteger();
+        final AtomicInteger sequence = new AtomicInteger(1);
         return payments.stream()
                 .map(p -> authorizePaymentFactory.createAuthorizePayment(p, sequence.getAndIncrement()))
                 .toList();
