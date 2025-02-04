@@ -19,6 +19,7 @@ public class RabbitConfig {
     public RabbitAdmin rabbitAdmin(ConnectionFactory connectionFactory) {
         RabbitAdmin rabbitAdmin = new RabbitAdmin(connectionFactory);
         rabbitAdmin.setAutoStartup(true);
+        configureQueues(rabbitAdmin);
         rabbitAdmin.initialize();
         return rabbitAdmin;
     }

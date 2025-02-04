@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static java.util.stream.Collectors.joining;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @Component
 @AllArgsConstructor
@@ -29,6 +28,7 @@ public class MessagingVerifier {
         String returnedJson = getQueueJson(messagingDataTable);
 
         String errorMessage = MessageFormat.format("Expected message should be published in the queue {0}", messagingDataTable.getQueueName());
+        assertNotNull(errorMessage, expectedJson);
         assertEquals(errorMessage, expectedJson, returnedJson);
     }
 

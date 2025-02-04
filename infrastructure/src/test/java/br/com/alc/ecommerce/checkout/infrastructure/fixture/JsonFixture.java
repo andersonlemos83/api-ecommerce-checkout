@@ -15,6 +15,11 @@ public final class JsonFixture {
 
     private static final String SALE_REQUEST_987654321 = ResourceFixture.getContentFromResourceJson("/fixtures/SaleRequest-987654321.json");
 
+    private static final String SALE_CALLBACK_REQUEST_987654322 = ResourceFixture.getContentFromResourceJson("/fixtures/SaleCallbackRequest-987654322.json");
+    private static final String SALE_CALLBACK_REQUEST_987654323 = ResourceFixture.getContentFromResourceJson("/fixtures/SaleCallbackRequest-987654323.json");
+    private static final String SALE_CALLBACK_REQUEST_987654324 = ResourceFixture.getContentFromResourceJson("/fixtures/SaleCallbackRequest-987654324.json");
+    private static final String SALE_CALLBACK_REQUEST_987654325 = ResourceFixture.getContentFromResourceJson("/fixtures/SaleCallbackRequest-987654325.json");
+
     private static final Map<MessagingDataTable, String> jsons;
     private static final Map<MessagingDataTable, String> unusedJsons;
 
@@ -22,6 +27,11 @@ public final class JsonFixture {
         jsons = new HashMap<>();
 
         jsons.put(MessagingDataTable.builder().queueName("authorize-sale-queue").jsonKey("987654321").build(), mergeJsons(SALE_REQUEST_987654321));
+
+        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654322").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654322));
+        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654323").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654323));
+        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654324").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654324));
+        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654325").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654325));
 
         unusedJsons = new HashMap<>(jsons);
     }
