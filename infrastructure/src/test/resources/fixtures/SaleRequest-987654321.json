@@ -41,7 +41,7 @@
   "payments": [
     {
       "paymentMethod": "CREDIT",
-      "paymentDate": "2025-01-30T13:45:01.45",
+      "paymentDate": "2025-01-30T13:45:01",
       "authorizationCode": "270606",
       "cardNumber": "3556777163651312",
       "pixKey": null,
