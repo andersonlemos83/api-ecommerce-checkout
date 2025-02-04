@@ -17,7 +17,6 @@ import org.apache.commons.lang3.StringUtils;
 import java.util.Optional;
 
 import static br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleStatus.*;
-import static org.apache.commons.lang3.exception.ExceptionUtils.getRootCauseMessage;
 
 @AllArgsConstructor
 public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
@@ -72,7 +71,7 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
         SaleOrder.SaleOrderBuilder saleOrderBuilder = buildSaleOrder(saleRequest);
         return saleOrderBuilder
                 .status(ERROR)
-                .errorReason(StringUtils.truncate(getRootCauseMessage(exception), 999))
+                .errorReason(StringUtils.truncate(exception.getMessage(), 999))
                 .build();
     }
 

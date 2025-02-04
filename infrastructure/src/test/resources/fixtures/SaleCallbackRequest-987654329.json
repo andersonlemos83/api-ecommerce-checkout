@@ -1,0 +1,9 @@
+{
+  "numberOrder": "987654329",
+  "invoiceKey": null,
+  "invoiceNumber": null,
+  "issuanceDate": null,
+  "invoiceBase64": null,
+  "status": "ERROR",
+  "errorReason": "O valor total dos itens está diferente do total informado."
+}

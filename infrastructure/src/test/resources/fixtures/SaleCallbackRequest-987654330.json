@@ -1,0 +1,9 @@
+{
+  "numberOrder": "987654330",
+  "invoiceKey": null,
+  "invoiceNumber": null,
+  "issuanceDate": null,
+  "invoiceBase64": null,
+  "status": "ERROR",
+  "errorReason": "Imposto não encontrado."
+}

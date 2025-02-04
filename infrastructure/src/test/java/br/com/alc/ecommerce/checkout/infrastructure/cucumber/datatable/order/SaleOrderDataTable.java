@@ -39,6 +39,9 @@ public class SaleOrderDataTable implements Serializable {
     private LocalDateTime updatedDate;
 
     public String getInvoiceBase64() {
+        if (invoiceBase64 == null || "".equalsIgnoreCase(invoiceBase64)) {
+            return null;
+        }
         if (invoiceBase64.startsWith("/fixtures/")) {
             return ResourceFixture.getContentFromResource(invoiceBase64);
         }

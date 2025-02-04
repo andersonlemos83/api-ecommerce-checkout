@@ -11,6 +11,8 @@ import lombok.AllArgsConstructor;
 
 import java.util.List;
 
+import static java.util.Collections.emptyList;
+
 @AllArgsConstructor
 public class ExternalServicesStepDefs extends StepDefs {
 
@@ -32,5 +34,10 @@ public class ExternalServicesStepDefs extends StepDefs {
     @E("^deveria enviar para o endpoint authorize os requests esperados$")
     public void deveriaEnviarParaOhEndpointAuthorizeOsRequestsEsperados(List<JsonRequestDataTable> jsonRequestDataTableList) {
         midClientVerifier.verifyAuthorizeEnpoint(jsonRequestDataTableList);
+    }
+
+    @E("^nao deveria enviar para o endpoint authorize nenhum request$")
+    public void naoDeveriaEnviarParaOhEndpointAuthorizeNenhumRequest() {
+        midClientVerifier.verifyAuthorizeEnpoint(emptyList());
     }
 }

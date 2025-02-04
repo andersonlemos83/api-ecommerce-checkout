@@ -21,6 +21,9 @@ public class JsonRequestDataTable implements Serializable {
     private String request;
 
     public String getRequest() {
+        if (request == null || "".equalsIgnoreCase(request)) {
+            return null;
+        }
         if (request.startsWith("/fixtures/")) {
             return ResourceFixture.getContentFromResourceJson(request);
         }

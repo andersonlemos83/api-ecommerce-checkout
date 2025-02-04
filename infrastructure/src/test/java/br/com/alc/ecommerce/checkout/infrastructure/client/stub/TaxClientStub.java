@@ -1,8 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.client.stub;
 
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.externalservices.JsonResponseDataTable;
-import br.com.alc.ecommerce.checkout.infrastructure.dto.tax.TaxResponseDto;
-import br.com.alc.ecommerce.checkout.infrastructure.helper.ObjectMapperTestHelper;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import lombok.RequiredArgsConstructor;
 import lombok.SneakyThrows;
@@ -12,6 +10,7 @@ import java.text.MessageFormat;
 import java.util.Optional;
 
 import static com.github.tomakehurst.wiremock.client.WireMock.*;
+import static org.eclipse.jetty.http.HttpStatus.BAD_REQUEST_400;
 
 @Component
 @RequiredArgsConstructor
@@ -23,13 +22,17 @@ public class TaxClientStub {
 
     @SneakyThrows
     public void configureFindByCodeEndpoint(JsonResponseDataTable jsonResponseDataTable) {
-        TaxResponseDto taxResponseDto = ObjectMapperTestHelper.generateTaxResponseDto(jsonResponseDataTable.getResponse());
-        String code = Optional.ofNullable(taxResponseDto).map(TaxResponseDto::getCode).map(String::valueOf).orElse(null);
+        String code = Optional.ofNullable(jsonResponseDataTable.getKey()).map(String::valueOf).orElse(null);
         String url = MessageFormat.format(URL_FIND_BY_CODE, code);
         if (jsonResponseDataTable.isStatusOk()) {
             wireMockServer.stubFor(get(urlEqualTo(url))
                     .withName(url)
                     .willReturn(okJson(jsonResponseDataTable.getResponse())));
+        }
+        if (jsonResponseDataTable.isStatusBadRequest()) {
+            wireMockServer.stubFor(get(urlEqualTo(url))
+                    .withName(url)
+                    .willReturn(aResponse().withStatus(BAD_REQUEST_400).withBody(jsonResponseDataTable.getResponse())));
         }
     }
 }

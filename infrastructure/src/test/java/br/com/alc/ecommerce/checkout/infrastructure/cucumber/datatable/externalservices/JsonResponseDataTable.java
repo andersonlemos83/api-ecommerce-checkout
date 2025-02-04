@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import java.io.Serializable;
 
 import static lombok.AccessLevel.NONE;
+import static org.springframework.http.HttpStatus.BAD_REQUEST;
 import static org.springframework.http.HttpStatus.OK;
 
 @Data
@@ -15,12 +16,16 @@ import static org.springframework.http.HttpStatus.OK;
 @AllArgsConstructor
 public class JsonResponseDataTable implements Serializable {
 
+    private Object key;
     private HttpStatus status;
 
     @Getter(NONE)
     private String response;
 
     public String getResponse() {
+        if (response == null || "".equalsIgnoreCase(response)) {
+            return null;
+        }
         if (response.startsWith("/fixtures/")) {
             return ResourceFixture.getContentFromResourceJson(response);
         }
@@ -29,5 +34,9 @@ public class JsonResponseDataTable implements Serializable {
 
     public boolean isStatusOk() {
         return OK.equals(status);
+    }
+
+    public boolean isStatusBadRequest() {
+        return BAD_REQUEST.equals(status);
     }
 }
