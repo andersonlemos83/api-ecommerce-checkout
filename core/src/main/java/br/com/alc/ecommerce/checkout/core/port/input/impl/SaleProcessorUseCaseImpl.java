@@ -37,26 +37,35 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
             return;
         }
 
-        if (!saleOrderOptional.isPresent() || saleOrderOptional.filter(SaleOrder::isError).isPresent()) {
-            try {
-                saleValidatorService.execute(saleRequest);
+        if (saleOrderOptional.filter(SaleOrder::isError).isPresent()) {
+            authorizeSale(saleRequest);
+            return;
+        }
 
-                SaleOrder prossingSaleOrdersaleOrder = buildProssingSaleOrder(saleRequest);
-                saleOrderInserterOutPort.execute(prossingSaleOrdersaleOrder);
+        if (!saleOrderOptional.isPresent()) {
+            authorizeSale(saleRequest);
+        }
+    }
 
-                AuthorizeSaleResponse authorizeSaleResponse = saleAuthorizerService.execute(saleRequest);
+    private void authorizeSale(SaleRequest saleRequest) {
+        try {
+            saleValidatorService.execute(saleRequest);
 
-                SaleOrder processedSaleOrder = buildProcessedSaleOrder(saleRequest, authorizeSaleResponse);
-                saleOrderInserterOutPort.execute(processedSaleOrder);
+            SaleOrder prossingSaleOrdersaleOrder = buildProssingSaleOrder(saleRequest);
+            saleOrderInserterOutPort.execute(prossingSaleOrdersaleOrder);
 
-                integrateSaleCallback(processedSaleOrder);
+            AuthorizeSaleResponse authorizeSaleResponse = saleAuthorizerService.execute(saleRequest);
 
-            } catch (Exception exception) {
-                SaleOrder saleOrder = buildErrorSaleOrder(saleRequest, exception);
-                saleOrderInserterOutPort.execute(saleOrder);
+            SaleOrder processedSaleOrder = buildProcessedSaleOrder(saleRequest, authorizeSaleResponse);
+            saleOrderInserterOutPort.execute(processedSaleOrder);
 
-                integrateSaleCallback(saleOrder);
-            }
+            integrateSaleCallback(processedSaleOrder);
+
+        } catch (Exception exception) {
+            SaleOrder saleOrder = buildErrorSaleOrder(saleRequest, exception);
+            saleOrderInserterOutPort.execute(saleOrder);
+
+            integrateSaleCallback(saleOrder);
         }
     }
 

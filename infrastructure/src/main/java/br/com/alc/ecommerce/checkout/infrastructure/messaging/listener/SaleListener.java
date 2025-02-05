@@ -23,8 +23,8 @@ public class SaleListener {
             log.info("---> Listener of the authorize-sale-queue: {}", generateJson(saleRequestDto));
             saleProcessorInAdapter.execute(saleRequestDto);
             log.info("<--- Listener of the authorize-sale-queue processed successfully");
-        } catch (Exception excecao) {
-            log.error("<--- Error in the listener of the authorize-sale-queue: {}", getMessage(excecao), excecao);
+        } catch (Exception exception) {
+            log.error("<--- Error in the listener of the authorize-sale-queue: {}", getMessage(exception), exception);
         }
     }
 }

@@ -17,6 +17,7 @@ import java.math.BigInteger;
 
 import static br.com.alc.ecommerce.checkout.infrastructure.util.ConstantesUtil.TAX_FINDER_CACHE;
 import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil.generateJson;
+import static org.apache.commons.lang3.exception.ExceptionUtils.getMessage;
 
 @Log4j2
 @Component
@@ -42,6 +43,7 @@ public class TaxFinderOutPortImpl implements TaxFinderOutPort {
                 return taxResponse;
             });
         } catch (FeignException exception) {
+            log.error("<--- Error in the TaxFinderOutPortImpl: {}", getMessage(exception), exception);
             throw new DefaultOutPortException(exception.contentUTF8(), exception.getCause());
         }
     }
