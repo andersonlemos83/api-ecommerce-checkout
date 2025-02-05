@@ -10,14 +10,14 @@ import java.util.Optional;
 @Repository
 public interface SaleOrderRepository extends JpaRepository<SaleOrderEntity, Long> {
 
-    Optional<SaleOrderEntity> findFirstByNumberOrderOrderByUpdatedDateDesc(String numberOrder);
+    Optional<SaleOrderEntity> findFirstByOrderNumberOrderByUpdatedDateDesc(String numberOrder);
 
     @Query(nativeQuery = true, value = "" +
             "SELECT * " +
             "FROM ECOMMERCE_CHECKOUT_OWNER.SALE_ORDER so " +
             "WHERE so.STATUS = 'IN_PROCESSING' " +
-            "AND so.NUMBER_ORDER IN (?1) " +
+            "AND so.ORDER_NUMBER IN (?1) " +
             "ORDER BY so.UPDATE_DATE DESC ")
-    Optional<SaleOrderEntity> findFirstByNumberOrderAndStatusInProcessing(String numberOrder);
+    Optional<SaleOrderEntity> findFirstByOrderNumberAndStatusInProcessing(String numberOrder);
 
 }

@@ -18,8 +18,8 @@ public class MostRecentSaleOrderFinderOutPortImpl implements MostRecentSaleOrder
     private final ModelMapper modelMapper;
 
     @Override
-    public Optional<SaleOrder> execute(String numberOrder) {
-        Optional<SaleOrderEntity> optional = saleOrderRepository.findFirstByNumberOrderOrderByUpdatedDateDesc(numberOrder);
+    public Optional<SaleOrder> execute(String orderNumber) {
+        Optional<SaleOrderEntity> optional = saleOrderRepository.findFirstByOrderNumberOrderByUpdatedDateDesc(orderNumber);
         return optional.map(this::buildSaleOrder);
     }
 

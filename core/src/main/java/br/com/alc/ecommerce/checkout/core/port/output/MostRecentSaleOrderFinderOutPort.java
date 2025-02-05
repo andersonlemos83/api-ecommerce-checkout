@@ -6,6 +6,6 @@ import java.util.Optional;
 
 public interface MostRecentSaleOrderFinderOutPort {
 
-    Optional<SaleOrder> execute(String numberOrder);
+    Optional<SaleOrder> execute(String orderNumber);
 
 }

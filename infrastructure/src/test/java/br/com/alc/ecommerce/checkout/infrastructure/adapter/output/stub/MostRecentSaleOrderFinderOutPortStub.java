@@ -17,10 +17,10 @@ public class MostRecentSaleOrderFinderOutPortStub extends MostRecentSaleOrderFin
     }
 
     @Override
-    public Optional<SaleOrder> execute(String numberOrder) {
-        if (INVALID_ORDER_NUMBER.equals(numberOrder)) {
+    public Optional<SaleOrder> execute(String orderNumber) {
+        if (INVALID_ORDER_NUMBER.equals(orderNumber)) {
             throw new RuntimeException("Erro inesperado ao consultar Sale Order.");
         }
-        return super.execute(numberOrder);
+        return super.execute(orderNumber);
     }
 }

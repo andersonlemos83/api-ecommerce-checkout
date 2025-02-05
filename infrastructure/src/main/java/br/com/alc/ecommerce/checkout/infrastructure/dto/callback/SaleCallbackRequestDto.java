@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class SaleCallbackRequestDto implements Serializable {
 
-    private String numberOrder;
+    private String orderNumber;
 
     private String invoiceKey;
     private String invoiceNumber;

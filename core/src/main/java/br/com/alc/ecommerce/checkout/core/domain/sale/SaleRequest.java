@@ -21,7 +21,7 @@ public class SaleRequest implements Serializable {
     private String companyCode;
     private String storeCode;
     private Integer pos;
-    private String numberOrder;
+    private String orderNumber;
     private BigDecimal totalValue;
     private BigDecimal freightValue;
     private Customer customer;

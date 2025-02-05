@@ -9,7 +9,7 @@ Funcionalidade: Autorizar Venda
 
   Cenario: 01 - Autorizar venda com todos os dados validos informados - Sucesso
     Dado que seja informado os dados de Sale Request
-      | Channel Code | Company Code | Store Code | Pos | Number Order | Total Value | Freight Value |
+      | Channel Code | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value |
       | APP          | 001          | 100        | 105 | 987654321    | 105.04      | 5.05          |
     E que seja informado os dados de Customer
       | Name              | Document    | Document Type | Address           | Address Number | Address Complement | Neighborhood | City   | State | Country | Zip Code | Phone       | Email                        |
@@ -32,19 +32,19 @@ Funcionalidade: Autorizar Venda
 
   Cenario: 02 - Autorizar venda com todos os dados nao informados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
-      | Channel Code | Company Code | Store Code | Pos | Number Order | Total Value | Freight Value |
+      | Channel Code | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value |
       |              |              |            |     |              |             |               |
     Quando autorizar venda
     Entao deveria receber os dados de Error Response
       | Http Status | Message                                                                                                                                                                                                                                                                                                                                                                         |
-      | BAD_REQUEST | O campo channelCode não foi informado, O campo companyCode não foi informado, O campo customer não foi informado, O campo freightValue não foi informado, O campo items não foi informado, O campo numberOrder não foi informado, O campo payments não foi informado, O campo pos não foi informado, O campo storeCode não foi informado, O campo totalValue não foi informado. |
+      | BAD_REQUEST | O campo channelCode não foi informado, O campo companyCode não foi informado, O campo customer não foi informado, O campo freightValue não foi informado, O campo items não foi informado, O campo orderNumber não foi informado, O campo payments não foi informado, O campo pos não foi informado, O campo storeCode não foi informado, O campo totalValue não foi informado. |
     E nao deveria publicar nenhum JSON na fila
       | Queue Name           |
       | authorize-sale-queue |
 
   Cenario: 03 - Autorizar venda com os dados Customer nao informados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
-      | Channel Code | Company Code | Store Code | Pos | Number Order | Total Value | Freight Value |
+      | Channel Code | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value |
       | APP          | 001          | 100        | 105 | 987654321    | 105.04      | 5.05          |
     E que seja informado os dados de Customer
       | Name | Document | Document Type | Address | Address Number | Address Complement | Neighborhood | City | State | Country | Zip Code | Phone | Email |
@@ -67,7 +67,7 @@ Funcionalidade: Autorizar Venda
 
   Cenario: 04 - Autorizar venda com os dados Shopping Cart Item nao informados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
-      | Channel Code | Company Code | Store Code | Pos | Number Order | Total Value | Freight Value |
+      | Channel Code | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value |
       | APP          | 001          | 100        | 105 | 987654321    | 105.04      | 5.05          |
     E que seja informado os dados de Customer
       | Name              | Document    | Document Type | Address           | Address Number | Address Complement | Neighborhood | City   | State | Country | Zip Code | Phone       | Email                        |
@@ -88,7 +88,7 @@ Funcionalidade: Autorizar Venda
 
   Cenario: 05 - Autorizar venda com os dados Payment nao informados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
-      | Channel Code | Company Code | Store Code | Pos | Number Order | Total Value | Freight Value |
+      | Channel Code | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value |
       | APP          | 001          | 100        | 105 | 987654321    | 105.04      | 5.05          |
     E que seja informado os dados de Customer
       | Name              | Document    | Document Type | Address           | Address Number | Address Complement | Neighborhood | City   | State | Country | Zip Code | Phone       | Email                        |

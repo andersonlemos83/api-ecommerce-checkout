@@ -81,7 +81,7 @@ public class SaleAuthorizerServiceImplTest {
                 .companyCode("001")
                 .storeCode("100")
                 .pos(105)
-                .numberOrder("987654322")
+                .orderNumber("987654322")
                 .totalValue(BigDecimal.valueOf(105.04))
                 .freightValue(BigDecimal.valueOf(5.05))
                 .customer(customer)

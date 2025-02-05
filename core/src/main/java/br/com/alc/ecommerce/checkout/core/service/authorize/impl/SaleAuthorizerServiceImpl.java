@@ -32,7 +32,7 @@ public class SaleAuthorizerServiceImpl implements SaleAuthorizerService {
     }
 
     private AuthorizeSaleRequest buildAuthorizeSaleRequest(SaleRequest saleRequest) {
-        String nsu = createNsu(saleRequest.getNumberOrder());
+        String nsu = createNsu(saleRequest.getOrderNumber());
         AuthorizeCustomer authorizeCustomer = buildAuthorizeCustomer(saleRequest.getCustomer());
         List<AuthorizeItem> items = buildAuthorizeItemList(saleRequest.getItems());
         List<AuthorizePayment> payments = buildAuthorizePaymentList(saleRequest.getPayments());
@@ -49,9 +49,9 @@ public class SaleAuthorizerServiceImpl implements SaleAuthorizerService {
                 .build();
     }
 
-    private String createNsu(String numberOrder) {
+    private String createNsu(String orderNumber) {
         String sequential = DateUtil.createSequence(watchService.nowLocalDateTime());
-        return numberOrder + sequential;
+        return orderNumber + sequential;
     }
 
     private String createDate() {

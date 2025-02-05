@@ -18,11 +18,11 @@ public class SaleOrderVerifier {
     private final SaleOrderRepositoryHelper saleOrderRepositoryHelper;
 
     public void verify(List<SaleOrderDataTable> expecteds) {
-        expecteds = expecteds.stream().sorted(comparing(SaleOrderDataTable::getNumberOrder, nullsLast(naturalOrder()))
+        expecteds = expecteds.stream().sorted(comparing(SaleOrderDataTable::getOrderNumber, nullsLast(naturalOrder()))
                 .thenComparing(SaleOrderDataTable::getCreatedDate, nullsLast(naturalOrder()))).toList();
 
         List<SaleOrderEntity> returneds = saleOrderRepositoryHelper.findAll()
-                .stream().sorted(comparing(SaleOrderEntity::getNumberOrder, nullsLast(naturalOrder()))
+                .stream().sorted(comparing(SaleOrderEntity::getOrderNumber, nullsLast(naturalOrder()))
                         .thenComparing(SaleOrderEntity::getCreatedDate, nullsLast(naturalOrder()))).toList();
 
         assertEquals("Should return the expected number of Sale Orders.", expecteds.size(), returneds.size());
@@ -41,7 +41,7 @@ public class SaleOrderVerifier {
         assertEquals(expected.getCompanyCode(), returned.getCompanyCode());
         assertEquals(expected.getStoreCode(), returned.getStoreCode());
         assertEquals(expected.getPos(), returned.getPos());
-        assertEquals(expected.getNumberOrder(), returned.getNumberOrder());
+        assertEquals(expected.getOrderNumber(), returned.getOrderNumber());
         assertEquals(expected.getTotalValue(), returned.getTotalValue());
         assertEquals(expected.getFreightValue(), returned.getFreightValue());
         assertEquals(expected.getInvoiceKey(), returned.getInvoiceKey());

@@ -38,8 +38,8 @@ public class SaleOrderEntity implements Serializable {
     @Column(name = "POS", nullable = false)
     private Integer pos;
 
-    @Column(name = "NUMBER_ORDER", nullable = false)
-    private String numberOrder;
+    @Column(name = "ORDER_NUMBER", nullable = false)
+    private String orderNumber;
 
     @Column(name = "TOTAL_VALUE", nullable = false)
     private BigDecimal totalValue;

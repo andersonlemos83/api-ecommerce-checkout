@@ -49,10 +49,10 @@ public class SaleProcessorUseCaseImplTest {
 
     @Test
     void givenAnProcessedSaleOrderWhenExecutingTheSaleProcessorUseCaseThenShouldCallSaleCallbackIntegrateOutPort() {
-        SaleRequest saleRequest = SaleRequest.builder().numberOrder("987654322").build();
+        SaleRequest saleRequest = SaleRequest.builder().orderNumber("987654322").build();
         SaleOrder saleOrderReturned = SaleOrder.builder().status(PROCESSED).build();
 
-        when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getNumberOrder())).thenReturn(Optional.of(saleOrderReturned));
+        when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getOrderNumber())).thenReturn(Optional.of(saleOrderReturned));
 
         saleProcessorUseCase.execute(saleRequest);
 
@@ -62,10 +62,10 @@ public class SaleProcessorUseCaseImplTest {
 
     @Test
     void givenAnUnprocessedSaleOrderWhenExecutingTheSaleProcessorUseCaseThenShouldCallSaleValidatorServiceAndSaleOrderInserterOutPortAndSaleAuthorizerServiceAndSaleCallbackIntegrateOutPort() {
-        SaleRequest saleRequest = SaleRequest.builder().numberOrder("987654322").build();
+        SaleRequest saleRequest = SaleRequest.builder().orderNumber("987654322").build();
         AuthorizeSaleResponse authorizeSaleResponseReturned = AuthorizeSaleResponse.builder().invoiceNumber("000000001").build();
 
-        when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getNumberOrder())).thenReturn(Optional.empty());
+        when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getOrderNumber())).thenReturn(Optional.empty());
         when(saleAuthorizerServiceMock.execute(saleRequest)).thenReturn(authorizeSaleResponseReturned);
 
         saleProcessorUseCase.execute(saleRequest);
@@ -78,11 +78,11 @@ public class SaleProcessorUseCaseImplTest {
 
     @Test
     void givenAnErrorSaleOrderWhenExecutingTheSaleProcessorUseCaseThenShouldCallSaleValidatorServiceAndSaleOrderInserterOutPortAndSaleAuthorizerServiceAndSaleCallbackIntegrateOutPort() {
-        SaleRequest saleRequest = SaleRequest.builder().numberOrder("987654322").build();
+        SaleRequest saleRequest = SaleRequest.builder().orderNumber("987654322").build();
         SaleOrder saleOrderReturned = SaleOrder.builder().status(ERROR).build();
         AuthorizeSaleResponse authorizeSaleResponseReturned = AuthorizeSaleResponse.builder().invoiceNumber("000000001").build();
 
-        when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getNumberOrder())).thenReturn(Optional.of(saleOrderReturned));
+        when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getOrderNumber())).thenReturn(Optional.of(saleOrderReturned));
         when(saleAuthorizerServiceMock.execute(saleRequest)).thenReturn(authorizeSaleResponseReturned);
 
         saleProcessorUseCase.execute(saleRequest);
@@ -95,9 +95,9 @@ public class SaleProcessorUseCaseImplTest {
 
     @Test
     void givenAnInvalidSaleOrderWhenExecutingTheSaleProcessorUseCaseThenShouldCallSaleOrderInserterOutPortAndSaleCallbackIntegrateOutPort() {
-        SaleRequest saleRequest = SaleRequest.builder().numberOrder("987654322").build();
+        SaleRequest saleRequest = SaleRequest.builder().orderNumber("987654322").build();
 
-        when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getNumberOrder())).thenReturn(Optional.empty());
+        when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getOrderNumber())).thenReturn(Optional.empty());
         doThrow(new RuntimeException("Validation Error")).when(saleValidatorServiceMock).execute(saleRequest);
 
         saleProcessorUseCase.execute(saleRequest);

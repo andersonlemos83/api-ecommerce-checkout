@@ -36,8 +36,8 @@ public class SaleRequestDto implements Serializable {
     private Integer pos;
 
     @NotBlank(message = "não foi informado")
-    @ApiModelProperty(value = "Number Order", example = "987654321", required = true)
-    private String numberOrder;
+    @ApiModelProperty(value = "Order Number", example = "987654321", required = true)
+    private String orderNumber;
 
     @Min(0)
     @NotNull(message = "não foi informado")

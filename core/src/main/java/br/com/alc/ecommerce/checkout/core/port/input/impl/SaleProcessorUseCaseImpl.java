@@ -30,7 +30,7 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
 
     @Override
     public void execute(SaleRequest saleRequest) {
-        Optional<SaleOrder> saleOrderOptional = mostRecentSaleOrderFinderOutPort.execute(saleRequest.getNumberOrder());
+        Optional<SaleOrder> saleOrderOptional = mostRecentSaleOrderFinderOutPort.execute(saleRequest.getOrderNumber());
 
         if (saleOrderOptional.filter(SaleOrder::isProcessed).isPresent()) {
             integrateSaleCallback(saleOrderOptional.get());
@@ -92,7 +92,7 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
                 .companyCode(saleRequest.getCompanyCode())
                 .storeCode(saleRequest.getStoreCode())
                 .pos(saleRequest.getPos())
-                .numberOrder(saleRequest.getNumberOrder())
+                .orderNumber(saleRequest.getOrderNumber())
                 .totalValue(saleRequest.getTotalValue())
                 .freightValue(saleRequest.getFreightValue())
                 .createdDate(watchService.nowLocalDateTime())
@@ -106,7 +106,7 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
 
     private SaleCallbackRequest buildSaleCallbackRequest(SaleOrder saleOrder) {
         return SaleCallbackRequest.builder()
-                .numberOrder(saleOrder.getNumberOrder())
+                .orderNumber(saleOrder.getOrderNumber())
                 .invoiceKey(saleOrder.getInvoiceKey())
                 .invoiceNumber(saleOrder.getInvoiceNumber())
                 .issuanceDate(saleOrder.getIssuanceDate())

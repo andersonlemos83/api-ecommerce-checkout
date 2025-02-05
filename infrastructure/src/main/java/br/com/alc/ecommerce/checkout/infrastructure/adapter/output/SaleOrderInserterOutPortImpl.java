@@ -20,7 +20,7 @@ public class SaleOrderInserterOutPortImpl implements SaleOrderInserterOutPort {
     @Override
     public void execute(SaleOrder saleOrder) {
         SaleOrderEntity saleOrderEntity = modelMapper.map(saleOrder, SaleOrderEntity.class);
-        Optional<SaleOrderEntity> optional = saleOrderRepository.findFirstByNumberOrderAndStatusInProcessing(saleOrder.getNumberOrder());
+        Optional<SaleOrderEntity> optional = saleOrderRepository.findFirstByOrderNumberAndStatusInProcessing(saleOrder.getOrderNumber());
         optional.ifPresent(entity -> saleOrderEntity.setId(entity.getId()));
         saleOrderRepository.saveAndFlush(saleOrderEntity);
     }
