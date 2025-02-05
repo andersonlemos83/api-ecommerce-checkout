@@ -271,7 +271,7 @@ Funcionalidade: Processar Autorizacao Venda
       | sale-callback-queue | 987654329 |
     E nao deveria enviar para o endpoint authorize nenhum request
 
-  Cenario: 09 - Processar autorizacao venda qualquer com Tax Client offline - Fluxo excepcional
+  Cenario: 09 - Processar autorizacao venda qualquer com impostos nao encontrados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
       | Channel Code | Company Code | Store Code | Pos | Number Order | Total Value | Freight Value |
       | APP          | 001          | 100        | 105 | 987654330    | 105.04      | 5.05          |
@@ -299,3 +299,62 @@ Funcionalidade: Processar Autorizacao Venda
       | Queue Name          | Json Key  |
       | sale-callback-queue | 987654330 |
     E nao deveria enviar para o endpoint authorize nenhum request
+
+  Cenario: 10 - Processar autorizacao venda qualquer com erro inesperado ao consultar Sale Order - Fluxo excepcional
+    Dado que seja informado os dados de Sale Request
+      | Channel Code | Company Code | Store Code | Pos | Number Order | Total Value | Freight Value |
+      | APP          | 001          | 100        | 105 | 987654331    | 105.04      | 5.05          |
+    E que seja informado os dados de Customer
+      | Name              | Document    | Document Type | Address           | Address Number | Address Complement | Neighborhood | City   | State | Country | Zip Code | Phone       | Email                        |
+      | Martin Kauê Lopes | 60778532402 | CPF           | Rua Projetada 913 | 622            | Apt 202            | Antares      | Maceió | AL    | Brasil  | 57048434 | 82992344475 | martin_lopes@rafaelmarin.net |
+    E que seja informado os dados de Shopping Cart Item
+      | Code         | Quantity | Value |
+      | 100231933559 | 1        | 7.09  |
+      | 874631202305 | 2        | 17.68 |
+      | 392084657819 | 3        | 19.18 |
+    E que seja informado os dados de Payment
+      | Payment Method | Payment Date        | Authorization Code | Card Number      | Pix Key | Value  |
+      | CREDIT         | 2025-01-30T13:45:01 | 270606             | 3556777163651312 |         | 105.04 |
+    E que existam os seguintes responses disponiveis no endpoint findByCode
+      | Key          | Status | Response                                   |
+      | 100231933559 | OK     | /fixtures/TaxResponseDto-100231933559.json |
+      | 392084657819 | OK     | /fixtures/TaxResponseDto-392084657819.json |
+      | 874631202305 | OK     | /fixtures/TaxResponseDto-874631202305.json |
+    Quando processar autorizacao venda
+    Entao nao deveria existir nenhuma Sale Order na base
+    E nao deveria enviar para o endpoint authorize nenhum request
+    E nao deveria publicar nenhum JSON na fila
+      | Queue Name           |
+      | authorize-sale-queue |
+
+  Cenario: 11 - Processar autorizacao venda qualquer ja em processamento - Fluxo alternativo
+    Dado que seja informado os dados de Sale Request
+      | Channel Code | Company Code | Store Code | Pos | Number Order | Total Value | Freight Value |
+      | APP          | 001          | 100        | 105 | 987654332    | 105.04      | 5.05          |
+    E que seja informado os dados de Customer
+      | Name              | Document    | Document Type | Address           | Address Number | Address Complement | Neighborhood | City   | State | Country | Zip Code | Phone       | Email                        |
+      | Martin Kauê Lopes | 60778532402 | CPF           | Rua Projetada 913 | 622            | Apt 202            | Antares      | Maceió | AL    | Brasil  | 57048434 | 82992344475 | martin_lopes@rafaelmarin.net |
+    E que seja informado os dados de Shopping Cart Item
+      | Code         | Quantity | Value |
+      | 100231933559 | 1        | 7.09  |
+      | 874631202305 | 2        | 17.68 |
+      | 392084657819 | 3        | 19.18 |
+    E que seja informado os dados de Payment
+      | Payment Method | Payment Date        | Authorization Code | Card Number      | Pix Key | Value  |
+      | CREDIT         | 2025-01-30T13:45:01 | 270606             | 3556777163651312 |         | 105.04 |
+    E que existam os seguintes responses disponiveis no endpoint findByCode
+      | Key          | Status | Response                                   |
+      | 100231933559 | OK     | /fixtures/TaxResponseDto-100231933559.json |
+      | 392084657819 | OK     | /fixtures/TaxResponseDto-392084657819.json |
+      | 874631202305 | OK     | /fixtures/TaxResponseDto-874631202305.json |
+    E que existam as Sale Order cadastradas
+      | ChannelCode | Company Code | Store Code | Pos | Number Order | Total Value | Freight Value | Invoice Key | Invoice Number | Issuance Date | Invoice Base64 | Status        | Error Reason | Created Date            | Updated Date            |
+      | APP         | 001          | 100        | 105 | 987654332    | 105.04      | 5.05          |             |                |               |                | IN_PROCESSING |              | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
+    Quando processar autorizacao venda
+    Entao deveria existir as seguintes Sale Order na base
+      | Id | ChannelCode | Company Code | Store Code | Pos | Number Order | Total Value | Freight Value | Invoice Key | Invoice Number | Issuance Date | Invoice Base64 | Status        | Error Reason | Created Date            | Updated Date            |
+      | 1  | APP         | 001          | 100        | 105 | 987654332    | 105.04      | 5.05          |             |                |               |                | IN_PROCESSING |              | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
+    E nao deveria enviar para o endpoint authorize nenhum request
+    E nao deveria publicar nenhum JSON na fila
+      | Queue Name           |
+      | authorize-sale-queue |

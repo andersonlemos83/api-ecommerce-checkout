@@ -132,7 +132,7 @@ public class AuthorizePaymentFactoryImplTest {
         IllegalArgumentException thrown = assertThrows(IllegalArgumentException.class, () ->
                 authorizePaymentFactory.createAuthorizePayment(payment, 1));
 
-        assertEquals("Unsupported payment method: null", thrown.getMessage());
+        assertEquals("Método de pagamento não suportado: null", thrown.getMessage());
     }
 
     private LocalDateTime getLocalDateTime() {

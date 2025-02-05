@@ -24,7 +24,7 @@ public class AuthorizePaymentFactoryImpl implements AuthorizePaymentFactory {
             return authorizePaymentBuilder.pixKey(payment.getPixKey()).build();
         }
 
-        throw new IllegalArgumentException("Unsupported payment method: " + payment.getPaymentMethod());
+        throw new IllegalArgumentException("Método de pagamento não suportado: " + payment.getPaymentMethod());
     }
 
     private AuthorizePayment.AuthorizePaymentBuilder buildAuthorizePayment(Payment payment, int sequence) {
