@@ -5,11 +5,15 @@ import br.com.alc.ecommerce.checkout.core.port.output.MostRecentSaleOrderFinderO
 import br.com.alc.ecommerce.checkout.infrastructure.persistence.entity.SaleOrderEntity;
 import br.com.alc.ecommerce.checkout.infrastructure.persistence.repository.SaleOrderRepository;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
+import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil.generateJson;
+
+@Log4j2
 @Component
 @AllArgsConstructor
 public class MostRecentSaleOrderFinderOutPortImpl implements MostRecentSaleOrderFinderOutPort {
@@ -19,8 +23,11 @@ public class MostRecentSaleOrderFinderOutPortImpl implements MostRecentSaleOrder
 
     @Override
     public Optional<SaleOrder> execute(String orderNumber) {
+        log.debug("---> MostRecentSaleOrderFinderOutPortImpl: {}", generateJson(orderNumber));
         Optional<SaleOrderEntity> optional = saleOrderRepository.findFirstByOrderNumberOrderByUpdatedDateDesc(orderNumber);
-        return optional.map(this::buildSaleOrder);
+        Optional<SaleOrder> saleOrderOptional = optional.map(this::buildSaleOrder);
+        log.debug("<--- MostRecentSaleOrderFinderOutPortImpl: {}", generateJson(saleOrderOptional));
+        return saleOrderOptional;
     }
 
     private SaleOrder buildSaleOrder(SaleOrderEntity saleOrderEntity) {

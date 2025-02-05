@@ -30,13 +30,16 @@ public class TaxFinderOutPortImpl implements TaxFinderOutPort {
     @Override
     @Cacheable(cacheNames = TAX_FINDER_CACHE, key = "#code", unless = "#result == null")
     public TaxResponse execute(BigInteger code) {
+        log.debug("---> TaxFinderOutPortImpl: {}", generateJson(code));
         try {
             return retryTemplate.execute(callback -> {
                 log.info("---> Request GET /findByCode {}: {}", callback.getRetryCount() + 1, code);
                 TaxResponseDto taxResponseDto = taxClient.findByCode(code);
                 log.info("<--- Response GET /findByCode: {}", generateJson(taxResponseDto));
                 log.debug("Save cache {}:{} - {}", TAX_FINDER_CACHE, code, generateJson(taxResponseDto));
-                return modelMapper.map(taxResponseDto, TaxResponse.class);
+                TaxResponse taxResponse = modelMapper.map(taxResponseDto, TaxResponse.class);
+                log.debug("<--- TaxFinderOutPortImpl: {}", generateJson(taxResponse));
+                return taxResponse;
             });
         } catch (FeignException exception) {
             throw new DefaultOutPortException(exception.contentUTF8(), exception.getCause());

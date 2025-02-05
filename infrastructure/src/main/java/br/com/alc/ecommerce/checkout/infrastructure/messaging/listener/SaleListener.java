@@ -20,11 +20,11 @@ public class SaleListener {
     @RabbitListener(queues = {"${spring.rabbitmq.authorize-sale-queue}"})
     public void authorizeSale(SaleRequestDto saleRequestDto) {
         try {
-            log.info("Listener of the authorize-sale-queue: {}", generateJson(saleRequestDto));
+            log.info("---> Listener of the authorize-sale-queue: {}", generateJson(saleRequestDto));
             saleProcessorInAdapter.execute(saleRequestDto);
-            log.info("Listener of the authorize-sale-queue processed successfully");
+            log.info("<--- Listener of the authorize-sale-queue processed successfully");
         } catch (Exception excecao) {
-            log.error("Error in the listener of the authorize-sale-queue: {}", getMessage(excecao), excecao);
+            log.error("<--- Error in the listener of the authorize-sale-queue: {}", getMessage(excecao), excecao);
         }
     }
 }

@@ -23,11 +23,13 @@ public class SaleAuthorizerOutPortImpl implements SaleAuthorizerOutPort {
 
     @Override
     public AuthorizeSaleResponse execute(AuthorizeSaleRequest authorizeSaleRequest) {
+        log.debug("---> SaleAuthorizerOutPortImpl: {}", generateJson(authorizeSaleRequest));
         AuthorizeSaleRequestDto authorizeSaleRequestDto = modelMapper.map(authorizeSaleRequest, AuthorizeSaleRequestDto.class);
         log.info("---> Request /authorize: {}", generateJson(authorizeSaleRequestDto));
         AuthorizeSaleResponseDto authorizeSaleResponseDto = midClient.authorize(authorizeSaleRequestDto);
+        log.info("<--- Response /authorize: {}", generateJson(authorizeSaleResponseDto));
         AuthorizeSaleResponse authorizeSaleResponse = modelMapper.map(authorizeSaleResponseDto, AuthorizeSaleResponse.class);
-        log.info("<--- Response /authorize: {}", generateJson(authorizeSaleResponse));
+        log.debug("<--- SaleAuthorizerOutPortImpl: {}", generateJson(authorizeSaleResponse));
         return authorizeSaleResponse;
     }
 }
