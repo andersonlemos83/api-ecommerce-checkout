@@ -13,14 +13,14 @@ import static org.springframework.http.HttpStatus.OK;
 public class ObjectMapperUtilTest {
 
     @Test
-    void whenExecutingGenerateJsonMethodGivenThatTheObjectIsSerializableShouldReturnASerializedObject() {
+    void givenAnSerializableObjectWhenExecutingTheGenerateJsonMethodThenShouldReturnAnSerializedObject() {
         ErrorResponseDto errorResponseDto = ErrorResponseDto.builder().httpStatus(OK).message("O campo totalValue não foi informado.").build();
         String jsonReturned = ObjectMapperUtil.generateJson(errorResponseDto);
         assertEquals("{\"httpStatus\":\"OK\",\"message\":\"O campo totalValue não foi informado.\"}", jsonReturned);
     }
 
     @Test
-    void whenExecutingGenerateJsonMethodGivenThatTheObjectIsNotSerializableShouldReturnANonSerializedObject() {
+    void givenAnNoSerializableObjectWhenExecutingTheGenerateJsonMethodThenShouldReturnAnNonSerializedObject() {
         Object nonSerializableObject = new Object();
         String jsonReturned = ObjectMapperUtil.generateJson(nonSerializableObject);
         assertEquals(nonSerializableObject.toString(), jsonReturned);

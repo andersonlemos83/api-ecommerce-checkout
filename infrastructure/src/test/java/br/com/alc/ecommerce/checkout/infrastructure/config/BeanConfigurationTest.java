@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
 public class BeanConfigurationTest {
 
     @Test
-    void whenExecutingWatchServiceMethodShouldReturnAnInstanceOfRealWatchService() {
+    void whenExecutingWatchServiceMethodThenShouldReturnAnInstanceOfRealWatchService() {
         BeanConfiguration beanConfiguration = new BeanConfiguration();
         WatchService watchService = beanConfiguration.watchService();
         assertTrue("", watchService instanceof RealWatchService);

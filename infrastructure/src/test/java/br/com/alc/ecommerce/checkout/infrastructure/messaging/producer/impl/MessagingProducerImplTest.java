@@ -23,20 +23,33 @@ public class MessagingProducerImplTest {
     private MessagingProducerImpl messagingProducer;
 
     @Mock
-    private RabbitTemplate rabbitTemplate;
+    private RabbitTemplate rabbitTemplateMock;
 
     @Test
-    void whenExecutingPublishMethodGivenThatItThrowsAnyExceptionShouldGenerateAnErrorLog() {
+    void givenThatItThrowsAnyExceptionWhenExecutingThePublishMethodWithThreeParametersThenShouldGenerateAnErrorLog() {
         String exchange = "exchange";
         String queue = "queue";
         ErrorResponseDto errorResponseDto = ErrorResponseDto.builder().build();
         Message message = buildMessage(generateJson(errorResponseDto));
 
-        doThrow(RuntimeException.class).when(rabbitTemplate).convertAndSend(exchange, queue, message);
+        doThrow(RuntimeException.class).when(rabbitTemplateMock).convertAndSend(exchange, queue, message);
 
         messagingProducer.publish(exchange, queue, errorResponseDto);
 
-        verify(rabbitTemplate, times(1)).convertAndSend(exchange, queue, message);
+        verify(rabbitTemplateMock, times(1)).convertAndSend(exchange, queue, message);
+    }
+
+    @Test
+    void givenThatItThrowsAnyExceptionWhenExecutingThePublishMethodWithTwoParametersThenShouldGenerateAnErrorLog() {
+        String queue = "queue";
+        ErrorResponseDto errorResponseDto = ErrorResponseDto.builder().build();
+        Message message = buildMessage(generateJson(errorResponseDto));
+
+        doThrow(RuntimeException.class).when(rabbitTemplateMock).convertAndSend(queue, message);
+
+        messagingProducer.publish(queue, errorResponseDto);
+
+        verify(rabbitTemplateMock, times(1)).convertAndSend(queue, message);
     }
 
     private Message buildMessage(String content) {

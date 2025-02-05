@@ -56,11 +56,11 @@ public class SaleAuthorizerServiceImplTest {
         AuthorizeSaleResponse expectedResponse = AuthorizeSaleResponse.builder().build();
 
         when(saleAuthorizerOutPortMock.execute(any(AuthorizeSaleRequest.class))).thenReturn(expectedResponse);
-        when(taxFinderOutPortMock.execute(eq(saleRequest.getItems().get(0).getCode()))).thenReturn(buildTaxResponse100231933559());
-        when(taxFinderOutPortMock.execute(eq(saleRequest.getItems().get(1).getCode()))).thenReturn(buildTaxResponse874631202305());
-        when(taxFinderOutPortMock.execute(eq(saleRequest.getItems().get(2).getCode()))).thenReturn(buildTaxResponse392084657819());
-        when(authorizePaymentFactoryMock.createAuthorizePayment(eq(saleRequest.getPayments().get(0)), eq(1))).thenReturn(buildAuthorizePaymentCredit());
-        when(authorizePaymentFactoryMock.createAuthorizePayment(eq(saleRequest.getPayments().get(1)), eq(2))).thenReturn(buildAuthorizePaymentPix());
+        when(taxFinderOutPortMock.execute(saleRequest.getItems().get(0).getCode())).thenReturn(buildTaxResponse100231933559());
+        when(taxFinderOutPortMock.execute(saleRequest.getItems().get(1).getCode())).thenReturn(buildTaxResponse874631202305());
+        when(taxFinderOutPortMock.execute(saleRequest.getItems().get(2).getCode())).thenReturn(buildTaxResponse392084657819());
+        when(authorizePaymentFactoryMock.createAuthorizePayment(saleRequest.getPayments().get(0), 1)).thenReturn(buildAuthorizePaymentCredit());
+        when(authorizePaymentFactoryMock.createAuthorizePayment(saleRequest.getPayments().get(1), 2)).thenReturn(buildAuthorizePaymentPix());
         when(watchServiceMock.nowLocalDateTime()).thenReturn(getLocalDateTime());
 
         AuthorizeSaleResponse returnedResponse = saleAuthorizerService.execute(saleRequest);
