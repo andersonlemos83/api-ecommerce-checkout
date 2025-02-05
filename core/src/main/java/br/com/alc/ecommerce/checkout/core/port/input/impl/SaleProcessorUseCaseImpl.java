@@ -37,7 +37,7 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
             return;
         }
 
-        if (!saleOrderOptional.isPresent() || saleOrderOptional.get().isError()) {
+        if (!saleOrderOptional.isPresent() || saleOrderOptional.filter(SaleOrder::isError).isPresent()) {
             try {
                 saleValidatorService.execute(saleRequest);
 
