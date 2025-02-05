@@ -1,6 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.dto.sale;
 
-import br.com.alc.ecommerce.checkout.core.domain.model.sale.DocumentType;
+import br.com.alc.ecommerce.checkout.core.domain.sale.DocumentType;
 import io.swagger.annotations.ApiModelProperty;
 import jakarta.validation.constraints.Email;
 import jakarta.validation.constraints.NotBlank;

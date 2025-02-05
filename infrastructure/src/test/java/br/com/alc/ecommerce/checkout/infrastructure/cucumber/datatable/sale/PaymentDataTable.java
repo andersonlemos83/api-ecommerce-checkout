@@ -1,6 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.sale;
 
-import br.com.alc.ecommerce.checkout.core.domain.model.sale.PaymentMethod;
+import br.com.alc.ecommerce.checkout.core.domain.sale.PaymentMethod;
 import lombok.*;
 
 import java.io.Serializable;

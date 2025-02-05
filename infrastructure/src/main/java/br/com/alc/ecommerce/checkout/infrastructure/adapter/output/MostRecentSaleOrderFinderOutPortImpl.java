@@ -1,7 +1,7 @@
 package br.com.alc.ecommerce.checkout.infrastructure.adapter.output;
 
-import br.com.alc.ecommerce.checkout.core.application.port.output.MostRecentSaleOrderFinderOutPort;
-import br.com.alc.ecommerce.checkout.core.domain.model.order.SaleOrder;
+import br.com.alc.ecommerce.checkout.core.domain.order.SaleOrder;
+import br.com.alc.ecommerce.checkout.core.port.output.MostRecentSaleOrderFinderOutPort;
 import br.com.alc.ecommerce.checkout.infrastructure.persistence.entity.SaleOrderEntity;
 import br.com.alc.ecommerce.checkout.infrastructure.persistence.repository.SaleOrderRepository;
 import lombok.AllArgsConstructor;
@@ -15,6 +15,7 @@ import java.util.Optional;
 public class MostRecentSaleOrderFinderOutPortImpl implements MostRecentSaleOrderFinderOutPort {
 
     private final SaleOrderRepository saleOrderRepository;
+    private final ModelMapper modelMapper;
 
     @Override
     public Optional<SaleOrder> execute(String numberOrder) {
@@ -23,6 +24,6 @@ public class MostRecentSaleOrderFinderOutPortImpl implements MostRecentSaleOrder
     }
 
     private SaleOrder buildSaleOrder(SaleOrderEntity saleOrderEntity) {
-        return new ModelMapper().map(saleOrderEntity, SaleOrder.class);
+        return modelMapper.map(saleOrderEntity, SaleOrder.class);
     }
 }

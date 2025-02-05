@@ -10,7 +10,7 @@ import org.springframework.amqp.core.MessageBuilder;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import static br.com.alc.ecommerce.checkout.infrastructure.helper.ObjectMapperTestHelper.generateJson;
+import static br.com.alc.ecommerce.checkout.infrastructure.helper.util.ObjectMapperHelper.generateJson;
 import static java.nio.charset.StandardCharsets.UTF_8;
 import static org.mockito.Mockito.*;
 import static org.springframework.amqp.core.MessageProperties.CONTENT_TYPE_JSON;

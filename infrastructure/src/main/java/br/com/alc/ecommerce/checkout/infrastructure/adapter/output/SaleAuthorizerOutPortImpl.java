@@ -1,8 +1,8 @@
 package br.com.alc.ecommerce.checkout.infrastructure.adapter.output;
 
-import br.com.alc.ecommerce.checkout.core.application.port.output.SaleAuthorizerOutPort;
-import br.com.alc.ecommerce.checkout.core.domain.model.authorize.AuthorizeSaleRequest;
-import br.com.alc.ecommerce.checkout.core.domain.model.authorize.AuthorizeSaleResponse;
+import br.com.alc.ecommerce.checkout.core.domain.authorize.AuthorizeSaleRequest;
+import br.com.alc.ecommerce.checkout.core.domain.authorize.AuthorizeSaleResponse;
+import br.com.alc.ecommerce.checkout.core.port.output.SaleAuthorizerOutPort;
 import br.com.alc.ecommerce.checkout.infrastructure.client.MidClient;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.authorize.AuthorizeSaleRequestDto;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.authorize.AuthorizeSaleResponseDto;
@@ -19,22 +19,15 @@ import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil
 public class SaleAuthorizerOutPortImpl implements SaleAuthorizerOutPort {
 
     private final MidClient midClient;
+    private final ModelMapper modelMapper;
 
     @Override
     public AuthorizeSaleResponse execute(AuthorizeSaleRequest authorizeSaleRequest) {
-        AuthorizeSaleRequestDto authorizeSaleRequestDto = buildAuthorizeSaleRequestDto(authorizeSaleRequest);
+        AuthorizeSaleRequestDto authorizeSaleRequestDto = modelMapper.map(authorizeSaleRequest, AuthorizeSaleRequestDto.class);
         log.info("---> Request /authorize: {}", generateJson(authorizeSaleRequestDto));
         AuthorizeSaleResponseDto authorizeSaleResponseDto = midClient.authorize(authorizeSaleRequestDto);
-        AuthorizeSaleResponse authorizeSaleResponse = buildAuthorizeSaleResponse(authorizeSaleResponseDto);
+        AuthorizeSaleResponse authorizeSaleResponse = modelMapper.map(authorizeSaleResponseDto, AuthorizeSaleResponse.class);
         log.info("<--- Response /authorize: {}", generateJson(authorizeSaleResponse));
         return authorizeSaleResponse;
-    }
-
-    private AuthorizeSaleRequestDto buildAuthorizeSaleRequestDto(AuthorizeSaleRequest authorizeSaleRequest) {
-        return new ModelMapper().map(authorizeSaleRequest, AuthorizeSaleRequestDto.class);
-    }
-
-    private AuthorizeSaleResponse buildAuthorizeSaleResponse(AuthorizeSaleResponseDto authorizeSaleResponseDto) {
-        return new ModelMapper().map(authorizeSaleResponseDto, AuthorizeSaleResponse.class);
     }
 }

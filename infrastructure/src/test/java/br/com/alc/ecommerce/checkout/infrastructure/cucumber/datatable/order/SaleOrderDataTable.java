@@ -1,7 +1,7 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.order;
 
-import br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleStatus;
-import br.com.alc.ecommerce.checkout.infrastructure.fixture.ResourceFixture;
+import br.com.alc.ecommerce.checkout.core.domain.sale.SaleStatus;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.fixture.ResourceFixture;
 import lombok.*;
 
 import java.io.Serializable;

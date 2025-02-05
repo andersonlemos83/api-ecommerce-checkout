@@ -1,8 +1,8 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.verifier;
 
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.messaging.MessagingDataTable;
-import br.com.alc.ecommerce.checkout.infrastructure.fixture.JsonFixture;
-import br.com.alc.ecommerce.checkout.infrastructure.manager.RabbitMqManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.fixture.JsonFixture;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.RabbitMqManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 

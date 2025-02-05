@@ -1,6 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.persistence.entity;
 
-import br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleStatus;
+import br.com.alc.ecommerce.checkout.core.domain.sale.SaleStatus;
 import jakarta.persistence.*;
 import lombok.*;
 

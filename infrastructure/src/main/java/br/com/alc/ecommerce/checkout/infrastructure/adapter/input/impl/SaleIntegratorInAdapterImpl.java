@@ -1,8 +1,8 @@
 package br.com.alc.ecommerce.checkout.infrastructure.adapter.input.impl;
 
-import br.com.alc.ecommerce.checkout.core.application.port.input.SaleIntegratorUseCase;
-import br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleRequest;
-import br.com.alc.ecommerce.checkout.core.domain.model.sale.SaleResponse;
+import br.com.alc.ecommerce.checkout.core.domain.sale.SaleRequest;
+import br.com.alc.ecommerce.checkout.core.domain.sale.SaleResponse;
+import br.com.alc.ecommerce.checkout.core.port.input.SaleIntegratorUseCase;
 import br.com.alc.ecommerce.checkout.infrastructure.adapter.input.SaleIntegratorInAdapter;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.sale.SaleRequestDto;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.sale.SaleResponseDto;
@@ -15,19 +15,12 @@ import org.springframework.stereotype.Component;
 public class SaleIntegratorInAdapterImpl implements SaleIntegratorInAdapter {
 
     private final SaleIntegratorUseCase saleIntegratorUseCase;
+    private final ModelMapper modelMapper;
 
     @Override
     public SaleResponseDto execute(SaleRequestDto saleRequestDto) {
-        SaleRequest saleRequest = buildSaleRequest(saleRequestDto);
+        SaleRequest saleRequest = modelMapper.map(saleRequestDto, SaleRequest.class);
         SaleResponse saleResponse = saleIntegratorUseCase.execute(saleRequest);
-        return buildSaleResponseDto(saleResponse);
-    }
-
-    private SaleRequest buildSaleRequest(SaleRequestDto saleRequestDto) {
-        return new ModelMapper().map(saleRequestDto, SaleRequest.class);
-    }
-
-    private SaleResponseDto buildSaleResponseDto(SaleResponse saleResponse) {
-        return new ModelMapper().map(saleResponse, SaleResponseDto.class);
+        return modelMapper.map(saleResponse, SaleResponseDto.class);
     }
 }

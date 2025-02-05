@@ -1,6 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.externalservices;
 
-import br.com.alc.ecommerce.checkout.infrastructure.fixture.ResourceFixture;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.fixture.ResourceFixture;
 import lombok.*;
 import org.springframework.http.HttpStatus;
 

@@ -1,8 +1,8 @@
 package br.com.alc.ecommerce.checkout.infrastructure.adapter.output;
 
-import br.com.alc.ecommerce.checkout.core.application.port.output.TaxFinderOutPort;
-import br.com.alc.ecommerce.checkout.core.domain.exception.DefaultOutPortException;
-import br.com.alc.ecommerce.checkout.core.domain.model.tax.TaxResponse;
+import br.com.alc.ecommerce.checkout.core.domain.tax.TaxResponse;
+import br.com.alc.ecommerce.checkout.core.exception.DefaultOutPortException;
+import br.com.alc.ecommerce.checkout.core.port.output.TaxFinderOutPort;
 import br.com.alc.ecommerce.checkout.infrastructure.client.TaxClient;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.tax.TaxResponseDto;
 import feign.FeignException;
@@ -25,6 +25,7 @@ public class TaxFinderOutPortImpl implements TaxFinderOutPort {
 
     private final RetryTemplate retryTemplate;
     private final TaxClient taxClient;
+    private final ModelMapper modelMapper;
 
     @Override
     @Cacheable(cacheNames = TAX_FINDER_CACHE, key = "#code", unless = "#result == null")
@@ -35,14 +36,10 @@ public class TaxFinderOutPortImpl implements TaxFinderOutPort {
                 TaxResponseDto taxResponseDto = taxClient.findByCode(code);
                 log.info("<--- Response GET /findByCode: {}", generateJson(taxResponseDto));
                 log.debug("Save cache {}:{} - {}", TAX_FINDER_CACHE, code, generateJson(taxResponseDto));
-                return buildTaxResponseDto(taxResponseDto);
+                return modelMapper.map(taxResponseDto, TaxResponse.class);
             });
         } catch (FeignException exception) {
             throw new DefaultOutPortException(exception.contentUTF8(), exception.getCause());
         }
-    }
-
-    private TaxResponse buildTaxResponseDto(TaxResponseDto taxResponseDto) {
-        return new ModelMapper().map(taxResponseDto, TaxResponse.class);
     }
 }

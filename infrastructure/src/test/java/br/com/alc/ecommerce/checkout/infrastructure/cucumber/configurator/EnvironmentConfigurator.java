@@ -1,8 +1,8 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.configurator;
 
-import br.com.alc.ecommerce.checkout.infrastructure.manager.OracleManager;
-import br.com.alc.ecommerce.checkout.infrastructure.manager.RabbitMqManager;
-import br.com.alc.ecommerce.checkout.infrastructure.manager.RedisManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.OracleManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.RabbitMqManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.RedisManager;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;

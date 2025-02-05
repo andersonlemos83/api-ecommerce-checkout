@@ -1,6 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.stepdefs.watch;
 
-import br.com.alc.ecommerce.checkout.core.application.service.watch.stub.VirtualWatchService;
+import br.com.alc.ecommerce.checkout.core.service.watch.stub.VirtualWatchService;
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.watch.WatchDataTable;
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.stepdefs.StepDefs;
 import io.cucumber.java.pt.E;

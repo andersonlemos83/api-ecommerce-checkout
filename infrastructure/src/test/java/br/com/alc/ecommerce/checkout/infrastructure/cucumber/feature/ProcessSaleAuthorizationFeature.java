@@ -1,7 +1,7 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.feature;
 
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.sale.SaleRequestDataTable;
-import br.com.alc.ecommerce.checkout.infrastructure.manager.RabbitMqManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.RabbitMqManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;

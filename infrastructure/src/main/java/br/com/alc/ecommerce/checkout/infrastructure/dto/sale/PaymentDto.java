@@ -1,6 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.dto.sale;
 
-import br.com.alc.ecommerce.checkout.core.domain.model.sale.PaymentMethod;
+import br.com.alc.ecommerce.checkout.core.domain.sale.PaymentMethod;
 import com.fasterxml.jackson.databind.annotation.JsonDeserialize;
 import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 import com.fasterxml.jackson.datatype.jsr310.deser.LocalDateTimeDeserializer;
