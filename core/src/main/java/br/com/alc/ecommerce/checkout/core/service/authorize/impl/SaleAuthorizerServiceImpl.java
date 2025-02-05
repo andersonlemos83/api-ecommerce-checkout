@@ -50,7 +50,7 @@ public class SaleAuthorizerServiceImpl implements SaleAuthorizerService {
     }
 
     private String createNsu(String numberOrder) {
-        String sequential = DateUtil.createSequential(watchService.nowLocalDateTime());
+        String sequential = DateUtil.createSequence(watchService.nowLocalDateTime());
         return numberOrder + sequential;
     }
 

@@ -13,7 +13,7 @@ public final class DateUtil {
         return date.format(formatter);
     }
 
-    public static String createSequential(LocalDateTime date) {
+    public static String createSequence(LocalDateTime date) {
         DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyyMMddHHmmss");
         return date.format(formatter);
     }

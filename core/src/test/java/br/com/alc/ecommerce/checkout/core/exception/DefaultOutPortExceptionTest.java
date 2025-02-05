@@ -1,0 +1,17 @@
+package br.com.alc.ecommerce.checkout.core.exception;
+
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.springframework.test.context.junit.jupiter.SpringExtension;
+
+import static org.junit.jupiter.api.Assertions.assertEquals;
+
+@ExtendWith(SpringExtension.class)
+public class DefaultOutPortExceptionTest {
+
+    @Test
+    public void givenAnValidDefaultOutPortExceptionWhenExecutingTheGetMessageMethodThenReturnTheExpectedMessage() {
+        DefaultOutPortException defaultOutPortException = new DefaultOutPortException("Imposto não encontrado.", new RuntimeException());
+        assertEquals("Imposto não encontrado.", defaultOutPortException.getMessage());
+    }
+}

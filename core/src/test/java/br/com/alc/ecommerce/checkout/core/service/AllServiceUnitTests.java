@@ -14,7 +14,7 @@ import org.junit.platform.suite.api.SuiteDisplayName;
         RealWatchServiceTest.class
 })
 @SuppressWarnings("squid:S2187")
-@SuiteDisplayName("Suite that gathers all Unit Tests of the Service package")
+@SuiteDisplayName("Suite that gathers all unit tests of the Service package")
 public class AllServiceUnitTests {
 
 }
