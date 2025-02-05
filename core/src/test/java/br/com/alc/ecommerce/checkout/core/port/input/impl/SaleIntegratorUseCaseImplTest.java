@@ -25,20 +25,20 @@ public class SaleIntegratorUseCaseImplTest {
     private SaleIntegratorUseCaseImpl saleIntegratorUseCase;
 
     @Mock
-    private SaleIntegratorOutPort saleIntegratorOutPort;
+    private SaleIntegratorOutPort saleIntegratorOutPortMock;
 
     @Mock
-    private WatchService watchService;
+    private WatchService watchServiceMock;
 
     @Test
     void whenExecutingTheSaleIntegratorUseCaseThenShouldCallSaleIntegratorOutPortAndReturnTheExpectedObject() {
         SaleRequest saleRequest = new SaleRequest();
         LocalDateTime nowExpected = LocalDateTime.now();
-        when(watchService.nowLocalDateTime()).thenReturn(nowExpected);
+        when(watchServiceMock.nowLocalDateTime()).thenReturn(nowExpected);
 
         SaleResponse response = saleIntegratorUseCase.execute(saleRequest);
 
-        verify(saleIntegratorOutPort, times(1)).execute(saleRequest);
+        verify(saleIntegratorOutPortMock, times(1)).execute(saleRequest);
 
         assertNotNull(response);
         assertEquals(IN_PROCESSING, response.getStatus());

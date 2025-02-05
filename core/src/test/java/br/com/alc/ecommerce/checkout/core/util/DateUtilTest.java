@@ -8,17 +8,18 @@ import java.time.LocalDateTime;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
+@SuppressWarnings("java:S5786") // Public required for JUnit test suite
 @ExtendWith(SpringExtension.class)
 public class DateUtilTest {
 
     @Test
-    public void givenAnValidDateWhenExecutingTheFormatMethodThenReturnTheExpectedFormattedDate() {
+    void givenAnValidDateWhenExecutingTheFormatMethodThenReturnTheExpectedFormattedDate() {
         String formattedDate = DateUtil.format(getLocalDateTime());
         assertEquals("2025-01-30T13:45:01", formattedDate);
     }
 
     @Test
-    public void givenAnValidDateWhenExecutingTheCreateSequenceMethodThenReturnTheExpectedSequence() {
+    void givenAnValidDateWhenExecutingTheCreateSequenceMethodThenReturnTheExpectedSequence() {
         String returnedSequence = DateUtil.createSequence(getLocalDateTime());
         assertEquals("20250130134501", returnedSequence);
     }

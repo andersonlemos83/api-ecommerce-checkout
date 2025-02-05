@@ -8,17 +8,18 @@ import static br.com.alc.ecommerce.checkout.core.domain.sale.SaleStatus.PROCESSE
 import static org.junit.jupiter.api.Assertions.assertEquals;
 import static org.junit.jupiter.api.Assertions.assertNull;
 
+@SuppressWarnings("java:S5786") // Public required for JUnit test suite
 @ExtendWith(SpringExtension.class)
 public class EnumUtilTest {
 
     @Test
-    public void givenAnValidEnumerationWhenExecutingTheToNameMethodThenReturnTheExpectedName() {
+    void givenAnValidEnumerationWhenExecutingTheToNameMethodThenReturnTheExpectedName() {
         String nameReturned = EnumUtil.toName(PROCESSED);
         assertEquals("PROCESSED", nameReturned);
     }
 
     @Test
-    public void givenAnInvalidEnumerationWhenExecutingTheToNameMethodThenReturnNullValue() {
+    void givenAnInvalidEnumerationWhenExecutingTheToNameMethodThenReturnNullValue() {
         assertNull(EnumUtil.toName(null));
     }
 }

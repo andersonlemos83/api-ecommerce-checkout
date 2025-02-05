@@ -2,6 +2,7 @@ package br.com.alc.ecommerce.checkout.core.service.service.authorize.factory.imp
 
 import br.com.alc.ecommerce.checkout.core.domain.authorize.AuthorizePayment;
 import br.com.alc.ecommerce.checkout.core.domain.sale.Payment;
+import br.com.alc.ecommerce.checkout.core.service.authorize.factory.AuthorizePaymentFactory;
 import br.com.alc.ecommerce.checkout.core.service.authorize.factory.impl.AuthorizePaymentFactoryImpl;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
@@ -18,7 +19,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 public class AuthorizePaymentFactoryImplTest {
 
-    private AuthorizePaymentFactoryImpl authorizePaymentFactory;
+    private AuthorizePaymentFactory authorizePaymentFactory;
 
     @BeforeEach
     void setUp() {

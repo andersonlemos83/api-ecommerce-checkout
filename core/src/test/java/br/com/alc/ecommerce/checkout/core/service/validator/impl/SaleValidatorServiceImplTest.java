@@ -5,6 +5,7 @@ import br.com.alc.ecommerce.checkout.core.domain.sale.SaleRequest;
 import br.com.alc.ecommerce.checkout.core.domain.sale.ShoppingCartItem;
 import br.com.alc.ecommerce.checkout.core.exception.TotalItemValueMismatchException;
 import br.com.alc.ecommerce.checkout.core.exception.TotalPaymentValueMismatchException;
+import br.com.alc.ecommerce.checkout.core.service.validator.SaleValidatorService;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -19,7 +20,7 @@ import static org.junit.jupiter.api.Assertions.*;
 @ExtendWith(MockitoExtension.class)
 public class SaleValidatorServiceImplTest {
 
-    private SaleValidatorServiceImpl saleValidatorService;
+    private SaleValidatorService saleValidatorService;
 
     @BeforeEach
     void setUp() {
