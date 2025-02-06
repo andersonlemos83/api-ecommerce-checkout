@@ -17,10 +17,10 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @JsonInclude(NON_NULL)
 public final class ErrorResponseDto implements Serializable {
 
-    @Schema(description = "Response HTTP status", example = "BAD_REQUEST", required = true)
+    @Schema(description = "Response HTTP status", example = "BAD_REQUEST")
     private HttpStatus httpStatus;
 
-    @Schema(description = "Response error message", example = "O campo totalValue não foi informado.", required = true)
+    @Schema(description = "Response error message", example = "O campo totalValue não foi informado.")
     private String message;
 
 }

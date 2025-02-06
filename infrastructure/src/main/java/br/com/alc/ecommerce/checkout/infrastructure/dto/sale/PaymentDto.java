@@ -23,28 +23,28 @@ import java.time.LocalDateTime;
 public class PaymentDto implements Serializable {
 
     @NotNull(message = "não foi informado")
-    @Schema(description = "Payment method", example = "CREDIT", required = true)
+    @Schema(description = "Payment method", example = "CREDIT")
     private PaymentMethod paymentMethod;
 
     @NotNull(message = "não foi informado")
     @JsonDeserialize(using = LocalDateTimeDeserializer.class)
     @JsonSerialize(using = LocalDateTimeSerializer.class)
-    @Schema(description = "Payment date", example = "2025-01-22T20:08:56.194", required = true)
+    @Schema(description = "Payment date", example = "2025-01-22T20:08:56.194")
     private LocalDateTime paymentDate;
 
     @NotBlank(message = "não foi informado")
-    @Schema(description = "Transaction authorization code", example = "270606", required = true)
+    @Schema(description = "Transaction authorization code", example = "270606")
     private String authorizationCode;
 
-    @Schema(description = "Card number", example = "3556777163651312")
+    @Schema(description = "Card number", example = "3556777163651312", nullable = true)
     private String cardNumber;
 
-    @Schema(description = "PIX key", example = "82992344475")
+    @Schema(description = "PIX key", example = "82992344475", nullable = true)
     private String pixKey;
 
     @Min(0)
     @NotNull(message = "não foi informado")
-    @Schema(description = "Payment value", example = "105.04", required = true)
+    @Schema(description = "Payment value", example = "105.04")
     private BigDecimal value;
 
 }

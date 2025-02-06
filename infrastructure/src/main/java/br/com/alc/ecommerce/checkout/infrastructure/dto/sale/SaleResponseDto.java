@@ -18,10 +18,10 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @JsonInclude(NON_NULL)
 public class SaleResponseDto implements Serializable {
 
-    @Schema(description = "Response sale status", example = "IN_PROCESSING", required = true)
+    @Schema(description = "Response sale status", example = "IN_PROCESSING")
     private SaleStatus status;
 
-    @Schema(description = "Response sale date", example = "2021-10-25T20:08:56.194", required = true)
+    @Schema(description = "Response sale date", example = "2021-10-25T20:08:56.194")
     private LocalDateTime date;
 
 }
