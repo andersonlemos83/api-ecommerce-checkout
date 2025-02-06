@@ -7,7 +7,7 @@ import java.io.Serializable;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static br.com.alc.ecommerce.checkout.core.domain.sale.SaleStatus.ERROR;
+import static br.com.alc.ecommerce.checkout.core.domain.sale.SaleStatus.IN_PROCESSING;
 import static br.com.alc.ecommerce.checkout.core.domain.sale.SaleStatus.PROCESSED;
 
 @Data
@@ -40,7 +40,7 @@ public class SaleOrder implements Serializable {
         return PROCESSED.equals(status);
     }
 
-    public boolean isError() {
-        return ERROR.equals(status);
+    public boolean isInProcessing() {
+        return IN_PROCESSING.equals(status);
     }
 }
