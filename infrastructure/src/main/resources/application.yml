@@ -83,13 +83,9 @@ endpoints:
     enabled: true
     sensitive: false
 
-springfox:
-  documentation:
-    info:
-      title: ~project.artifactId~
-      description: API Ecommerce Checkout Documentation
-      version: ~project.version~
-    base-package: br.com.alc.ecommerce.checkout.infrastructure.web.controller
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
 
 feign:
   client:

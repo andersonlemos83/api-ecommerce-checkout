@@ -1,6 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.dto.sale;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.constraints.Min;
 import jakarta.validation.constraints.NotNull;
 import lombok.*;
@@ -18,17 +18,17 @@ public class ShoppingCartItemDto implements Serializable {
 
     @Min(1)
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Item code", example = "1002319335599", required = true)
+    @Schema(description = "Item code", example = "1002319335599", required = true)
     private BigInteger code;
 
     @Min(1)
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Quantity of items", example = "1", required = true)
+    @Schema(description = "Quantity of items", example = "1", required = true)
     private Integer quantity;
 
     @Min(0)
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Item value", example = "99.99", required = true)
+    @Schema(description = "Item value", example = "99.99", required = true)
     private BigDecimal value;
 
 }

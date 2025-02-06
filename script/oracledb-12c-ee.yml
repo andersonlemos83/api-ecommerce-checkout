@@ -1,0 +1,25 @@
+version: '3.1'
+
+volumes:
+  oracle_data:
+      driver: local
+
+services:
+    oracle:
+      container_name: oracle-db-12c-ee
+      image: absolutapps/oracle-12c-ee
+      privileged: true
+      volumes:
+        - oracle_data:/u01/app/oracle
+      ports:
+        - 1521:1521
+        - 8080:8080
+      expose:
+        - 1521
+        - 8080
+
+# host: localhost
+# port: 1521
+# database: ORCL
+# username: SYSTEM
+# password: oracle

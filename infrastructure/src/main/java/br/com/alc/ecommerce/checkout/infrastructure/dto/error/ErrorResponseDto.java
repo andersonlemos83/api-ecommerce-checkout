@@ -1,7 +1,7 @@
 package br.com.alc.ecommerce.checkout.infrastructure.dto.error;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import lombok.*;
 import org.springframework.http.HttpStatus;
 
@@ -17,10 +17,10 @@ import static com.fasterxml.jackson.annotation.JsonInclude.Include.NON_NULL;
 @JsonInclude(NON_NULL)
 public final class ErrorResponseDto implements Serializable {
 
-    @ApiModelProperty(value = "Response HTTP status", example = "BAD_REQUEST", required = true)
+    @Schema(description = "Response HTTP status", example = "BAD_REQUEST", required = true)
     private HttpStatus httpStatus;
 
-    @ApiModelProperty(value = "Response error message", example = "O campo totalValue não foi informado.", required = true)
+    @Schema(description = "Response error message", example = "O campo totalValue não foi informado.", required = true)
     private String message;
 
 }

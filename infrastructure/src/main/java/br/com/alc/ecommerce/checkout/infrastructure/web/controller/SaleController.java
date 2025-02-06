@@ -3,6 +3,7 @@ package br.com.alc.ecommerce.checkout.infrastructure.web.controller;
 import br.com.alc.ecommerce.checkout.infrastructure.adapter.input.SaleIntegratorInAdapter;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.sale.SaleRequestDto;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.sale.SaleResponseDto;
+import io.swagger.v3.oas.annotations.tags.Tag;
 import jakarta.validation.Valid;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -17,6 +18,7 @@ import static org.springframework.http.HttpStatus.CREATED;
 @Log4j2
 @RestController
 @AllArgsConstructor
+@Tag(name = "book service", description = "the book API with description tag annotation")
 public class SaleController {
 
     private final SaleIntegratorInAdapter saleIntegratorInAdapter;
