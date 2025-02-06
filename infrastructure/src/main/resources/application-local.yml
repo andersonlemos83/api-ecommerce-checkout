@@ -1,0 +1,39 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: ecommerce-checkout
+    password: ecommerce-checkout
+    virtual-host: ecommerce-checkout
+  datasource:
+    url: jdbc:oracle:thin:@localhost:1521:ORCL
+    username: ECOMMERCE_CHECKOUT_OWNER
+    password: ECOMMERCE_CHECKOUT_OWNER
+  jpa:
+    show-sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+
+server:
+  port: 8181
+
+management:
+  server:
+    port: 9191
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 15000
+        readTimeout: 15000
+        loggerLevel: FULL # NONE, BASIC, HEADERS, FULL
+
+client:
+  tax:
+    url: https://run.mocky.io/v3/50d36e9a-56b3-42fc-971f-f79e8f84c1f8
+  mid-client:
+    url: https://run.mocky.io/v3/10b3439e-4a7a-4d21-82c0-1fcd519abaf7

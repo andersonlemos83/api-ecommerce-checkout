@@ -1,5 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.sale;
 
+import br.com.alc.ecommerce.checkout.core.domain.sale.DocumentType;
 import lombok.*;
 
 import java.io.Serializable;
@@ -13,7 +14,7 @@ public class CustomerDataTable implements Serializable {
 
     private String name;
     private String document;
-    private String documentType;
+    private DocumentType documentType;
     private String address;
     private String addressNumber;
     private String addressComplement;

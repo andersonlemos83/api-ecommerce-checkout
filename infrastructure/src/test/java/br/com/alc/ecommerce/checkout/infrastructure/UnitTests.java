@@ -1,7 +1,7 @@
 package br.com.alc.ecommerce.checkout.infrastructure;
 
 import br.com.alc.ecommerce.checkout.infrastructure.config.BeanConfigurationTest;
-import br.com.alc.ecommerce.checkout.infrastructure.messaging.impl.MessagingProducerImplTest;
+import br.com.alc.ecommerce.checkout.infrastructure.messaging.producer.impl.MessagingProducerImplTest;
 import br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtilTest;
 import org.junit.platform.suite.api.SelectClasses;
 import org.junit.platform.suite.api.Suite;

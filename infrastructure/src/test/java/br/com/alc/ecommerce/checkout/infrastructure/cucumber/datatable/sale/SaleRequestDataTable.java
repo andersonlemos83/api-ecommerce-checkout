@@ -17,9 +17,9 @@ public class SaleRequestDataTable implements Serializable {
     private String companyCode;
     private String storeCode;
     private Integer pos;
-    private String numberOrder;
-    private BigDecimal totalAmount;
-    private BigDecimal freightAmount;
+    private String orderNumber;
+    private BigDecimal totalValue;
+    private BigDecimal freightValue;
     private CustomerDataTable customer;
     private List<ShoppingCartItemDataTable> items;
     private List<PaymentDataTable> payments;

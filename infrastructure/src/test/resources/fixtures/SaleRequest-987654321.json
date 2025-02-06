@@ -3,9 +3,9 @@
   "companyCode": "001",
   "storeCode": "100",
   "pos": 105,
-  "numberOrder": "987654321",
-  "totalAmount": 100.01,
-  "freightAmount": 5.05,
+  "orderNumber": "987654321",
+  "totalValue": 105.04,
+  "freightValue": 5.05,
   "customer": {
     "name": "Martin Kauê Lopes",
     "document": "60778532402",
@@ -41,11 +41,11 @@
   "payments": [
     {
       "paymentMethod": "CREDIT",
-      "paymentDate": "2025-01-30T13:45:01.45",
+      "paymentDate": "2025-01-30T13:45:01",
       "authorizationCode": "270606",
       "cardNumber": "3556777163651312",
-      "nsu": "123456",
-      "value": 105.06
+      "pixKey": null,
+      "value": 105.04
     }
   ]
 }

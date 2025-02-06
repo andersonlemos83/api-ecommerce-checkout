@@ -1,8 +1,8 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.verifier;
 
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.messaging.MessagingDataTable;
-import br.com.alc.ecommerce.checkout.infrastructure.fixture.JsonFixture;
-import br.com.alc.ecommerce.checkout.infrastructure.manager.RabbitMqManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.fixture.JsonFixture;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.RabbitMqManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 import static java.util.stream.Collectors.joining;
-import static org.junit.Assert.assertEquals;
-import static org.junit.Assert.assertTrue;
+import static org.junit.Assert.*;
 
 @Component
 @AllArgsConstructor
@@ -29,6 +28,7 @@ public class MessagingVerifier {
         String returnedJson = getQueueJson(messagingDataTable);
 
         String errorMessage = MessageFormat.format("Expected message should be published in the queue {0}", messagingDataTable.getQueueName());
+        assertNotNull(errorMessage, expectedJson);
         assertEquals(errorMessage, expectedJson, returnedJson);
     }
 

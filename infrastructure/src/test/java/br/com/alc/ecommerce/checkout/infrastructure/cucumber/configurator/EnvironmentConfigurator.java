@@ -1,8 +1,8 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.configurator;
 
-import br.com.alc.ecommerce.checkout.infrastructure.manager.OracleManager;
-import br.com.alc.ecommerce.checkout.infrastructure.manager.RabbitMqManager;
-import br.com.alc.ecommerce.checkout.infrastructure.manager.RedisManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.OracleManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.RabbitMqManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.RedisManager;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
@@ -17,7 +17,7 @@ import static java.util.Arrays.asList;
 @AllArgsConstructor
 public class EnvironmentConfigurator {
 
-    private static final List<String> QUEUES = asList("authorize-sale-queue");
+    private static final List<String> QUEUES = asList("authorize-sale-queue", "sale-callback-queue");
 
     private final OracleManager oracleManager;
     private final RabbitMqManager rabbitMqManager;

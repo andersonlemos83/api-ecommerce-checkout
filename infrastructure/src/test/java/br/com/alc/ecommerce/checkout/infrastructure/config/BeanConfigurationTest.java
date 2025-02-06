@@ -1,7 +1,7 @@
 package br.com.alc.ecommerce.checkout.infrastructure.config;
 
-import br.com.alc.ecommerce.checkout.core.application.service.watch.WatchService;
-import br.com.alc.ecommerce.checkout.core.application.service.watch.impl.RealWatchService;
+import br.com.alc.ecommerce.checkout.core.service.watch.WatchService;
+import br.com.alc.ecommerce.checkout.core.service.watch.impl.RealWatchService;
 import br.com.alc.ecommerce.checkout.infrastructure.configuration.BeanConfiguration;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
@@ -14,7 +14,7 @@ import static org.junit.Assert.assertTrue;
 public class BeanConfigurationTest {
 
     @Test
-    void whenExecutingWatchServiceMethodShouldReturnAnInstanceOfRealWatchService() {
+    void whenExecutingWatchServiceMethodThenShouldReturnAnInstanceOfRealWatchService() {
         BeanConfiguration beanConfiguration = new BeanConfiguration();
         WatchService watchService = beanConfiguration.watchService();
         assertTrue("", watchService instanceof RealWatchService);

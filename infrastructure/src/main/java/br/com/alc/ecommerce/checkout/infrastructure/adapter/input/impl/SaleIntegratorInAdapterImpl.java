@@ -1,66 +1,33 @@
 package br.com.alc.ecommerce.checkout.infrastructure.adapter.input.impl;
 
-import br.com.alc.ecommerce.checkout.core.application.port.input.SaleIntegratorUseCase;
-import br.com.alc.ecommerce.checkout.core.domain.model.sale.*;
+import br.com.alc.ecommerce.checkout.core.domain.sale.SaleRequest;
+import br.com.alc.ecommerce.checkout.core.domain.sale.SaleResponse;
+import br.com.alc.ecommerce.checkout.core.port.input.SaleIntegratorUseCase;
 import br.com.alc.ecommerce.checkout.infrastructure.adapter.input.SaleIntegratorInAdapter;
-import br.com.alc.ecommerce.checkout.infrastructure.dto.sale.*;
+import br.com.alc.ecommerce.checkout.infrastructure.dto.sale.SaleRequestDto;
+import br.com.alc.ecommerce.checkout.infrastructure.dto.sale.SaleResponseDto;
 import lombok.AllArgsConstructor;
-import org.springframework.beans.BeanUtils;
+import lombok.extern.log4j.Log4j2;
+import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import java.util.List;
+import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil.generateJson;
 
+@Log4j2
 @Component
 @AllArgsConstructor
 public class SaleIntegratorInAdapterImpl implements SaleIntegratorInAdapter {
 
     private final SaleIntegratorUseCase saleIntegratorUseCase;
+    private final ModelMapper modelMapper;
 
     @Override
     public SaleResponseDto execute(SaleRequestDto saleRequestDto) {
-        SaleRequest saleRequest = buildSaleRequest(saleRequestDto);
+        log.debug("---> SaleIntegratorInAdapterImpl: {}", generateJson(saleRequestDto));
+        SaleRequest saleRequest = modelMapper.map(saleRequestDto, SaleRequest.class);
         SaleResponse saleResponse = saleIntegratorUseCase.execute(saleRequest);
-        return buildSaleResponseDto(saleResponse);
-    }
-
-    private SaleRequest buildSaleRequest(SaleRequestDto saleRequestDto) {
-        SaleRequest saleRequest = SaleRequest.builder().build();
-        BeanUtils.copyProperties(saleRequestDto, saleRequest);
-        saleRequest.setCustomer(buildCustomer(saleRequestDto.getCustomer()));
-        saleRequest.setItems(buildShoppingCartItemList(saleRequestDto.getItems()));
-        saleRequest.setPayments(buildPaymentList(saleRequestDto.getPayments()));
-        return saleRequest;
-    }
-
-    private Customer buildCustomer(CustomerDto customerDto) {
-        Customer customer = Customer.builder().build();
-        BeanUtils.copyProperties(customerDto, customer);
-        return customer;
-    }
-
-    private List<ShoppingCartItem> buildShoppingCartItemList(List<ShoppingCartItemDto> shoppingCartItemDtoList) {
-        return shoppingCartItemDtoList.stream().map(this::buildShoppingCartItem).toList();
-    }
-
-    private ShoppingCartItem buildShoppingCartItem(ShoppingCartItemDto shoppingCartItemDto) {
-        ShoppingCartItem shoppingCartItem = ShoppingCartItem.builder().build();
-        BeanUtils.copyProperties(shoppingCartItemDto, shoppingCartItem);
-        return shoppingCartItem;
-    }
-
-    private List<Payment> buildPaymentList(List<PaymentDto> paymentDtoList) {
-        return paymentDtoList.stream().map(this::buildPayment).toList();
-    }
-
-    private Payment buildPayment(PaymentDto paymentDto) {
-        Payment payment = Payment.builder().build();
-        BeanUtils.copyProperties(paymentDto, payment);
-        return payment;
-    }
-
-    private SaleResponseDto buildSaleResponseDto(SaleResponse saleResponse) {
-        SaleResponseDto saleResponseDto = SaleResponseDto.builder().build();
-        BeanUtils.copyProperties(saleResponse, saleResponseDto);
+        SaleResponseDto saleResponseDto = modelMapper.map(saleResponse, SaleResponseDto.class);
+        log.debug("<--- SaleIntegratorInAdapterImpl: {}", generateJson(saleResponseDto));
         return saleResponseDto;
     }
 }

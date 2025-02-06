@@ -1,5 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.sale;
 
+import br.com.alc.ecommerce.checkout.core.domain.sale.PaymentMethod;
 import lombok.*;
 
 import java.io.Serializable;
@@ -13,11 +14,11 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class PaymentDataTable implements Serializable {
 
-    private String paymentMethod;
+    private PaymentMethod paymentMethod;
     private LocalDateTime paymentDate;
     private String authorizationCode;
     private String cardNumber;
-    private String nsu;
+    private String pixKey;
     private BigDecimal value;
 
 }

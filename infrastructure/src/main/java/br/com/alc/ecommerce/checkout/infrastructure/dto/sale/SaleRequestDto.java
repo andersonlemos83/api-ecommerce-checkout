@@ -1,6 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.dto.sale;
 
-import io.swagger.annotations.ApiModelProperty;
+import io.swagger.v3.oas.annotations.media.Schema;
 import jakarta.validation.Valid;
 import jakarta.validation.constraints.*;
 import lombok.*;
@@ -17,51 +17,51 @@ import java.util.List;
 public class SaleRequestDto implements Serializable {
 
     @NotBlank(message = "não foi informado")
-    @ApiModelProperty(value = "Channel code", example = "APP", required = true)
+    @Schema(description = "Channel code", example = "APP")
     private String channelCode;
 
     @NotBlank(message = "não foi informado")
     @Size(min = 3, max = 3)
-    @ApiModelProperty(value = "Company code (composed of 3 digits, possibly with leading zeros)", example = "001", required = true)
+    @Schema(description = "Company code (composed of 3 digits, possibly with leading zeros)", example = "001")
     private String companyCode;
 
     @NotBlank(message = "não foi informado")
     @Size(min = 3, max = 3)
-    @ApiModelProperty(value = "Store code (composed of 3 digits, possibly with leading zeros)", example = "100", required = true)
+    @Schema(description = "Store code (composed of 3 digits, possibly with leading zeros)", example = "100")
     private String storeCode;
 
     @Min(1)
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Point of sale (POS)", example = "105", required = true)
+    @Schema(description = "Point of sale (POS)", example = "105")
     private Integer pos;
 
     @NotBlank(message = "não foi informado")
-    @ApiModelProperty(value = "Number Order", example = "987654321", required = true)
-    private String numberOrder;
+    @Schema(description = "Order Number", example = "987654321")
+    private String orderNumber;
 
     @Min(0)
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Total amount", example = "100.01", required = true)
-    private BigDecimal totalAmount;
+    @Schema(description = "Total value", example = "105.04")
+    private BigDecimal totalValue;
 
     @Min(0)
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Freight amount", example = "5.05", required = true)
-    private BigDecimal freightAmount;
+    @Schema(description = "Freight value", example = "5.05")
+    private BigDecimal freightValue;
 
     @Valid
     @NotNull(message = "não foi informado")
-    @ApiModelProperty(value = "Customer details", required = true)
+    @Schema(description = "Customer details")
     private CustomerDto customer;
 
     @NotNull(message = "não foi informado")
     @NotEmpty(message = "não foi informado")
-    @ApiModelProperty(value = "Shopping cart items", required = true)
+    @Schema(description = "Shopping cart items")
     private List<@Valid ShoppingCartItemDto> items;
 
     @NotNull(message = "não foi informado")
     @NotEmpty(message = "não foi informado")
-    @ApiModelProperty(value = "Payments", required = true)
+    @Schema(description = "Payments")
     private List<@Valid PaymentDto> payments;
 
 }

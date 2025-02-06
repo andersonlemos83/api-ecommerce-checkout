@@ -2,7 +2,7 @@ package br.com.alc.ecommerce.checkout.infrastructure.cucumber.verifier;
 
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.error.ErrorResponseDataTable;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.error.ErrorResponseDto;
-import br.com.alc.ecommerce.checkout.infrastructure.helper.ObjectMapperTestHelper;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.util.ObjectMapperHelper;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.springframework.test.web.servlet.ResultActions;
@@ -20,7 +20,7 @@ public class ErrorResponseVerifier {
 
     @SneakyThrows
     private void verify(ErrorResponseDataTable expected, ResultActions response) {
-        ErrorResponseDto returned = ObjectMapperTestHelper.generateErrorResponseDto(response);
+        ErrorResponseDto returned = ObjectMapperHelper.generateErrorResponseDto(response);
 
         assertEquals(expected.getHttpStatus(), returned.getHttpStatus());
         assertEquals(expected.getMessage(), returned.getMessage());

@@ -15,6 +15,8 @@ import java.time.Duration;
 import java.util.HashMap;
 import java.util.Map;
 
+import static br.com.alc.ecommerce.checkout.infrastructure.util.ConstantesUtil.TAX_FINDER_CACHE;
+
 @EnableCaching
 @Configuration
 public class CacheConfiguration {
@@ -25,7 +27,7 @@ public class CacheConfiguration {
     public CacheManager cacheManager(final RedisConnectionFactory redisConnectionFactory, final ResourceLoader resourceLoader) {
         final Map<String, RedisCacheConfiguration> caches = new HashMap<>();
 
-        caches.put("CONSTANTE_A_DEFINIR", RedisCacheConfiguration.defaultCacheConfig()
+        caches.put(TAX_FINDER_CACHE, RedisCacheConfiguration.defaultCacheConfig()
                 .disableCachingNullValues()
                 .serializeValuesWith(SERIALIZATION_CONTEXT)
                 .entryTtl(Duration.ofMinutes(5L)));

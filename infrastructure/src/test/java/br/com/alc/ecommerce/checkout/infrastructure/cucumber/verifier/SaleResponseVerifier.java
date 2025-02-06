@@ -2,7 +2,7 @@ package br.com.alc.ecommerce.checkout.infrastructure.cucumber.verifier;
 
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.sale.SaleResponseDataTable;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.sale.SaleResponseDto;
-import br.com.alc.ecommerce.checkout.infrastructure.helper.ObjectMapperTestHelper;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.util.ObjectMapperHelper;
 import lombok.SneakyThrows;
 import org.springframework.stereotype.Component;
 import org.springframework.test.web.servlet.ResultActions;
@@ -23,7 +23,7 @@ public class SaleResponseVerifier {
     private void verify(SaleResponseDataTable expected, ResultActions response) {
         response.andExpect(status().isCreated());
 
-        SaleResponseDto returned = ObjectMapperTestHelper.generateSaleResponseDto(response);
+        SaleResponseDto returned = ObjectMapperHelper.generateSaleResponseDto(response);
 
         assertEquals(expected.getStatus(), returned.getStatus());
         assertEquals(expected.getDate(), returned.getDate());

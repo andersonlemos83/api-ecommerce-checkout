@@ -5,9 +5,9 @@ import br.com.alc.ecommerce.checkout.infrastructure.config.EcommerceCheckoutInfr
 import br.com.alc.ecommerce.checkout.infrastructure.config.RabbitConfig;
 import br.com.alc.ecommerce.checkout.infrastructure.config.WireMockConfig;
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.stepdefs.StepDefs;
-import br.com.alc.ecommerce.checkout.infrastructure.helper.ObjectMapperTestHelper;
-import br.com.alc.ecommerce.checkout.infrastructure.testcontainers.ContainerManager;
-import br.com.alc.ecommerce.checkout.infrastructure.testcontainers.factory.impl.ContainerFactoryImpl;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.testcontainers.ContainerManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.testcontainers.factory.impl.ContainerFactoryImpl;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.util.ObjectMapperHelper;
 import com.fasterxml.jackson.databind.JavaType;
 import com.fasterxml.jackson.databind.ObjectMapper;
 import io.cucumber.java.*;
@@ -34,7 +34,7 @@ public class SpringContextStepDefs extends StepDefs {
     @DefaultDataTableEntryTransformer
     @DefaultDataTableCellTransformer
     public Object defaultTransformer(Object value, Type type) {
-        final ObjectMapper objectMapper = ObjectMapperTestHelper.getInstance().copy();
+        final ObjectMapper objectMapper = ObjectMapperHelper.getInstance().copy();
         final Object handledValue = handleEmptyValues(value);
         final JavaType javaType = objectMapper.constructType(type);
         return objectMapper.convertValue(handledValue, javaType);

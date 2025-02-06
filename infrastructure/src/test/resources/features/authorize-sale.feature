@@ -9,8 +9,8 @@ Funcionalidade: Autorizar Venda
 
   Cenario: 01 - Autorizar venda com todos os dados validos informados - Sucesso
     Dado que seja informado os dados de Sale Request
-      | Channel Code | Company Code | Store Code | Pos | Number Order | Total Amount | Freight Amount |
-      | APP          | 001          | 100        | 105 | 987654321    | 100.01       | 5.05           |
+      | Channel Code | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value |
+      | APP          | 001          | 100        | 105 | 987654321    | 105.04      | 5.05          |
     E que seja informado os dados de Customer
       | Name              | Document    | Document Type | Address           | Address Number | Address Complement | Neighborhood | City   | State | Country | Zip Code | Phone       | Email                        |
       | Martin Kauê Lopes | 60778532402 | CPF           | Rua Projetada 913 | 622            | Apt 202            | Antares      | Maceió | AL    | Brasil  | 57048434 | 82992344475 | martin_lopes@rafaelmarin.net |
@@ -20,8 +20,8 @@ Funcionalidade: Autorizar Venda
       | 874631202305 | 2        | 17.68 |
       | 392084657819 | 3        | 19.18 |
     E que seja informado os dados de Payment
-      | Payment Method | Payment Date            | Authorization Code | Card Number      | Nsu    | Value  |
-      | CREDIT         | 2025-01-30T13:45:01.450 | 270606             | 3556777163651312 | 123456 | 105.06 |
+      | Payment Method | Payment Date        | Authorization Code | Card Number      | Pix Key | Value  |
+      | CREDIT         | 2025-01-30T13:45:01 | 270606             | 3556777163651312 |         | 105.04 |
     Quando autorizar venda
     Entao deveria receber os dados de Sale Response
       | Status        | Date                |
@@ -32,20 +32,20 @@ Funcionalidade: Autorizar Venda
 
   Cenario: 02 - Autorizar venda com todos os dados nao informados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
-      | Channel Code | Company Code | Store Code | Pos | Number Order | Total Amount | Freight Amount |
-      |              |              |            |     |              |              |                |
+      | Channel Code | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value |
+      |              |              |            |     |              |             |               |
     Quando autorizar venda
     Entao deveria receber os dados de Error Response
-      | Http Status | Message                                                                                                                                                                                                                                                                                                                                                                           |
-      | BAD_REQUEST | O campo channelCode não foi informado, O campo companyCode não foi informado, O campo customer não foi informado, O campo freightAmount não foi informado, O campo items não foi informado, O campo numberOrder não foi informado, O campo payments não foi informado, O campo pos não foi informado, O campo storeCode não foi informado, O campo totalAmount não foi informado. |
+      | Http Status | Message                                                                                                                                                                                                                                                                                                                                                                         |
+      | BAD_REQUEST | O campo channelCode não foi informado, O campo companyCode não foi informado, O campo customer não foi informado, O campo freightValue não foi informado, O campo items não foi informado, O campo orderNumber não foi informado, O campo payments não foi informado, O campo pos não foi informado, O campo storeCode não foi informado, O campo totalValue não foi informado. |
     E nao deveria publicar nenhum JSON na fila
       | Queue Name           |
       | authorize-sale-queue |
 
   Cenario: 03 - Autorizar venda com os dados Customer nao informados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
-      | Channel Code | Company Code | Store Code | Pos | Number Order | Total Amount | Freight Amount |
-      | APP          | 001          | 100        | 105 | 987654321    | 100.01       | 5.05           |
+      | Channel Code | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value |
+      | APP          | 001          | 100        | 105 | 987654321    | 105.04      | 5.05          |
     E que seja informado os dados de Customer
       | Name | Document | Document Type | Address | Address Number | Address Complement | Neighborhood | City | State | Country | Zip Code | Phone | Email |
       |      |          |               |         |                |                    |              |      |       |         |          |       |       |
@@ -55,8 +55,8 @@ Funcionalidade: Autorizar Venda
       | 874631202305 | 2        | 17.68 |
       | 392084657819 | 3        | 19.18 |
     E que seja informado os dados de Payment
-      | Payment Method | Payment Date            | Authorization Code | Card Number      | Nsu    | Value  |
-      | CREDIT         | 2025-01-30T13:45:01.450 | 270606             | 3556777163651312 | 123456 | 105.06 |
+      | Payment Method | Payment Date        | Authorization Code | Card Number      | Pix Key | Value  |
+      | CREDIT         | 2025-01-30T13:45:01 | 270606             | 3556777163651312 |         | 105.04 |
     Quando autorizar venda
     Entao deveria receber os dados de Error Response
       | Http Status | Message                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
@@ -67,8 +67,8 @@ Funcionalidade: Autorizar Venda
 
   Cenario: 04 - Autorizar venda com os dados Shopping Cart Item nao informados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
-      | Channel Code | Company Code | Store Code | Pos | Number Order | Total Amount | Freight Amount |
-      | APP          | 001          | 100        | 105 | 987654321    | 100.01       | 5.05           |
+      | Channel Code | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value |
+      | APP          | 001          | 100        | 105 | 987654321    | 105.04      | 5.05          |
     E que seja informado os dados de Customer
       | Name              | Document    | Document Type | Address           | Address Number | Address Complement | Neighborhood | City   | State | Country | Zip Code | Phone       | Email                        |
       | Martin Kauê Lopes | 60778532402 | CPF           | Rua Projetada 913 | 622            | Apt 202            | Antares      | Maceió | AL    | Brasil  | 57048434 | 82992344475 | martin_lopes@rafaelmarin.net |
@@ -76,8 +76,8 @@ Funcionalidade: Autorizar Venda
       | Code | Quantity | Value |
       |      |          |       |
     E que seja informado os dados de Payment
-      | Payment Method | Payment Date            | Authorization Code | Card Number      | Nsu    | Value  |
-      | CREDIT         | 2025-01-30T13:45:01.450 | 270606             | 3556777163651312 | 123456 | 105.06 |
+      | Payment Method | Payment Date        | Authorization Code | Card Number      | Pix Key | Value  |
+      | CREDIT         | 2025-01-30T13:45:01 | 270606             | 3556777163651312 |         | 105.04 |
     Quando autorizar venda
     Entao deveria receber os dados de Error Response
       | Http Status | Message                                                                                                                         |
@@ -88,8 +88,8 @@ Funcionalidade: Autorizar Venda
 
   Cenario: 05 - Autorizar venda com os dados Payment nao informados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
-      | Channel Code | Company Code | Store Code | Pos | Number Order | Total Amount | Freight Amount |
-      | APP          | 001          | 100        | 105 | 987654321    | 100.01       | 5.05           |
+      | Channel Code | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value |
+      | APP          | 001          | 100        | 105 | 987654321    | 105.04      | 5.05          |
     E que seja informado os dados de Customer
       | Name              | Document    | Document Type | Address           | Address Number | Address Complement | Neighborhood | City   | State | Country | Zip Code | Phone       | Email                        |
       | Martin Kauê Lopes | 60778532402 | CPF           | Rua Projetada 913 | 622            | Apt 202            | Antares      | Maceió | AL    | Brasil  | 57048434 | 82992344475 | martin_lopes@rafaelmarin.net |
@@ -99,8 +99,8 @@ Funcionalidade: Autorizar Venda
       | 874631202305 | 2        | 17.68 |
       | 392084657819 | 3        | 19.18 |
     E que seja informado os dados de Payment
-      | Payment Method | Payment Date | Authorization Code | Card Number | Nsu | Value |
-      |                |              |                    |             |     |       |
+      | Payment Method | Payment Date | Authorization Code | Card Number | Pix Key | Value |
+      |                |              |                    |             |         |       |
     Quando autorizar venda
     Entao deveria receber os dados de Error Response
       | Http Status | Message                                                                                                                                                                                                       |

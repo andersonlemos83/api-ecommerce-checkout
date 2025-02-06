@@ -29,9 +29,10 @@ spring:
     virtual-host: ecommerce-checkout
     listener:
       simple:
-        auto-startup: false
+        auto-startup: true
     sale-exchange: sale-exchange
     authorize-sale-queue: authorize-sale-queue
+    sale-callback-queue: sale-callback-queue
   datasource:
     driver-class-name: oracle.jdbc.OracleDriver
     hikari:
@@ -72,7 +73,7 @@ spring:
 server:
   compression:
     enabled: true
-  port: 8095
+  port: 8181
   servlet:
     context-path: /
 
@@ -82,13 +83,9 @@ endpoints:
     enabled: true
     sensitive: false
 
-springfox:
-  documentation:
-    info:
-      title: ~project.artifactId~
-      description: API Ecommerce Checkout Documentation
-      version: ~project.version~
-    base-package: br.com.alc.ecommerce.checkout.infrastructure.web.controller
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
 
 feign:
   client:
@@ -122,4 +119,8 @@ management:
     redis:
       enabled: false
 
-listenersDisabled: ""
+client:
+  tax:
+    url: http://localhost:9091/api-tax/
+  mid-client:
+    url: http://localhost:9092/api-mid-client/
