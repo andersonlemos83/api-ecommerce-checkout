@@ -25,6 +25,8 @@ import static org.apache.commons.lang3.exception.ExceptionUtils.getMessage;
 @AllArgsConstructor
 public final class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
 
+    private static final String OUTGOING_FROM_SALE_PROCESSOR_USE_CASE_IMPL = "Outgoing from SaleProcessorUseCaseImpl: {} - {}";
+
     private final MostRecentSaleOrderFinderOutPort mostRecentSaleOrderFinderOutPort;
     private final SaleValidatorService saleValidatorService;
     private final SaleOrderInserterOutPort saleOrderInserterOutPort;
@@ -39,12 +41,12 @@ public final class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
 
         if (saleOrderOptional.filter(SaleOrder::isProcessed).isPresent()) {
             integrateSaleCallback(saleOrderOptional.get());
-            log.info("Outgoing from SaleProcessorUseCaseImpl: {} - {}", saleOrderOptional.get().getStatus(), generateJson(saleOrderOptional.get()));
+            log.info(OUTGOING_FROM_SALE_PROCESSOR_USE_CASE_IMPL, saleOrderOptional.get().getStatus(), generateJson(saleOrderOptional.get()));
             return;
         }
 
         if (saleOrderOptional.filter(SaleOrder::isInProcessing).isPresent()) {
-            log.info("Outgoing from SaleProcessorUseCaseImpl: {} - {}", saleOrderOptional.get().getStatus(), generateJson(saleOrderOptional.get()));
+            log.info(OUTGOING_FROM_SALE_PROCESSOR_USE_CASE_IMPL, saleOrderOptional.get().getStatus(), generateJson(saleOrderOptional.get()));
             return;
         }
 
@@ -60,7 +62,7 @@ public final class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
             saleOrderInserterOutPort.execute(processedSaleOrder);
 
             integrateSaleCallback(processedSaleOrder);
-            log.info("Outgoing from SaleProcessorUseCaseImpl: {} - {}", processedSaleOrder.getStatus(), generateJson(processedSaleOrder));
+            log.info(OUTGOING_FROM_SALE_PROCESSOR_USE_CASE_IMPL, processedSaleOrder.getStatus(), generateJson(processedSaleOrder));
 
         } catch (Exception exception) {
             log.error("Error in the SaleProcessorUseCaseImpl: {}", getMessage(exception), exception);
@@ -68,7 +70,7 @@ public final class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
             saleOrderInserterOutPort.execute(errorSaleOrder);
 
             integrateSaleCallback(errorSaleOrder);
-            log.info("Outgoing from SaleProcessorUseCaseImpl: {} - {}", errorSaleOrder.getStatus(), generateJson(errorSaleOrder));
+            log.info(OUTGOING_FROM_SALE_PROCESSOR_USE_CASE_IMPL, errorSaleOrder.getStatus(), generateJson(errorSaleOrder));
         }
     }
 
