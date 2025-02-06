@@ -73,7 +73,7 @@ spring:
 server:
   compression:
     enabled: true
-  port: 8095
+  port: 8181
   servlet:
     context-path: /
 

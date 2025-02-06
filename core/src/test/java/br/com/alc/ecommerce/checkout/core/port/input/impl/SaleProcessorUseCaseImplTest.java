@@ -18,8 +18,7 @@ import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import java.util.Optional;
 
-import static br.com.alc.ecommerce.checkout.core.domain.sale.SaleStatus.ERROR;
-import static br.com.alc.ecommerce.checkout.core.domain.sale.SaleStatus.PROCESSED;
+import static br.com.alc.ecommerce.checkout.core.domain.sale.SaleStatus.*;
 import static org.mockito.Mockito.*;
 
 @SuppressWarnings("java:S5786") // Public required for JUnit test suite
@@ -58,6 +57,18 @@ public class SaleProcessorUseCaseImplTest {
 
         verify(saleCallbackIntegrateOutPortMock).execute(any(SaleCallbackRequest.class));
         verifyNoInteractions(saleValidatorServiceMock, saleOrderInserterOutPortMock, saleAuthorizerServiceMock, watchServiceMock);
+    }
+
+    @Test
+    void givenAnInProcessingSaleOrderWhenExecutingTheSaleProcessorUseCaseThenShouldNotCallAnyoneDependency() {
+        SaleRequest saleRequest = SaleRequest.builder().orderNumber("987654322").build();
+        SaleOrder saleOrderReturned = SaleOrder.builder().status(IN_PROCESSING).build();
+
+        when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getOrderNumber())).thenReturn(Optional.of(saleOrderReturned));
+
+        saleProcessorUseCase.execute(saleRequest);
+
+        verifyNoInteractions(saleValidatorServiceMock, saleOrderInserterOutPortMock, saleAuthorizerServiceMock, saleCallbackIntegrateOutPortMock, watchServiceMock);
     }
 
     @Test
