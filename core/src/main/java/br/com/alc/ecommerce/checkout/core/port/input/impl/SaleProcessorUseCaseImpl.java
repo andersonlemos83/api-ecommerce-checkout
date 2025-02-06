@@ -12,14 +12,18 @@ import br.com.alc.ecommerce.checkout.core.service.authorize.SaleAuthorizerServic
 import br.com.alc.ecommerce.checkout.core.service.validator.SaleValidatorService;
 import br.com.alc.ecommerce.checkout.core.service.watch.WatchService;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 import org.apache.commons.lang3.StringUtils;
 
 import java.util.Optional;
 
 import static br.com.alc.ecommerce.checkout.core.domain.sale.SaleStatus.*;
+import static br.com.alc.ecommerce.checkout.core.util.ObjectMapperUtil.generateJson;
+import static org.apache.commons.lang3.exception.ExceptionUtils.getMessage;
 
+@Log4j2
 @AllArgsConstructor
-public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
+public final class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
 
     private final MostRecentSaleOrderFinderOutPort mostRecentSaleOrderFinderOutPort;
     private final SaleValidatorService saleValidatorService;
@@ -30,14 +34,17 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
 
     @Override
     public void execute(SaleRequest saleRequest) {
+        log.info("Incoming into SaleProcessorUseCaseImpl: {}", generateJson(saleRequest));
         Optional<SaleOrder> saleOrderOptional = mostRecentSaleOrderFinderOutPort.execute(saleRequest.getOrderNumber());
 
         if (saleOrderOptional.filter(SaleOrder::isProcessed).isPresent()) {
             integrateSaleCallback(saleOrderOptional.get());
+            log.info("Outgoing from SaleProcessorUseCaseImpl: {} - {}", saleOrderOptional.get().getStatus(), generateJson(saleOrderOptional.get()));
             return;
         }
 
         if (saleOrderOptional.filter(SaleOrder::isInProcessing).isPresent()) {
+            log.info("Outgoing from SaleProcessorUseCaseImpl: {} - {}", saleOrderOptional.get().getStatus(), generateJson(saleOrderOptional.get()));
             return;
         }
 
@@ -53,12 +60,15 @@ public class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
             saleOrderInserterOutPort.execute(processedSaleOrder);
 
             integrateSaleCallback(processedSaleOrder);
+            log.info("Outgoing from SaleProcessorUseCaseImpl: {} - {}", processedSaleOrder.getStatus(), generateJson(processedSaleOrder));
 
         } catch (Exception exception) {
-            SaleOrder saleOrder = buildErrorSaleOrder(saleRequest, exception);
-            saleOrderInserterOutPort.execute(saleOrder);
+            log.error("Error in the SaleProcessorUseCaseImpl: {}", getMessage(exception), exception);
+            SaleOrder errorSaleOrder = buildErrorSaleOrder(saleRequest, exception);
+            saleOrderInserterOutPort.execute(errorSaleOrder);
 
-            integrateSaleCallback(saleOrder);
+            integrateSaleCallback(errorSaleOrder);
+            log.info("Outgoing from SaleProcessorUseCaseImpl: {} - {}", errorSaleOrder.getStatus(), generateJson(errorSaleOrder));
         }
     }
 

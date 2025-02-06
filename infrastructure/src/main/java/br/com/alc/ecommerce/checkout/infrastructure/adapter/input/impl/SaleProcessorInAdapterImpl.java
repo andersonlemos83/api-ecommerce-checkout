@@ -21,7 +21,7 @@ public class SaleProcessorInAdapterImpl implements SaleProcessorInAdapter {
 
     @Override
     public void execute(SaleRequestDto saleRequestDto) {
-        log.debug("---> SaleProcessorInAdapterImpl: {}", generateJson(saleRequestDto));
+        log.debug("Incoming into SaleProcessorInAdapterImpl: {}", generateJson(saleRequestDto));
         SaleRequest saleRequest = modelMapper.map(saleRequestDto, SaleRequest.class);
         saleProcessorUseCase.execute(saleRequest);
     }

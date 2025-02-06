@@ -33,7 +33,7 @@ public class SaleIntegratorOutPortImpl implements SaleIntegratorOutPort {
 
     @Override
     public void execute(SaleRequest saleRequest) {
-        log.debug("---> SaleIntegratorOutPortImpl: {}", generateJson(saleRequest));
+        log.debug("Incoming into SaleIntegratorOutPortImpl: {}", generateJson(saleRequest));
         SaleRequestDto saleRequestDto = modelMapper.map(saleRequest, SaleRequestDto.class);
         messagingProducer.publish(saleExchange, authorizeSaleQueue, saleRequestDto);
     }

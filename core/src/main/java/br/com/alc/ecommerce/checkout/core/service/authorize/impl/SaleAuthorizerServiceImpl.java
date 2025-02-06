@@ -13,12 +13,16 @@ import br.com.alc.ecommerce.checkout.core.service.authorize.factory.AuthorizePay
 import br.com.alc.ecommerce.checkout.core.service.watch.WatchService;
 import br.com.alc.ecommerce.checkout.core.util.DateUtil;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 import java.util.List;
 import java.util.concurrent.atomic.AtomicInteger;
 
+import static br.com.alc.ecommerce.checkout.core.util.ObjectMapperUtil.generateJson;
+
+@Log4j2
 @AllArgsConstructor
-public class SaleAuthorizerServiceImpl implements SaleAuthorizerService {
+public final class SaleAuthorizerServiceImpl implements SaleAuthorizerService {
 
     private final SaleAuthorizerOutPort saleAuthorizerOutPort;
     private final TaxFinderOutPort taxFinderOutPort;
@@ -27,8 +31,11 @@ public class SaleAuthorizerServiceImpl implements SaleAuthorizerService {
 
     @Override
     public AuthorizeSaleResponse execute(SaleRequest saleRequest) {
+        log.info("Incoming into SaleProcessorUseCaseImpl: {}", generateJson(saleRequest));
         AuthorizeSaleRequest authorizeSaleRequest = buildAuthorizeSaleRequest(saleRequest);
-        return saleAuthorizerOutPort.execute(authorizeSaleRequest);
+        AuthorizeSaleResponse authorizeSaleResponse = saleAuthorizerOutPort.execute(authorizeSaleRequest);
+        log.info("Outgoing from SaleProcessorUseCaseImpl: {}", generateJson(authorizeSaleResponse));
+        return authorizeSaleResponse;
     }
 
     private AuthorizeSaleRequest buildAuthorizeSaleRequest(SaleRequest saleRequest) {

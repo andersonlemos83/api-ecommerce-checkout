@@ -23,10 +23,10 @@ public class MostRecentSaleOrderFinderOutPortImpl implements MostRecentSaleOrder
 
     @Override
     public Optional<SaleOrder> execute(String orderNumber) {
-        log.debug("---> MostRecentSaleOrderFinderOutPortImpl: {}", generateJson(orderNumber));
+        log.debug("Incoming into MostRecentSaleOrderFinderOutPortImpl: {}", generateJson(orderNumber));
         Optional<SaleOrderEntity> optional = saleOrderRepository.findFirstByOrderNumberOrderByUpdatedDateDesc(orderNumber);
         Optional<SaleOrder> saleOrderOptional = optional.map(this::buildSaleOrder);
-        log.debug("<--- MostRecentSaleOrderFinderOutPortImpl: {}", generateJson(saleOrderOptional));
+        saleOrderOptional.ifPresent(s -> log.debug("Outgoing from MostRecentSaleOrderFinderOutPortImpl: {}", generateJson(s)));
         return saleOrderOptional;
     }
 

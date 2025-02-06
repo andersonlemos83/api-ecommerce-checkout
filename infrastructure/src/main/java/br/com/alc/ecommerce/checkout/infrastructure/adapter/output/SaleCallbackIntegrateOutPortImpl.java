@@ -30,7 +30,7 @@ public class SaleCallbackIntegrateOutPortImpl implements SaleCallbackIntegrateOu
 
     @Override
     public void execute(SaleCallbackRequest saleCallbackRequest) {
-        log.debug("---> SaleCallbackIntegrateOutPortImpl: {}", generateJson(saleCallbackRequest));
+        log.debug("Incoming into SaleCallbackIntegrateOutPortImpl: {}", generateJson(saleCallbackRequest));
         SaleCallbackRequestDto saleCallbackRequestDto = modelMapper.map(saleCallbackRequest, SaleCallbackRequestDto.class);
         messagingProducer.publish(saleCallbackQueue, saleCallbackRequestDto);
     }

@@ -13,16 +13,18 @@ import static br.com.alc.ecommerce.checkout.core.util.ObjectMapperUtil.generateJ
 
 @Log4j2
 @AllArgsConstructor
-public class SaleIntegratorUseCaseImpl implements SaleIntegratorUseCase {
+public final class SaleIntegratorUseCaseImpl implements SaleIntegratorUseCase {
 
     private final SaleIntegratorOutPort saleIntegratorOutPort;
     private final WatchService watchService;
 
     @Override
     public SaleResponse execute(SaleRequest saleRequest) {
-        log.info("--> SaleIntegratorUseCaseImpl: {}", generateJson(saleRequest));
+        log.info("Incoming into SaleIntegratorUseCaseImpl: {}", generateJson(saleRequest));
         saleIntegratorOutPort.execute(saleRequest);
-        return buildSaleResponse();
+        SaleResponse saleResponse = buildSaleResponse();
+        log.info("Outgoing from SaleIntegratorUseCaseImpl: {}", generateJson(saleResponse));
+        return saleResponse;
     }
 
     private SaleResponse buildSaleResponse() {

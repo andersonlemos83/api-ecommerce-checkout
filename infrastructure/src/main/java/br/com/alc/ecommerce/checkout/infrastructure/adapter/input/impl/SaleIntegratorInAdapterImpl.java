@@ -23,11 +23,11 @@ public class SaleIntegratorInAdapterImpl implements SaleIntegratorInAdapter {
 
     @Override
     public SaleResponseDto execute(SaleRequestDto saleRequestDto) {
-        log.debug("---> SaleIntegratorInAdapterImpl: {}", generateJson(saleRequestDto));
+        log.debug("Incoming into SaleIntegratorInAdapterImpl: {}", generateJson(saleRequestDto));
         SaleRequest saleRequest = modelMapper.map(saleRequestDto, SaleRequest.class);
         SaleResponse saleResponse = saleIntegratorUseCase.execute(saleRequest);
         SaleResponseDto saleResponseDto = modelMapper.map(saleResponse, SaleResponseDto.class);
-        log.debug("<--- SaleIntegratorInAdapterImpl: {}", generateJson(saleResponseDto));
+        log.debug("Outgoing from SaleIntegratorInAdapterImpl: {}", generateJson(saleResponseDto));
         return saleResponseDto;
     }
 }
