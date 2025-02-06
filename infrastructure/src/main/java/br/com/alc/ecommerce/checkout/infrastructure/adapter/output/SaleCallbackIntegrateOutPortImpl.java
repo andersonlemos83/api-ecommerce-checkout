@@ -9,7 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil.generateJson;
+import static br.com.alc.ecommerce.checkout.core.util.ObjectMapperUtil.generateJson;
 
 @Log4j2
 @Component

@@ -15,8 +15,8 @@ import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
 
+import static br.com.alc.ecommerce.checkout.core.util.ObjectMapperUtil.generateJson;
 import static br.com.alc.ecommerce.checkout.infrastructure.util.ConstantesUtil.TAX_FINDER_CACHE;
-import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil.generateJson;
 import static org.apache.commons.lang3.exception.ExceptionUtils.getMessage;
 
 @Log4j2

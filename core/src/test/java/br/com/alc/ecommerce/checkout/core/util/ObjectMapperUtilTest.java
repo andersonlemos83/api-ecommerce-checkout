@@ -1,12 +1,14 @@
-package br.com.alc.ecommerce.checkout.infrastructure.util;
+package br.com.alc.ecommerce.checkout.core.util;
 
-import br.com.alc.ecommerce.checkout.infrastructure.dto.error.ErrorResponseDto;
+import br.com.alc.ecommerce.checkout.core.domain.sale.ShoppingCartItem;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
+import java.math.BigDecimal;
+import java.math.BigInteger;
+
 import static org.junit.jupiter.api.Assertions.assertEquals;
-import static org.springframework.http.HttpStatus.OK;
 
 @SuppressWarnings("java:S5786") // Public required for JUnit test suite
 @ExtendWith(SpringExtension.class)
@@ -14,9 +16,9 @@ public class ObjectMapperUtilTest {
 
     @Test
     void givenAnSerializableObjectWhenExecutingTheGenerateJsonMethodThenShouldReturnAnSerializedObject() {
-        ErrorResponseDto errorResponseDto = ErrorResponseDto.builder().httpStatus(OK).message("O campo totalValue não foi informado.").build();
-        String jsonReturned = ObjectMapperUtil.generateJson(errorResponseDto);
-        assertEquals("{\"httpStatus\":\"OK\",\"message\":\"O campo totalValue não foi informado.\"}", jsonReturned);
+        ShoppingCartItem shoppingCartItem = ShoppingCartItem.builder().code(BigInteger.valueOf(100231933559L)).quantity(1).value(BigDecimal.valueOf(7.09)).build();
+        String jsonReturned = ObjectMapperUtil.generateJson(shoppingCartItem);
+        assertEquals("{\"code\":100231933559,\"quantity\":1,\"value\":7.09,\"totalItemValue\":7.09}", jsonReturned);
     }
 
     @Test

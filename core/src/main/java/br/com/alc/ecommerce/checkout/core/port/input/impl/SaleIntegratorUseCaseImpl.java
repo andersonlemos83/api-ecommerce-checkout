@@ -6,9 +6,12 @@ import br.com.alc.ecommerce.checkout.core.port.input.SaleIntegratorUseCase;
 import br.com.alc.ecommerce.checkout.core.port.output.SaleIntegratorOutPort;
 import br.com.alc.ecommerce.checkout.core.service.watch.WatchService;
 import lombok.AllArgsConstructor;
+import lombok.extern.log4j.Log4j2;
 
 import static br.com.alc.ecommerce.checkout.core.domain.sale.SaleStatus.IN_PROCESSING;
+import static br.com.alc.ecommerce.checkout.core.util.ObjectMapperUtil.generateJson;
 
+@Log4j2
 @AllArgsConstructor
 public class SaleIntegratorUseCaseImpl implements SaleIntegratorUseCase {
 
@@ -17,6 +20,7 @@ public class SaleIntegratorUseCaseImpl implements SaleIntegratorUseCase {
 
     @Override
     public SaleResponse execute(SaleRequest saleRequest) {
+        log.info("--> SaleIntegratorUseCaseImpl: {}", generateJson(saleRequest));
         saleIntegratorOutPort.execute(saleRequest);
         return buildSaleResponse();
     }
