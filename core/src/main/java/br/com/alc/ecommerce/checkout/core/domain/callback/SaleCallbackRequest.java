@@ -11,7 +11,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaleCallbackRequest implements Serializable {
+public final class SaleCallbackRequest implements Serializable {
 
     private String orderNumber;
 

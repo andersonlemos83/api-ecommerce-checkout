@@ -9,7 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil.generateJson;
+import static br.com.alc.ecommerce.checkout.core.util.ObjectMapperUtil.generateJson;
 
 @Log4j2
 @Component
@@ -30,7 +30,7 @@ public class SaleCallbackIntegrateOutPortImpl implements SaleCallbackIntegrateOu
 
     @Override
     public void execute(SaleCallbackRequest saleCallbackRequest) {
-        log.debug("---> SaleCallbackIntegrateOutPortImpl: {}", generateJson(saleCallbackRequest));
+        log.debug("Incoming into SaleCallbackIntegrateOutPortImpl: {}", generateJson(saleCallbackRequest));
         SaleCallbackRequestDto saleCallbackRequestDto = modelMapper.map(saleCallbackRequest, SaleCallbackRequestDto.class);
         messagingProducer.publish(saleCallbackQueue, saleCallbackRequestDto);
     }

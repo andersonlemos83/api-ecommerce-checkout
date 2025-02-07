@@ -14,7 +14,7 @@ import static br.com.alc.ecommerce.checkout.core.domain.sale.PaymentMethod.*;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class Payment implements Serializable {
+public final class Payment implements Serializable {
 
     private PaymentMethod paymentMethod;
     private LocalDateTime paymentDate;

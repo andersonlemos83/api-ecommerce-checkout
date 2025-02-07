@@ -11,7 +11,7 @@ import java.util.List;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthorizeSaleRequest implements Serializable {
+public final class AuthorizeSaleRequest implements Serializable {
 
     private String companyCode;
     private String storeCode;

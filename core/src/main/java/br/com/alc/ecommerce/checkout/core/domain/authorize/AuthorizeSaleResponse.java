@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthorizeSaleResponse implements Serializable {
+public final class AuthorizeSaleResponse implements Serializable {
 
     private String invoiceKey;
     private String invoiceNumber;

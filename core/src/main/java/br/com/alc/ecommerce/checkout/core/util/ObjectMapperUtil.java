@@ -1,4 +1,4 @@
-package br.com.alc.ecommerce.checkout.infrastructure.util;
+package br.com.alc.ecommerce.checkout.core.util;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.jsr310.JavaTimeModule;

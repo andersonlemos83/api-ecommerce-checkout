@@ -9,7 +9,7 @@ import org.modelmapper.ModelMapper;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
 
-import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil.generateJson;
+import static br.com.alc.ecommerce.checkout.core.util.ObjectMapperUtil.generateJson;
 
 @Log4j2
 @Component
@@ -33,7 +33,7 @@ public class SaleIntegratorOutPortImpl implements SaleIntegratorOutPort {
 
     @Override
     public void execute(SaleRequest saleRequest) {
-        log.debug("---> SaleIntegratorOutPortImpl: {}", generateJson(saleRequest));
+        log.debug("Incoming into SaleIntegratorOutPortImpl: {}", generateJson(saleRequest));
         SaleRequestDto saleRequestDto = modelMapper.map(saleRequest, SaleRequestDto.class);
         messagingProducer.publish(saleExchange, authorizeSaleQueue, saleRequestDto);
     }

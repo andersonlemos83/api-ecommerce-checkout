@@ -11,7 +11,7 @@ import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
 import org.springframework.stereotype.Component;
 
-import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil.generateJson;
+import static br.com.alc.ecommerce.checkout.core.util.ObjectMapperUtil.generateJson;
 
 @Log4j2
 @Component
@@ -23,11 +23,11 @@ public class SaleIntegratorInAdapterImpl implements SaleIntegratorInAdapter {
 
     @Override
     public SaleResponseDto execute(SaleRequestDto saleRequestDto) {
-        log.debug("---> SaleIntegratorInAdapterImpl: {}", generateJson(saleRequestDto));
+        log.debug("Incoming into SaleIntegratorInAdapterImpl: {}", generateJson(saleRequestDto));
         SaleRequest saleRequest = modelMapper.map(saleRequestDto, SaleRequest.class);
         SaleResponse saleResponse = saleIntegratorUseCase.execute(saleRequest);
         SaleResponseDto saleResponseDto = modelMapper.map(saleResponse, SaleResponseDto.class);
-        log.debug("<--- SaleIntegratorInAdapterImpl: {}", generateJson(saleResponseDto));
+        log.debug("Outgoing from SaleIntegratorInAdapterImpl: {}", generateJson(saleResponseDto));
         return saleResponseDto;
     }
 }

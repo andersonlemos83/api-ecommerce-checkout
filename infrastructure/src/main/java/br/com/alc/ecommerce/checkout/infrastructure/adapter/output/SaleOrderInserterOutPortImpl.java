@@ -11,7 +11,7 @@ import org.springframework.stereotype.Component;
 
 import java.util.Optional;
 
-import static br.com.alc.ecommerce.checkout.infrastructure.util.ObjectMapperUtil.generateJson;
+import static br.com.alc.ecommerce.checkout.core.util.ObjectMapperUtil.generateJson;
 
 @Log4j2
 @Component
@@ -23,10 +23,11 @@ public class SaleOrderInserterOutPortImpl implements SaleOrderInserterOutPort {
 
     @Override
     public void execute(SaleOrder saleOrder) {
-        log.debug("---> SaleOrderInserterOutPortImpl: {}", generateJson(saleOrder));
+        log.debug("Incoming into SaleOrderInserterOutPortImpl: {}", generateJson(saleOrder));
         SaleOrderEntity saleOrderEntity = modelMapper.map(saleOrder, SaleOrderEntity.class);
         Optional<SaleOrderEntity> optional = saleOrderRepository.findFirstByOrderNumberAndStatusInProcessing(saleOrder.getOrderNumber());
         optional.ifPresent(entity -> saleOrderEntity.setId(entity.getId()));
-        saleOrderRepository.saveAndFlush(saleOrderEntity);
+        SaleOrderEntity insertedSaleOrderEntity = saleOrderRepository.saveAndFlush(saleOrderEntity);
+        log.debug("Outgoing from SaleOrderInserterOutPortImpl: {}", generateJson(insertedSaleOrderEntity));
     }
 }
