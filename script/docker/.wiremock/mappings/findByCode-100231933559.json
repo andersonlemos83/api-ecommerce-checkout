@@ -1,0 +1,17 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/findByCode?code=100231933559"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "code": 100231933559,
+            "ivaCbsValue": 1.06,
+            "ivaIbsValue": 0.7
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}
