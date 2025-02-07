@@ -15,7 +15,7 @@ import static br.com.alc.ecommerce.checkout.core.domain.sale.SaleStatus.PROCESSE
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaleOrder implements Serializable {
+public final class SaleOrder implements Serializable {
 
     private Long id;
     private String channelCode;

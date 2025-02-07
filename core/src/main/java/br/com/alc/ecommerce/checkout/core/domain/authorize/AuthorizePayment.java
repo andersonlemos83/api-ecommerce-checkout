@@ -10,7 +10,7 @@ import java.math.BigDecimal;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthorizePayment implements Serializable {
+public final class AuthorizePayment implements Serializable {
 
     private Integer sequence;
     private String type;

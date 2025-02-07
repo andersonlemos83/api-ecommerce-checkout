@@ -11,7 +11,7 @@ import java.math.BigInteger;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthorizeItem implements Serializable {
+public final class AuthorizeItem implements Serializable {
 
     private Integer sequence;
     private BigInteger sku;

@@ -9,7 +9,7 @@ import java.io.Serializable;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class AuthorizeCustomer implements Serializable {
+public final class AuthorizeCustomer implements Serializable {
 
     private String name;
     private String document;

@@ -11,7 +11,7 @@ import java.math.BigInteger;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class TaxResponse implements Serializable {
+public final class TaxResponse implements Serializable {
 
     private BigInteger code;
     private BigDecimal ivaCbsValue;

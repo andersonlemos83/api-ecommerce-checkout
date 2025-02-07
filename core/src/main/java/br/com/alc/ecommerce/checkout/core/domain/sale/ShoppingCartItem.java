@@ -14,7 +14,7 @@ import static java.math.BigDecimal.ZERO;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class ShoppingCartItem implements Serializable {
+public final class ShoppingCartItem implements Serializable {
 
     private BigInteger code;
     private Integer quantity;

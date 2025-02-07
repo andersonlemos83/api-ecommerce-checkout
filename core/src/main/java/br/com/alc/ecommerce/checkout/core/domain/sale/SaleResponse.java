@@ -10,7 +10,7 @@ import java.time.LocalDateTime;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaleResponse implements Serializable {
+public final class SaleResponse implements Serializable {
 
     private SaleStatus status;
     private LocalDateTime date;

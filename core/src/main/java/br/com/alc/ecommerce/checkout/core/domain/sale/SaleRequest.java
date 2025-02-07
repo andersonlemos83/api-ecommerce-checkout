@@ -15,7 +15,7 @@ import static java.util.Collections.emptyList;
 @ToString
 @NoArgsConstructor
 @AllArgsConstructor
-public class SaleRequest implements Serializable {
+public final class SaleRequest implements Serializable {
 
     private String channelCode;
     private String companyCode;
