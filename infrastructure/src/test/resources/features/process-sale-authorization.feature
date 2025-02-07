@@ -32,8 +32,8 @@ Funcionalidade: Processar Autorizacao Venda
       | OK     | /fixtures/AuthorizeSaleResponseDto-987654322.json |
     Quando processar autorizacao venda
     Entao deveria existir as seguintes Sale Order na base
-      | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                   | Invoice Number | Issuance Date           | Invoice Base64                                                            | Status    | Error Reason | Created Date            | Updated Date            |
-      | 1  | APP         | 001          | 100        | 105 | 987654322    | 105.04      | 5.05          | 272502123456785500100000000112345678987654321 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-272502123456785500100000000112345678987654321.txt | PROCESSED |              | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
+      | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status    | Error Reason | Created Date            | Updated Date            |
+      | 1  | APP         | 001          | 100        | 105 | 987654322    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | PROCESSED |              | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
     E deveria enviar para o endpoint authorize os requests esperados
       | Request                                          |
       | /fixtures/AuthorizeSaleRequestDto-987654322.json |
@@ -66,8 +66,8 @@ Funcionalidade: Processar Autorizacao Venda
       | OK     | /fixtures/AuthorizeSaleResponseDto-987654323.json |
     Quando processar autorizacao venda
     Entao deveria existir as seguintes Sale Order na base
-      | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                   | Invoice Number | Issuance Date           | Invoice Base64                                                            | Status    | Error Reason | Created Date            | Updated Date            |
-      | 1  | APP         | 001          | 100        | 105 | 987654323    | 105.04      | 5.05          | 272502123456785500100000000112345678987654321 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-272502123456785500100000000112345678987654321.txt | PROCESSED |              | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
+      | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status    | Error Reason | Created Date            | Updated Date            |
+      | 1  | APP         | 001          | 100        | 105 | 987654323    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | PROCESSED |              | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
     E deveria enviar para o endpoint authorize os requests esperados
       | Request                                          |
       | /fixtures/AuthorizeSaleRequestDto-987654323.json |
@@ -100,8 +100,8 @@ Funcionalidade: Processar Autorizacao Venda
       | OK     | /fixtures/AuthorizeSaleResponseDto-987654324.json |
     Quando processar autorizacao venda
     Entao deveria existir as seguintes Sale Order na base
-      | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                   | Invoice Number | Issuance Date           | Invoice Base64                                                            | Status    | Error Reason | Created Date            | Updated Date            |
-      | 1  | APP         | 001          | 100        | 105 | 987654324    | 105.04      | 5.05          | 272502123456785500100000000112345678987654321 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-272502123456785500100000000112345678987654321.txt | PROCESSED |              | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
+      | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status    | Error Reason | Created Date            | Updated Date            |
+      | 1  | APP         | 001          | 100        | 105 | 987654324    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | PROCESSED |              | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
     E deveria enviar para o endpoint authorize os requests esperados
       | Request                                          |
       | /fixtures/AuthorizeSaleRequestDto-987654324.json |
@@ -134,8 +134,8 @@ Funcionalidade: Processar Autorizacao Venda
       | OK     | /fixtures/AuthorizeSaleResponseDto-987654325.json |
     Quando processar autorizacao venda
     Entao deveria existir as seguintes Sale Order na base
-      | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                   | Invoice Number | Issuance Date           | Invoice Base64                                                            | Status    | Error Reason | Created Date            | Updated Date            |
-      | 1  | APP         | 001          | 100        | 105 | 987654325    | 105.04      | 5.05          | 272502123456785500100000000112345678987654321 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-272502123456785500100000000112345678987654321.txt | PROCESSED |              | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
+      | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status    | Error Reason | Created Date            | Updated Date            |
+      | 1  | APP         | 001          | 100        | 105 | 987654325    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | PROCESSED |              | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
     E deveria enviar para o endpoint authorize os requests esperados
       | Request                                          |
       | /fixtures/AuthorizeSaleRequestDto-987654325.json |
@@ -164,12 +164,12 @@ Funcionalidade: Processar Autorizacao Venda
       | 392084657819 | OK     | /fixtures/TaxResponseDto-392084657819.json |
       | 874631202305 | OK     | /fixtures/TaxResponseDto-874631202305.json |
     E que existam as Sale Order cadastradas
-      | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                   | Invoice Number | Issuance Date           | Invoice Base64                                                            | Status    | Error Reason | Created Date            | Updated Date            |
-      | APP         | 001          | 100        | 105 | 987654326    | 105.04      | 5.05          | 272502123456785500100000000112345678987654321 | 000000001      | 2025-01-30T13:47:46.000 | /fixtures/InvoiceBase64-272502123456785500100000000112345678987654321.txt | PROCESSED |              | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
+      | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status    | Error Reason | Created Date            | Updated Date            |
+      | APP         | 001          | 100        | 105 | 987654326    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:47:46.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | PROCESSED |              | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
     Quando processar autorizacao venda
     Entao deveria existir as seguintes Sale Order na base
-      | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                   | Invoice Number | Issuance Date           | Invoice Base64                                                            | Status    | Error Reason | Created Date            | Updated Date            |
-      | 1  | APP         | 001          | 100        | 105 | 987654326    | 105.04      | 5.05          | 272502123456785500100000000112345678987654321 | 000000001      | 2025-01-30T13:47:46.000 | /fixtures/InvoiceBase64-272502123456785500100000000112345678987654321.txt | PROCESSED |              | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
+      | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status    | Error Reason | Created Date            | Updated Date            |
+      | 1  | APP         | 001          | 100        | 105 | 987654326    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:47:46.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | PROCESSED |              | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
     E deveria publicar o JSON esperado na fila
       | Queue Name          | Json Key  |
       | sale-callback-queue | 987654326 |
@@ -199,13 +199,13 @@ Funcionalidade: Processar Autorizacao Venda
       | Status | Response                                          |
       | OK     | /fixtures/AuthorizeSaleResponseDto-987654327.json |
     E que existam as Sale Order cadastradas
-      | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                   | Invoice Number | Issuance Date           | Invoice Base64                                                            | Status | Error Reason                                                    | Created Date            | Updated Date            |
-      | APP         | 001          | 100        | 105 | 987654327    | 105.04      | 5.05          | 272502123456785500100000000112345678987654321 | 000000001      | 2025-01-30T13:47:46.000 | /fixtures/InvoiceBase64-272502123456785500100000000112345678987654321.txt | ERROR  | O valor total dos pagamentos está diferente do total informado. | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
+      | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status | Error Reason                                                    | Created Date            | Updated Date            |
+      | APP         | 001          | 100        | 105 | 987654327    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:47:46.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | ERROR  | O valor total dos pagamentos está diferente do total informado. | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
     Quando processar autorizacao venda
     Entao deveria existir as seguintes Sale Order na base
-      | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                   | Invoice Number | Issuance Date           | Invoice Base64                                                            | Status    | Error Reason                                                    | Created Date            | Updated Date            |
-      | 1  | APP         | 001          | 100        | 105 | 987654327    | 105.04      | 5.05          | 272502123456785500100000000112345678987654321 | 000000001      | 2025-01-30T13:47:46.000 | /fixtures/InvoiceBase64-272502123456785500100000000112345678987654321.txt | ERROR     | O valor total dos pagamentos está diferente do total informado. | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
-      | 2  | APP         | 001          | 100        | 105 | 987654327    | 105.04      | 5.05          | 272502123456785500100000000112345678987654321 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-272502123456785500100000000112345678987654321.txt | PROCESSED |                                                                 | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
+      | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status    | Error Reason                                                    | Created Date            | Updated Date            |
+      | 1  | APP         | 001          | 100        | 105 | 987654327    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:47:46.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | ERROR     | O valor total dos pagamentos está diferente do total informado. | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
+      | 2  | APP         | 001          | 100        | 105 | 987654327    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | PROCESSED |                                                                 | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
     E deveria enviar para o endpoint authorize os requests esperados
       | Request                                          |
       | /fixtures/AuthorizeSaleRequestDto-987654327.json |

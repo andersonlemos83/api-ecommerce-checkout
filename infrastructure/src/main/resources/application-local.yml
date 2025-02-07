@@ -34,6 +34,6 @@ feign:
 
 client:
   tax:
-    url: https://run.mocky.io/v3/50d36e9a-56b3-42fc-971f-f79e8f84c1f8
+    url: http://localhost:8443/
   mid-client:
-    url: https://run.mocky.io/v3/10b3439e-4a7a-4d21-82c0-1fcd519abaf7
+    url: http://localhost:8443/

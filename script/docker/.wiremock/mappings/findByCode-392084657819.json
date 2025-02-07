@@ -1,0 +1,17 @@
+{
+    "request": {
+        "method": "GET",
+        "url": "/findByCode?code=392084657819"
+    },
+    "response": {
+        "status": 200,
+        "jsonBody": {
+            "code": 392084657819,
+            "ivaCbsValue": 2.87,
+            "ivaIbsValue": 1.91
+        },
+        "headers": {
+            "Content-Type": "application/json"
+        }
+    }
+}

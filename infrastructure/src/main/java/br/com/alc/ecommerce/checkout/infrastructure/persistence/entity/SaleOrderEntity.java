@@ -47,7 +47,7 @@ public class SaleOrderEntity implements Serializable {
     @Column(name = "FREIGHT_VALUE", nullable = false)
     private BigDecimal freightValue;
 
-    @Column(name = "INVOICE_KEY")
+    @Column(name = "INVOICE_KEY", length = 44)
     private String invoiceKey;
 
     @Column(name = "INVOICE_NUMBER")
