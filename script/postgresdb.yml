@@ -1,0 +1,45 @@
+version: '3.1'
+
+volumes:
+    postgres_data:
+        driver: local
+    pgadmin_data:
+        driver: local
+        
+networks:
+    postgres:
+        driver: bridge
+
+services:
+    postgres:
+        container_name: postgres-db
+        image: postgres
+        environment:
+            POSTGRES_USER: postgres
+            POSTGRES_PASSWORD: postgres
+        volumes:
+            - postgres_data:/data/postgres
+        ports:
+            - 5432:5432
+        expose:
+            - 5432
+        networks:
+            - postgres
+
+    pgadmin:
+        container_name: pgadmin
+        image: dpage/pgadmin4
+        environment:
+            PGADMIN_DEFAULT_EMAIL: anderson.lemos@dbccompany.com.br
+            PGADMIN_DEFAULT_PASSWORD: admin
+            PGADMIN_CONFIG_SERVER_MODE: 'False'
+        volumes:
+           - pgadmin_data:/var/lib/pgadmin
+        ports:
+          - 5050:80
+        expose:
+            - 5050
+        networks:
+            - postgres
+            
+# localhost docker = host.docker.internal

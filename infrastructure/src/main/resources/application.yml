@@ -95,6 +95,17 @@ feign:
         readTimeout: 15000
         loggerLevel: BASIC # NONE, BASIC, HEADERS, FULL
 
+resilience4j:
+  circuitbreaker:
+    instances:
+      sale-authorizer-circuitbreaker:
+        slidingWindowType: TIME_BASED
+        slidingWindowSize: 30
+        minimumNumberOfCalls: 2
+        failureRateThreshold: 80
+        permittedNumberOfCallsInHalfOpenState: 2
+        waitDurationInOpenState: 30s
+
 management:
   server:
     port: 9191

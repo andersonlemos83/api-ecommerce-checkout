@@ -6,6 +6,7 @@ import br.com.alc.ecommerce.checkout.core.port.output.SaleAuthorizerOutPort;
 import br.com.alc.ecommerce.checkout.infrastructure.client.MidClient;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.authorize.AuthorizeSaleRequestDto;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.authorize.AuthorizeSaleResponseDto;
+import io.github.resilience4j.circuitbreaker.annotation.CircuitBreaker;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.modelmapper.ModelMapper;
@@ -22,6 +23,7 @@ public class SaleAuthorizerOutPortImpl implements SaleAuthorizerOutPort {
     private final ModelMapper modelMapper;
 
     @Override
+    @CircuitBreaker(name = "sale-authorizer-circuitbreaker")
     public AuthorizeSaleResponse execute(AuthorizeSaleRequest authorizeSaleRequest) {
         log.debug("Incoming into SaleAuthorizerOutPortImpl: {}", generateJson(authorizeSaleRequest));
         AuthorizeSaleRequestDto authorizeSaleRequestDto = modelMapper.map(authorizeSaleRequest, AuthorizeSaleRequestDto.class);
