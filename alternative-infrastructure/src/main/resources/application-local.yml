@@ -1,0 +1,39 @@
+spring:
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: ecommerce-checkout
+    password: ecommerce-checkout
+    virtual-host: ecommerce-checkout
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce_db
+    username: ECOMMERCE_CHECKOUT_OWNER
+    password: ECOMMERCE_CHECKOUT_OWNER
+  jpa:
+    show-sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+
+server:
+  port: 8181
+
+management:
+  server:
+    port: 9191
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 15000
+        readTimeout: 15000
+        loggerLevel: FULL # NONE, BASIC, HEADERS, FULL
+
+client:
+  tax:
+    url: http://localhost:8443/
+  mid-client:
+    url: http://localhost:8443/

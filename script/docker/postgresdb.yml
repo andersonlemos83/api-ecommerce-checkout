@@ -30,16 +30,22 @@ services:
         container_name: pgadmin
         image: dpage/pgadmin4
         environment:
-            PGADMIN_DEFAULT_EMAIL: anderson.lemos@dbccompany.com.br
+            PGADMIN_DEFAULT_EMAIL: andersonlemos83@gmail.com
             PGADMIN_DEFAULT_PASSWORD: admin
             PGADMIN_CONFIG_SERVER_MODE: 'False'
         volumes:
            - pgadmin_data:/var/lib/pgadmin
         ports:
-          - 5050:80
+           - 5050:80
         expose:
-            - 5050
+           - 5050
         networks:
-            - postgres
+           - postgres
             
 # localhost docker = host.docker.internal
+
+# host: localhost
+# port: 5432
+# database: postgres
+# username: postgres
+# password: postgres

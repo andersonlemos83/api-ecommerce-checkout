@@ -19,6 +19,7 @@
     <modules>
         <module>core</module>
         <module>infrastructure</module>
+        <module>alternative-infrastructure</module>
     </modules>
     <packaging>pom</packaging>
 

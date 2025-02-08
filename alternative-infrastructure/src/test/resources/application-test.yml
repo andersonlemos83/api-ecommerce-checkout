@@ -1,0 +1,47 @@
+cucumber:
+  publish:
+    quiet: true
+
+spring:
+  main:
+    allow-bean-definition-overriding: true
+    allow-circular-references: true
+  rabbitmq:
+    host: localhost
+    port: 5672
+    username: ecommerce-checkout
+    password: ecommerce-checkout
+    virtual-host: ecommerce-checkout
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce_db
+    username: ECOMMERCE_CHECKOUT_OWNER
+    password: ECOMMERCE_CHECKOUT_OWNER
+  jpa:
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.PostgreSQLDialect
+        default_schema: public
+        generate_statistics: true
+    hibernate:
+      ddl-auto: update
+    show-sql: true
+  web:
+    locale: pt_BR
+    locale-resolver: fixed
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password: null
+
+feign:
+  client:
+    config:
+      default:
+        loggerLevel: FULL # NONE, BASIC, HEADERS, FULL
+
+client:
+  tax:
+    url: http://localhost:9090/
+  mid-client:
+    url: http://localhost:9090/
