@@ -19,7 +19,7 @@ public class ContainerManagerPostgres extends AbstractContainerManager {
 
         container.setPortBindings(singletonList(POSTGRES_PORT + ":" + POSTGRES_PORT));
         container.withExposedPorts(POSTGRES_PORT);
-        return null;
+        return container;
     }
 
     @Override

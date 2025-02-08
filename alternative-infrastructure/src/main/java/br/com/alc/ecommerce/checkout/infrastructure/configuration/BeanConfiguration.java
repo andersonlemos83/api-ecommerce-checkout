@@ -13,14 +13,14 @@ import br.com.alc.ecommerce.checkout.core.service.validator.SaleValidatorService
 import br.com.alc.ecommerce.checkout.core.service.validator.impl.SaleValidatorServiceImpl;
 import br.com.alc.ecommerce.checkout.core.service.watch.WatchService;
 import br.com.alc.ecommerce.checkout.core.service.watch.impl.RealWatchService;
-import br.com.alc.ecommerce.checkout.infrastructure.EcommerceCheckoutInfrastructureApplication;
+import br.com.alc.ecommerce.checkout.infrastructure.EcommerceCheckoutAlternativeInfrastructureApplication;
 import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 
 @Configuration
-@ComponentScan(basePackageClasses = EcommerceCheckoutInfrastructureApplication.class)
+@ComponentScan(basePackageClasses = EcommerceCheckoutAlternativeInfrastructureApplication.class)
 public class BeanConfiguration {
 
     @Bean

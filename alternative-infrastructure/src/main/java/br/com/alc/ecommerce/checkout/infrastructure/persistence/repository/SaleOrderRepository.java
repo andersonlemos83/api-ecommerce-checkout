@@ -14,7 +14,7 @@ public interface SaleOrderRepository extends JpaRepository<SaleOrderEntity, Long
 
     @Query(nativeQuery = true, value = "" +
             "SELECT * " +
-            "FROM ECOMMERCE_CHECKOUT_OWNER.SALE_ORDER so " +
+            "FROM PUBLIC.SALE_ORDER so " +
             "WHERE so.STATUS = 'IN_PROCESSING' " +
             "AND so.ORDER_NUMBER IN (?1) " +
             "ORDER BY so.UPDATE_DATE DESC ")

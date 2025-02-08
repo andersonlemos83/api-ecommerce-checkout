@@ -8,10 +8,10 @@ import org.springframework.cloud.openfeign.EnableFeignClients;
 @EnableFeignClients
 @EntityScan(basePackages = {"br.com.alc.ecommerce.checkout.infrastructure.*"})
 @SpringBootApplication(scanBasePackages = {"br.com.alc.ecommerce.checkout.infrastructure"})
-public class EcommerceCheckoutInfrastructureApplication {
+public class EcommerceCheckoutAlternativeInfrastructureApplication {
 
     public static void main(String[] args) {
-        SpringApplication.run(EcommerceCheckoutInfrastructureApplication.class, args);
+        SpringApplication.run(EcommerceCheckoutAlternativeInfrastructureApplication.class, args);
     }
 
 }

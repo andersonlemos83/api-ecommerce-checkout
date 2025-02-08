@@ -34,7 +34,7 @@ spring:
     authorize-sale-queue: authorize-sale-queue
     sale-callback-queue: sale-callback-queue
   datasource:
-#    driver-class-name: org.postgresql.Driver
+    driver-class-name: org.postgresql.Driver
     hikari:
       minimum-idle: 10
       maximum-pool-size: 30

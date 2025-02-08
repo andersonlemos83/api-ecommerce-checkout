@@ -6,12 +6,14 @@ import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.amqp.rabbit.annotation.RabbitListener;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import static br.com.alc.ecommerce.checkout.core.util.ObjectMapperUtil.generateJson;
 import static org.apache.commons.lang3.exception.ExceptionUtils.getMessage;
 
 @Log4j2
 @Service
+@Transactional
 @AllArgsConstructor
 public class SaleListener {
 
