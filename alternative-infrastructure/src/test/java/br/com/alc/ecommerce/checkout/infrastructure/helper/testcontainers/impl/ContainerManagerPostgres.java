@@ -13,8 +13,8 @@ public class ContainerManagerPostgres extends AbstractContainerManager {
     protected GenericContainer createContainer() {
         PostgreSQLContainer<?> container = new PostgreSQLContainer<>("postgres:15-alpine")
                 .withDatabaseName("ecommerce_db")
-                .withUsername("ECOMMERCE_CHECKOUT_OWNER")
-                .withPassword("ECOMMERCE_CHECKOUT_OWNER")
+                .withUsername("ecommerce_user")
+                .withPassword("ecommerce_user")
                 .withReuse(false);
 
         container.setPortBindings(singletonList(POSTGRES_PORT + ":" + POSTGRES_PORT));

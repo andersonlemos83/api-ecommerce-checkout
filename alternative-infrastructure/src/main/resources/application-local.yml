@@ -7,8 +7,8 @@ spring:
     virtual-host: ecommerce-checkout
   datasource:
     url: jdbc:postgresql://localhost:5432/ecommerce_db
-    username: ECOMMERCE_CHECKOUT_OWNER
-    password: ECOMMERCE_CHECKOUT_OWNER
+    username: ecommerce_user
+    password: ecommerce_user
   jpa:
     show-sql: true
   data:
@@ -18,11 +18,11 @@ spring:
       password:
 
 server:
-  port: 8181
+  port: 8282
 
 management:
   server:
-    port: 9191
+    port: 8282
 
 feign:
   client:

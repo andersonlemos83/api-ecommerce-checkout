@@ -14,8 +14,8 @@ spring:
     virtual-host: ecommerce-checkout
   datasource:
     url: jdbc:postgresql://localhost:5432/ecommerce_db
-    username: ECOMMERCE_CHECKOUT_OWNER
-    password: ECOMMERCE_CHECKOUT_OWNER
+    username: ecommerce_user
+    password: ecommerce_user
   jpa:
     properties:
       hibernate:
