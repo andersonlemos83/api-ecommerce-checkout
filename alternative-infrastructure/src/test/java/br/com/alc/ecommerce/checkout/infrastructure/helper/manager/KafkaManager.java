@@ -1,7 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.helper.manager;
 
 import java.util.List;
-import java.util.Properties;
 
 public interface KafkaManager {
 
@@ -20,11 +19,5 @@ public interface KafkaManager {
     List<String> getMessages(String topicName);
 
     void sendMessage(String topic, Object request);
-
-    Properties getTopicConfigurations(String topicName);
-
-    boolean topicExists(String topicName);
-
-    Integer getMessageCount(String topicName);
 
 }

@@ -1,6 +1,5 @@
 package br.com.alc.ecommerce.checkout.infrastructure.configuration;
 
-import org.apache.kafka.clients.admin.AdminClientConfig;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.consumer.ConsumerConfig;
 import org.apache.kafka.clients.producer.ProducerConfig;
@@ -34,13 +33,6 @@ public class KafkaConfiguration {
 
     @Value(value = "${spring.kafka.authorize-sale-topic}")
     private String authorizeSaleTopic;
-
-    @Bean
-    public KafkaAdmin kafkaAdmin() {
-        Map<String, Object> configs = new HashMap<>();
-        configs.put(AdminClientConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
-        return new KafkaAdmin(configs);
-    }
 
     @Bean
     public NewTopic authorizeSaleTopic() {

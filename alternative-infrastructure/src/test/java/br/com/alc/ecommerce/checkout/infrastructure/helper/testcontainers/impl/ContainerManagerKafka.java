@@ -10,11 +10,11 @@ import static java.util.Arrays.asList;
 @SuppressWarnings("squid:S2925") // "Thread.sleep" should not be used in tests
 public class ContainerManagerKafka extends AbstractContainerManager {
 
-    private static final int SERVICE_PORT = 9092;
+    private static final int SERVICE_PORT = 9093;
 
     @Override
     protected GenericContainer createContainer() {
-        KafkaContainer container = new KafkaContainer("apache/kafka-native:3.8.0");
+        KafkaContainer container = new KafkaContainer("5.4.3");
         container.setPortBindings(asList(SERVICE_PORT + ":" + SERVICE_PORT));
         container.withExposedPorts(SERVICE_PORT);
         return container;
