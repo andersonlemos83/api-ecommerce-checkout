@@ -72,4 +72,9 @@ public class SpringContextStepDefs extends StepDefs {
     public static void initializeContainers() {
         new ContainerFactoryImpl().getInstances().forEach(ContainerManager::start);
     }
+
+    @AfterAll
+    public static void finalizeContainers() {
+        new ContainerFactoryImpl().getInstances().forEach(ContainerManager::stop);
+    }
 }
