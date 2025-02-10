@@ -29,7 +29,7 @@
         <sonar.sourceEncoding>UTF-8</sonar.sourceEncoding>
         <sonar.exclusions>
             src/test/java/**/*,
-            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/EcommerceCheckoutInfrastructureApplication.java
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/EcommerceCheckoutAlternativeInfrastructureApplication.java
         </sonar.exclusions>
         <sonar.inclusions>
             src/main/java/br/com/alc/ecommerce/checkout/infrastructure/**

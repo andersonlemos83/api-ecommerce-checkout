@@ -18,6 +18,6 @@ public class ProcessSaleAuthorizationStepsDefs extends StepDefs {
     public void processarAutorizacaoVenda() throws Exception {
         SaleRequestDataTable saleRequestDataTable = transitionDataTable.buildSaleRequestDataTable();
         processSaleAuthorizationFeature.execute(saleRequestDataTable);
-        TimeUnit.MILLISECONDS.sleep(1500);
+        TimeUnit.MILLISECONDS.sleep(2500);
     }
 }

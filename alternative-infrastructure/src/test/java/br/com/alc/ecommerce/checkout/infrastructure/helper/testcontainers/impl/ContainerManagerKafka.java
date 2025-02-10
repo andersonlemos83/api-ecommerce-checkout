@@ -7,7 +7,6 @@ import org.testcontainers.containers.KafkaContainer;
 import static java.util.Arrays.asList;
 
 @Log4j2
-@SuppressWarnings("squid:S2925") // "Thread.sleep" should not be used in tests
 public class ContainerManagerKafka extends AbstractContainerManager {
 
     private static final int SERVICE_PORT = 9093;

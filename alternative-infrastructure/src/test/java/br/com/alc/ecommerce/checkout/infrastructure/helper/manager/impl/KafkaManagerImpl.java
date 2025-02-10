@@ -4,16 +4,13 @@ import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.KafkaManager;
 import br.com.alc.ecommerce.checkout.infrastructure.helper.util.ObjectMapperHelper;
 import lombok.extern.log4j.Log4j2;
 import org.apache.kafka.clients.admin.AdminClient;
-import org.apache.kafka.clients.admin.RecordsToDelete;
 import org.apache.kafka.clients.consumer.Consumer;
 import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
-import org.apache.kafka.common.TopicPartition;
 import org.apache.kafka.common.serialization.StringDeserializer;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.kafka.config.KafkaListenerEndpointRegistry;
-import org.springframework.kafka.core.KafkaAdmin;
 import org.springframework.kafka.core.KafkaTemplate;
 import org.springframework.kafka.listener.MessageListenerContainer;
 import org.springframework.kafka.support.serializer.ErrorHandlingDeserializer;
@@ -21,11 +18,12 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
-import java.util.*;
+import java.util.Collections;
+import java.util.List;
+import java.util.Properties;
 import java.util.stream.StreamSupport;
 
 import static br.com.alc.ecommerce.checkout.infrastructure.helper.util.ObjectMapperHelper.generateJson;
-import static java.lang.Long.MAX_VALUE;
 import static java.util.Arrays.asList;
 import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
 import static org.springframework.kafka.support.serializer.ErrorHandlingDeserializer.KEY_DESERIALIZER_CLASS;
@@ -34,25 +32,21 @@ import static org.springframework.kafka.support.serializer.JsonDeserializer.TRUS
 
 @Log4j2
 @Component
-@SuppressWarnings("squid:S2925") // "Thread.sleep" should not be used in tests
 public class KafkaManagerImpl implements KafkaManager {
 
     private final KafkaListenerEndpointRegistry kafkaListenerEndpointRegistry;
     private final KafkaTemplate<String, Object> kafkaTemplate;
     private final AdminClient adminClient;
-    private final KafkaAdmin kafkaAdmin;
 
     private final String bootstrapServers;
 
     public KafkaManagerImpl(KafkaListenerEndpointRegistry kafkaListenerEndpointRegistry,
                             KafkaTemplate<String, Object> kafkaTemplate,
                             AdminClient adminClient,
-                            KafkaAdmin kafkaAdmin,
                             @Value(value = "${spring.kafka.bootstrap-servers}") String bootstrapServers) {
         this.kafkaListenerEndpointRegistry = kafkaListenerEndpointRegistry;
         this.kafkaTemplate = kafkaTemplate;
         this.adminClient = adminClient;
-        this.kafkaAdmin = kafkaAdmin;
         this.bootstrapServers = bootstrapServers;
     }
 
@@ -89,26 +83,16 @@ public class KafkaManagerImpl implements KafkaManager {
 
     @Override
     public void clearTopic(String topicName) {
-        for (int i = 0; i < 10; i++) {
-            Map<TopicPartition, RecordsToDelete> records = new HashMap<>();
-            records.put(new TopicPartition(topicName, i), RecordsToDelete.beforeOffset(-1));
-            records.put(new TopicPartition(topicName, i), RecordsToDelete.beforeOffset(0));
-            records.put(new TopicPartition(topicName, i), RecordsToDelete.beforeOffset(MAX_VALUE));
-            adminClient.deleteRecords(records);
-        }
-
-//        adminClient.deleteTopics(Collections.singleton(topicName));
-//        kafkaAdmin.createOrModifyTopics(new NewTopic(topicName, 2, (short) 1));
+        adminClient.deleteTopics(Collections.singleton(topicName));
     }
 
     @Override
     public List<String> getMessages(String topicName) {
         try (Consumer<String, Object> consumer = new KafkaConsumer<>(buildConsumeProperties())) {
             consumer.subscribe(Collections.singletonList(topicName));
-            ConsumerRecords<String, Object> records = consumer.poll(Duration.ofSeconds(2));
+            ConsumerRecords<String, Object> records = consumer.poll(Duration.ofSeconds(4));
             Iterable<ConsumerRecord<String, Object>> iterable = () -> records.records(topicName).iterator();
-            StreamSupport.stream(iterable.spliterator(), false);
-            return StreamSupport.stream(iterable.spliterator(), false)
+            return StreamSupport.stream(iterable.spliterator(), true)
                     .map(ConsumerRecord::value)
                     .map(ObjectMapperHelper::generateJson)
                     .toList();
