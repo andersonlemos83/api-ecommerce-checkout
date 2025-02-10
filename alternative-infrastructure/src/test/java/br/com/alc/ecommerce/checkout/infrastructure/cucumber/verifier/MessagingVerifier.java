@@ -2,7 +2,7 @@ package br.com.alc.ecommerce.checkout.infrastructure.cucumber.verifier;
 
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.messaging.MessagingDataTable;
 import br.com.alc.ecommerce.checkout.infrastructure.helper.fixture.JsonFixture;
-import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.RabbitMqManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.KafkaManager;
 import lombok.AllArgsConstructor;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +17,7 @@ import static org.junit.Assert.*;
 @AllArgsConstructor
 public class MessagingVerifier {
 
-    private final RabbitMqManager rabbitMqManager;
+    private final KafkaManager kafkaManager;
 
     public void verify(List<MessagingDataTable> messagingDataTableList) {
         messagingDataTableList.forEach(this::verify);
@@ -25,20 +25,20 @@ public class MessagingVerifier {
 
     public void verify(MessagingDataTable messagingDataTable) {
         String expectedJson = getExpectedJson(messagingDataTable);
-        String returnedJson = getQueueJson(messagingDataTable);
+        String returnedJson = getTopicJson(messagingDataTable);
 
-        String errorMessage = MessageFormat.format("Expected message should be published in the queue {0}", messagingDataTable.getQueueName());
+        String errorMessage = MessageFormat.format("Expected message should be published in the topic {0}", messagingDataTable.getTopicName());
         assertNotNull(errorMessage, expectedJson);
         assertEquals(errorMessage, expectedJson, returnedJson);
     }
 
-    public void verifyEmptyQueues(List<String> queues) {
-        queues.forEach(this::verifyEmptyQueue);
+    public void verifyEmptyTopics(List<String> topics) {
+        topics.forEach(this::verifyEmptyTopic);
     }
 
-    public void verifyEmptyQueue(String queueName) {
-        List<String> messages = rabbitMqManager.getMessages(queueName);
-        String errorMessage = MessageFormat.format("No message should be published in the queue {0}", queueName);
+    public void verifyEmptyTopic(String topicName) {
+        List<String> messages = kafkaManager.getMessages(topicName);
+        String errorMessage = MessageFormat.format("No message should be published in the topic {0}", topicName);
         assertTrue(errorMessage, messages.isEmpty());
     }
 
@@ -46,8 +46,8 @@ public class MessagingVerifier {
         return JsonFixture.oneJson(messagingDataTable);
     }
 
-    private String getQueueJson(MessagingDataTable messagingDataTable) {
-        List<String> messages = rabbitMqManager.getMessages(messagingDataTable.getQueueName());
+    private String getTopicJson(MessagingDataTable messagingDataTable) {
+        List<String> messages = kafkaManager.getMessages(messagingDataTable.getTopicName());
         return Optional.ofNullable(messages)
                 .filter(m -> !m.isEmpty())
                 .map(m -> m.stream().collect(joining("; ", "", "")))

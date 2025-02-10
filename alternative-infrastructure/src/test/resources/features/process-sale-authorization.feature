@@ -37,9 +37,9 @@ Funcionalidade: Processar Autorizacao Venda
     E deveria enviar para o endpoint authorize os requests esperados
       | Request                                          |
       | /fixtures/AuthorizeSaleRequestDto-987654322.json |
-    E deveria publicar o JSON esperado na fila
-      | Queue Name          | Json Key  |
-      | sale-callback-queue | 987654322 |
+    E deveria publicar o JSON esperado no topico
+      | Topic Name          | Json Key  |
+      | sale-callback-topic | 987654322 |
 
   Cenario: 02 - Processar autorizacao venda valida com pagamento debito - Sucesso
     Dado que seja informado os dados de Sale Request
@@ -71,9 +71,9 @@ Funcionalidade: Processar Autorizacao Venda
     E deveria enviar para o endpoint authorize os requests esperados
       | Request                                          |
       | /fixtures/AuthorizeSaleRequestDto-987654323.json |
-    E deveria publicar o JSON esperado na fila
-      | Queue Name          | Json Key  |
-      | sale-callback-queue | 987654323 |
+    E deveria publicar o JSON esperado no topico
+      | Topic Name          | Json Key  |
+      | sale-callback-topic | 987654323 |
 
   Cenario: 03 - Processar autorizacao venda valida com pagamento dinheiro - Sucesso
     Dado que seja informado os dados de Sale Request
@@ -105,9 +105,9 @@ Funcionalidade: Processar Autorizacao Venda
     E deveria enviar para o endpoint authorize os requests esperados
       | Request                                          |
       | /fixtures/AuthorizeSaleRequestDto-987654324.json |
-    E deveria publicar o JSON esperado na fila
-      | Queue Name          | Json Key  |
-      | sale-callback-queue | 987654324 |
+    E deveria publicar o JSON esperado no topico
+      | Topic Name          | Json Key  |
+      | sale-callback-topic | 987654324 |
 
   Cenario: 04 - Processar autorizacao venda valida com pagamento PIX - Sucesso
     Dado que seja informado os dados de Sale Request
@@ -139,9 +139,9 @@ Funcionalidade: Processar Autorizacao Venda
     E deveria enviar para o endpoint authorize os requests esperados
       | Request                                          |
       | /fixtures/AuthorizeSaleRequestDto-987654325.json |
-    E deveria publicar o JSON esperado na fila
-      | Queue Name          | Json Key  |
-      | sale-callback-queue | 987654325 |
+    E deveria publicar o JSON esperado no topico
+      | Topic Name          | Json Key  |
+      | sale-callback-topic | 987654325 |
 
   Cenario: 05 - Processar autorizacao venda qualquer ja processada com sucesso - Fluxo alternativo
     Dado que seja informado os dados de Sale Request
@@ -170,9 +170,9 @@ Funcionalidade: Processar Autorizacao Venda
     Entao deveria existir as seguintes Sale Order na base
       | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status    | Error Reason | Created Date            | Updated Date            |
       | 1  | APP         | 001          | 100        | 105 | 987654326    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:47:46.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | PROCESSED |              | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
-    E deveria publicar o JSON esperado na fila
-      | Queue Name          | Json Key  |
-      | sale-callback-queue | 987654326 |
+    E deveria publicar o JSON esperado no topico
+      | Topic Name          | Json Key  |
+      | sale-callback-topic | 987654326 |
     E nao deveria enviar para o endpoint authorize nenhum request
 
   Cenario: 06 - (Re)Processar autorizacao venda qualquer ja processada com erro - Sucesso
@@ -209,9 +209,9 @@ Funcionalidade: Processar Autorizacao Venda
     E deveria enviar para o endpoint authorize os requests esperados
       | Request                                          |
       | /fixtures/AuthorizeSaleRequestDto-987654327.json |
-    E deveria publicar o JSON esperado na fila
-      | Queue Name          | Json Key  |
-      | sale-callback-queue | 987654327 |
+    E deveria publicar o JSON esperado no topico
+      | Topic Name          | Json Key  |
+      | sale-callback-topic | 987654327 |
 
   Cenario: 07 - Processar autorizacao venda qualquer com valor de pagamento divergente - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
@@ -237,9 +237,9 @@ Funcionalidade: Processar Autorizacao Venda
     Entao deveria existir as seguintes Sale Order na base
       | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key | Invoice Number | Issuance Date | Invoice Base64 | Status | Error Reason                                                    | Created Date            | Updated Date            |
       | 1  | APP         | 001          | 100        | 105 | 987654328    | 105.04      | 5.05          |             |                |               |                | ERROR  | O valor total dos pagamentos está diferente do total informado. | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
-    E deveria publicar o JSON esperado na fila
-      | Queue Name          | Json Key  |
-      | sale-callback-queue | 987654328 |
+    E deveria publicar o JSON esperado no topico
+      | Topic Name          | Json Key  |
+      | sale-callback-topic | 987654328 |
     E nao deveria enviar para o endpoint authorize nenhum request
 
   Cenario: 08 - Processar autorizacao venda qualquer com valor de item divergente - Fluxo excepcional
@@ -266,9 +266,9 @@ Funcionalidade: Processar Autorizacao Venda
     Entao deveria existir as seguintes Sale Order na base
       | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key | Invoice Number | Issuance Date | Invoice Base64 | Status | Error Reason                                               | Created Date            | Updated Date            |
       | 1  | APP         | 001          | 100        | 105 | 987654329    | 105.04      | 5.05          |             |                |               |                | ERROR  | O valor total dos itens está diferente do total informado. | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
-    E deveria publicar o JSON esperado na fila
-      | Queue Name          | Json Key  |
-      | sale-callback-queue | 987654329 |
+    E deveria publicar o JSON esperado no topico
+      | Topic Name          | Json Key  |
+      | sale-callback-topic | 987654329 |
     E nao deveria enviar para o endpoint authorize nenhum request
 
   Cenario: 09 - Processar autorizacao venda qualquer com impostos nao encontrados - Fluxo excepcional
@@ -295,9 +295,9 @@ Funcionalidade: Processar Autorizacao Venda
     Entao deveria existir as seguintes Sale Order na base
       | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key | Invoice Number | Issuance Date | Invoice Base64 | Status | Error Reason            | Created Date            | Updated Date            |
       | 1  | APP         | 001          | 100        | 105 | 987654330    | 105.04      | 5.05          |             |                |               |                | ERROR  | Imposto não encontrado. | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
-    E deveria publicar o JSON esperado na fila
-      | Queue Name          | Json Key  |
-      | sale-callback-queue | 987654330 |
+    E deveria publicar o JSON esperado no topico
+      | Topic Name          | Json Key  |
+      | sale-callback-topic | 987654330 |
     E nao deveria enviar para o endpoint authorize nenhum request
 
   Cenario: 10 - Processar autorizacao venda qualquer com erro inesperado ao consultar Sale Order - Fluxo excepcional
@@ -323,9 +323,9 @@ Funcionalidade: Processar Autorizacao Venda
     Quando processar autorizacao venda
     Entao nao deveria existir nenhuma Sale Order na base
     E nao deveria enviar para o endpoint authorize nenhum request
-    E nao deveria publicar nenhum JSON na fila
-      | Queue Name           |
-      | authorize-sale-queue |
+    E nao deveria publicar nenhum JSON no topico
+      | Topic Name           |
+      | authorize-sale-topic |
 
   Cenario: 11 - Processar autorizacao venda qualquer ja em processamento - Fluxo alternativo
     Dado que seja informado os dados de Sale Request
@@ -355,6 +355,6 @@ Funcionalidade: Processar Autorizacao Venda
       | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key | Invoice Number | Issuance Date | Invoice Base64 | Status        | Error Reason | Created Date            | Updated Date            |
       | 1  | APP         | 001          | 100        | 105 | 987654332    | 105.04      | 5.05          |             |                |               |                | IN_PROCESSING |              | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
     E nao deveria enviar para o endpoint authorize nenhum request
-    E nao deveria publicar nenhum JSON na fila
-      | Queue Name           |
-      | authorize-sale-queue |
+    E nao deveria publicar nenhum JSON no topico
+      | Topic Name           |
+      | authorize-sale-topic |

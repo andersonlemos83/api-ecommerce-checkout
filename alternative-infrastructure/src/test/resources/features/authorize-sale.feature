@@ -26,9 +26,9 @@ Funcionalidade: Autorizar Venda
     Entao deveria receber os dados de Sale Response
       | Status        | Date                |
       | IN_PROCESSING | 2025-01-30T13:47:26 |
-    E deveria publicar o JSON esperado na fila
-      | Queue Name           | Json Key  |
-      | authorize-sale-queue | 987654321 |
+    E deveria publicar o JSON esperado no topico
+      | Topic Name           | Json Key  |
+      | authorize-sale-topic | 987654321 |
 
   Cenario: 02 - Autorizar venda com todos os dados nao informados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
@@ -38,9 +38,9 @@ Funcionalidade: Autorizar Venda
     Entao deveria receber os dados de Error Response
       | Http Status | Message                                                                                                                                                                                                                                                                                                                                                                         |
       | BAD_REQUEST | O campo channelCode não foi informado, O campo companyCode não foi informado, O campo customer não foi informado, O campo freightValue não foi informado, O campo items não foi informado, O campo orderNumber não foi informado, O campo payments não foi informado, O campo pos não foi informado, O campo storeCode não foi informado, O campo totalValue não foi informado. |
-    E nao deveria publicar nenhum JSON na fila
-      | Queue Name           |
-      | authorize-sale-queue |
+    E nao deveria publicar nenhum JSON no topico
+      | Topic Name           |
+      | authorize-sale-topic |
 
   Cenario: 03 - Autorizar venda com os dados Customer nao informados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
@@ -61,9 +61,9 @@ Funcionalidade: Autorizar Venda
     Entao deveria receber os dados de Error Response
       | Http Status | Message                                                                                                                                                                                                                                                                                                                                                                                                                                                          |
       | BAD_REQUEST | O campo customer.address não foi informado, O campo customer.addressNumber não foi informado, O campo customer.city não foi informado, O campo customer.country não foi informado, O campo customer.document não foi informado, O campo customer.documentType não foi informado, O campo customer.name não foi informado, O campo customer.neighborhood não foi informado, O campo customer.state não foi informado, O campo customer.zipCode não foi informado. |
-    E nao deveria publicar nenhum JSON na fila
-      | Queue Name           |
-      | authorize-sale-queue |
+    E nao deveria publicar nenhum JSON no topico
+      | Topic Name           |
+      | authorize-sale-topic |
 
   Cenario: 04 - Autorizar venda com os dados Shopping Cart Item nao informados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
@@ -82,9 +82,9 @@ Funcionalidade: Autorizar Venda
     Entao deveria receber os dados de Error Response
       | Http Status | Message                                                                                                                         |
       | BAD_REQUEST | O campo items[0].code não foi informado, O campo items[0].quantity não foi informado, O campo items[0].value não foi informado. |
-    E nao deveria publicar nenhum JSON na fila
-      | Queue Name           |
-      | authorize-sale-queue |
+    E nao deveria publicar nenhum JSON no topico
+      | Topic Name           |
+      | authorize-sale-topic |
 
   Cenario: 05 - Autorizar venda com os dados Payment nao informados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
@@ -105,6 +105,6 @@ Funcionalidade: Autorizar Venda
     Entao deveria receber os dados de Error Response
       | Http Status | Message                                                                                                                                                                                                       |
       | BAD_REQUEST | O campo payments[0].authorizationCode não foi informado, O campo payments[0].paymentDate não foi informado, O campo payments[0].paymentMethod não foi informado, O campo payments[0].value não foi informado. |
-    E nao deveria publicar nenhum JSON na fila
-      | Queue Name           |
-      | authorize-sale-queue |
+    E nao deveria publicar nenhum JSON no topico
+      | Topic Name           |
+      | authorize-sale-topic |

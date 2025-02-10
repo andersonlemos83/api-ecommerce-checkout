@@ -31,17 +31,17 @@ public final class JsonFixture {
     static {
         jsons = new HashMap<>();
 
-        jsons.put(MessagingDataTable.builder().queueName("authorize-sale-queue").jsonKey("987654321").build(), mergeJsons(SALE_REQUEST_987654321));
+        jsons.put(MessagingDataTable.builder().topicName("authorize-sale-topic").jsonKey("987654321").build(), mergeJsons(SALE_REQUEST_987654321));
 
-        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654322").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654322));
-        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654323").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654323));
-        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654324").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654324));
-        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654325").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654325));
-        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654326").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654326));
-        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654327").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654327));
-        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654328").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654328));
-        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654329").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654329));
-        jsons.put(MessagingDataTable.builder().queueName("sale-callback-queue").jsonKey("987654330").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654330));
+        jsons.put(MessagingDataTable.builder().topicName("sale-callback-topic").jsonKey("987654322").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654322));
+        jsons.put(MessagingDataTable.builder().topicName("sale-callback-topic").jsonKey("987654323").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654323));
+        jsons.put(MessagingDataTable.builder().topicName("sale-callback-topic").jsonKey("987654324").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654324));
+        jsons.put(MessagingDataTable.builder().topicName("sale-callback-topic").jsonKey("987654325").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654325));
+        jsons.put(MessagingDataTable.builder().topicName("sale-callback-topic").jsonKey("987654326").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654326));
+        jsons.put(MessagingDataTable.builder().topicName("sale-callback-topic").jsonKey("987654327").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654327));
+        jsons.put(MessagingDataTable.builder().topicName("sale-callback-topic").jsonKey("987654328").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654328));
+        jsons.put(MessagingDataTable.builder().topicName("sale-callback-topic").jsonKey("987654329").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654329));
+        jsons.put(MessagingDataTable.builder().topicName("sale-callback-topic").jsonKey("987654330").build(), mergeJsons(SALE_CALLBACK_REQUEST_987654330));
 
         unusedJsons = new HashMap<>(jsons);
     }

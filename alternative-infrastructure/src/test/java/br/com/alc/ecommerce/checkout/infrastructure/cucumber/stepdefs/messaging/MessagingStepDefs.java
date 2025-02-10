@@ -15,14 +15,14 @@ public class MessagingStepDefs extends StepDefs {
 
     private final MessagingVerifier messagingVerifier;
 
-    @E("^deveria publicar o JSON esperado na fila$")
-    public void deveriaPublicarOhJsonEsperadoNaFila(List<MessagingDataTable> messagingDataTableList) {
+    @E("^deveria publicar o JSON esperado no topico$")
+    public void deveriaPublicarOhJsonEsperadoNoTopico(List<MessagingDataTable> messagingDataTableList) {
         messagingVerifier.verify(messagingDataTableList);
     }
 
-    @E("^nao deveria publicar nenhum JSON na fila$")
-    public void naoDeveriaPublicarNenhumJsonNaFila(List<MessagingDataTable> messagingDataTableList) {
-        List<String> queues = messagingDataTableList.stream().map(MessagingDataTable::getQueueName).distinct().collect(toList());
-        messagingVerifier.verifyEmptyQueues(queues);
+    @E("^nao deveria publicar nenhum JSON no topico$")
+    public void naoDeveriaPublicarNenhumJsonNoTopico(List<MessagingDataTable> messagingDataTableList) {
+        List<String> topics = messagingDataTableList.stream().map(MessagingDataTable::getTopicName).distinct().collect(toList());
+        messagingVerifier.verifyEmptyTopics(topics);
     }
 }

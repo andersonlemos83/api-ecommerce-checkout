@@ -18,20 +18,20 @@ public class SaleCallbackIntegrateOutPortImpl implements SaleCallbackIntegrateOu
     private final MessagingProducer messagingProducer;
     private final ModelMapper modelMapper;
 
-    private final String saleCallbackQueue;
+    private final String saleCallbackTopic;
 
     public SaleCallbackIntegrateOutPortImpl(MessagingProducer messagingProducer,
                                             ModelMapper modelMapper,
-                                            @Value("${spring.rabbitmq.sale-callback-queue}") String saleCallbackQueue) {
+                                            @Value("${spring.kafka.sale-callback-topic}") String saleCallbackTopic) {
         this.messagingProducer = messagingProducer;
         this.modelMapper = modelMapper;
-        this.saleCallbackQueue = saleCallbackQueue;
+        this.saleCallbackTopic = saleCallbackTopic;
     }
 
     @Override
     public void execute(SaleCallbackRequest saleCallbackRequest) {
         log.debug("Incoming into SaleCallbackIntegrateOutPortImpl: {}", generateJson(saleCallbackRequest));
         SaleCallbackRequestDto saleCallbackRequestDto = modelMapper.map(saleCallbackRequest, SaleCallbackRequestDto.class);
-        messagingProducer.publish(saleCallbackQueue, saleCallbackRequestDto);
+        messagingProducer.publish(saleCallbackTopic, saleCallbackRequestDto);
     }
 }

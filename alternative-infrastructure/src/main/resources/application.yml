@@ -21,18 +21,10 @@ spring:
     redis:
       time-to-live: 172800
     type: redis
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: null
-    password: null
-    virtual-host: ecommerce-checkout
-    listener:
-      simple:
-        auto-startup: true
-    sale-exchange: sale-exchange
-    authorize-sale-queue: authorize-sale-queue
-    sale-callback-queue: sale-callback-queue
+  kafka:
+    bootstrap-servers: http://localhost:9092
+    authorize-sale-topic: authorize-sale-topic
+    sale-callback-topic: sale-callback-topic
   datasource:
     driver-class-name: org.postgresql.Driver
     hikari:

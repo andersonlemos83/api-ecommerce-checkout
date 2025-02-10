@@ -4,7 +4,7 @@ import br.com.alc.ecommerce.checkout.infrastructure.adapter.input.SaleProcessorI
 import br.com.alc.ecommerce.checkout.infrastructure.dto.sale.SaleRequestDto;
 import lombok.AllArgsConstructor;
 import lombok.extern.log4j.Log4j2;
-import org.springframework.amqp.rabbit.annotation.RabbitListener;
+import org.springframework.kafka.annotation.KafkaListener;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -19,14 +19,14 @@ public class SaleListener {
 
     private final SaleProcessorInAdapter saleProcessorInAdapter;
 
-    @RabbitListener(queues = {"${spring.rabbitmq.authorize-sale-queue}"})
+    @KafkaListener(topics = {"${spring.kafka.authorize-sale-topic}"})
     public void authorizeSale(SaleRequestDto saleRequestDto) {
         try {
-            log.info("---> Listener of the authorize-sale-queue: {}", generateJson(saleRequestDto));
+            log.info("---> Listener of the authorize-sale-topic: {}", generateJson(saleRequestDto));
             saleProcessorInAdapter.execute(saleRequestDto);
-            log.info("<--- Listener of the authorize-sale-queue processed successfully");
+            log.info("<--- Listener of the authorize-sale-topic processed successfully");
         } catch (Exception exception) {
-            log.error("<--- Error in the listener of the authorize-sale-queue: {}", getMessage(exception), exception);
+            log.error("<--- Error in the listener of the authorize-sale-topic: {}", getMessage(exception), exception);
         }
     }
 }

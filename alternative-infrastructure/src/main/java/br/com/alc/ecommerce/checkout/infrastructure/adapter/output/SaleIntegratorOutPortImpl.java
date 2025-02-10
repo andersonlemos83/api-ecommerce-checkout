@@ -18,23 +18,20 @@ public class SaleIntegratorOutPortImpl implements SaleIntegratorOutPort {
     private final MessagingProducer messagingProducer;
     private final ModelMapper modelMapper;
 
-    private final String saleExchange;
-    private final String authorizeSaleQueue;
+    private final String authorizeSaleTopic;
 
     public SaleIntegratorOutPortImpl(MessagingProducer messagingProducer,
                                      ModelMapper modelMapper,
-                                     @Value("${spring.rabbitmq.sale-exchange}") String saleExchange,
-                                     @Value("${spring.rabbitmq.authorize-sale-queue}") String authorizeSaleQueue) {
+                                     @Value("${spring.kafka.authorize-sale-topic}") String authorizeSaleTopic) {
         this.messagingProducer = messagingProducer;
         this.modelMapper = modelMapper;
-        this.saleExchange = saleExchange;
-        this.authorizeSaleQueue = authorizeSaleQueue;
+        this.authorizeSaleTopic = authorizeSaleTopic;
     }
 
     @Override
     public void execute(SaleRequest saleRequest) {
         log.debug("Incoming into SaleIntegratorOutPortImpl: {}", generateJson(saleRequest));
         SaleRequestDto saleRequestDto = modelMapper.map(saleRequest, SaleRequestDto.class);
-        messagingProducer.publish(saleExchange, authorizeSaleQueue, saleRequestDto);
+        messagingProducer.publish(authorizeSaleTopic, saleRequestDto);
     }
 }

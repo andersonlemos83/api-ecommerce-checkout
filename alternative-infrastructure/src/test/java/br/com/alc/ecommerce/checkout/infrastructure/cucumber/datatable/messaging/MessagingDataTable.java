@@ -13,7 +13,7 @@ import java.io.Serializable;
 @AllArgsConstructor
 public class MessagingDataTable implements Serializable {
 
-    private String queueName;
+    private String topicName;
     private String jsonKey;
 
 }

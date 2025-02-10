@@ -158,6 +158,12 @@
             <artifactId>spring-cloud-starter-openfeign</artifactId>
         </dependency>
 
+        <!-- kafka -->
+        <dependency>
+            <groupId>org.springframework.kafka</groupId>
+            <artifactId>spring-kafka</artifactId>
+        </dependency>
+
         <!-- hibernate -->
         <dependency>
             <groupId>org.hibernate.orm</groupId>
@@ -268,13 +274,6 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- test - rabbit -->
-        <dependency>
-            <groupId>org.springframework.amqp</groupId>
-            <artifactId>spring-rabbit-test</artifactId>
-            <scope>test</scope>
-        </dependency>
-
         <!-- test - wiremock -->
         <dependency>
             <groupId>org.wiremock</groupId>
@@ -307,10 +306,10 @@
             <scope>test</scope>
         </dependency>
 
-        <!-- testcontainers - rabbitmq -->
+        <!-- testcontainers - kafka -->
         <dependency>
             <groupId>org.testcontainers</groupId>
-            <artifactId>rabbitmq</artifactId>
+            <artifactId>kafka</artifactId>
             <version>1.19.1</version>
             <scope>test</scope>
         </dependency>

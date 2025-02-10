@@ -2,8 +2,8 @@ package br.com.alc.ecommerce.checkout.infrastructure.helper.testcontainers.facto
 
 import br.com.alc.ecommerce.checkout.infrastructure.helper.testcontainers.ContainerManager;
 import br.com.alc.ecommerce.checkout.infrastructure.helper.testcontainers.factory.ContainerFactory;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.testcontainers.impl.ContainerManagerKafka;
 import br.com.alc.ecommerce.checkout.infrastructure.helper.testcontainers.impl.ContainerManagerPostgres;
-import br.com.alc.ecommerce.checkout.infrastructure.helper.testcontainers.impl.ContainerManagerRabbitMQ;
 import br.com.alc.ecommerce.checkout.infrastructure.helper.testcontainers.impl.ContainerManagerRedis;
 
 import java.util.Arrays;
@@ -13,12 +13,12 @@ public class ContainerFactoryImpl implements ContainerFactory {
 
     private static final ContainerManagerRedis containerManagerRedis;
     private static final ContainerManagerPostgres containerManagerPostgres;
-    private static final ContainerManagerRabbitMQ containerManagerRabbitMQ;
+    private static final ContainerManagerKafka containerManagerKafka;
 
     static {
         containerManagerRedis = new ContainerManagerRedis();
         containerManagerPostgres = new ContainerManagerPostgres();
-        containerManagerRabbitMQ = new ContainerManagerRabbitMQ();
+        containerManagerKafka = new ContainerManagerKafka();
     }
 
     @Override
@@ -32,12 +32,12 @@ public class ContainerFactoryImpl implements ContainerFactory {
     }
 
     @Override
-    public ContainerManagerRabbitMQ getRabbitInstance() {
-        return containerManagerRabbitMQ;
+    public ContainerManagerKafka getKafkaInstance() {
+        return containerManagerKafka;
     }
 
     @Override
     public List<ContainerManager> getInstances() {
-        return Arrays.asList(getRedisInstance(), getPostgresInstance(), getRabbitInstance());
+        return Arrays.asList(getRedisInstance(), getPostgresInstance(), getKafkaInstance());
     }
 }

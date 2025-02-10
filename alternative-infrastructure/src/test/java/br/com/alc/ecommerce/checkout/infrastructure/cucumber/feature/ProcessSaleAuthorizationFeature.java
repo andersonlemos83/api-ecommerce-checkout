@@ -1,7 +1,7 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.feature;
 
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.sale.SaleRequestDataTable;
-import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.RabbitMqManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.KafkaManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Component;
@@ -9,22 +9,19 @@ import org.springframework.stereotype.Component;
 @Component
 public class ProcessSaleAuthorizationFeature {
 
-    private final RabbitMqManager rabbitMqManager;
+    private final KafkaManager kafkaManager;
 
-    private final String saleExchange;
-    private final String authorizeSaleQueue;
+    private final String authorizeSaleTopic;
 
     @Autowired
-    public ProcessSaleAuthorizationFeature(RabbitMqManager rabbitMqManager,
-                                           @Value("${spring.rabbitmq.sale-exchange}") String saleExchange,
-                                           @Value("${spring.rabbitmq.authorize-sale-queue}") String authorizeSaleQueue) {
-        this.rabbitMqManager = rabbitMqManager;
-        this.saleExchange = saleExchange;
-        this.authorizeSaleQueue = authorizeSaleQueue;
+    public ProcessSaleAuthorizationFeature(KafkaManager kafkaManager,
+                                           @Value("${spring.kafka.authorize-sale-topic}") String authorizeSaleTopic) {
+        this.kafkaManager = kafkaManager;
+        this.authorizeSaleTopic = authorizeSaleTopic;
     }
 
     public void execute(SaleRequestDataTable saleRequestDataTable) {
-        rabbitMqManager.enableListener(authorizeSaleQueue);
-        rabbitMqManager.sendMessage(saleExchange, authorizeSaleQueue, saleRequestDataTable);
+        kafkaManager.enableListener(authorizeSaleTopic);
+        kafkaManager.sendMessage(authorizeSaleTopic, saleRequestDataTable);
     }
 }
