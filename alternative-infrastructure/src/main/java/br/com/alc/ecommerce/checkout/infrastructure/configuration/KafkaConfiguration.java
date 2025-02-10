@@ -50,7 +50,7 @@ public class KafkaConfiguration {
     @Bean
     public <T> ProducerFactory<String, T> producerFactory() {
         Map<String, Object> configs = new HashMap<>();
-        configs.put(ADD_TYPE_INFO_HEADERS, false);
+        configs.put(ADD_TYPE_INFO_HEADERS, true);
         configs.put(ProducerConfig.BOOTSTRAP_SERVERS_CONFIG, bootstrapServers);
         configs.put(KEY_SERIALIZER_CLASS_CONFIG, StringSerializer.class);
         configs.put(VALUE_SERIALIZER_CLASS_CONFIG, JsonSerializer.class);
