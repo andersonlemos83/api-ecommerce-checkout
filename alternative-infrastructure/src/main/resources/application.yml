@@ -22,7 +22,7 @@ spring:
       time-to-live: 172800
     type: redis
   kafka:
-    bootstrap-servers: http://localhost:9092
+    bootstrap-servers: localhost:9092
     authorize-sale-topic: authorize-sale-topic
     sale-callback-topic: sale-callback-topic
   datasource:
