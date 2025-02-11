@@ -70,6 +70,6 @@ autorizar as vendas junto ao MidClient de vendas, notificar os canais e clientes
 
 ## Fluxo de orquestração de vendas
 
-<img src="./script/diagrams/sales-orchestration-flow-100.png" alt="Fluxo de orquestração de vendas" width="60%" height="60%">
+<img src="./script/diagrams/sales-orchestration-flow-100.png" alt="Fluxo de orquestração de vendas" width="100%" height="100%">
 
 [Ver em tela cheia](./script/diagrams/sales-orchestration-flow-100.png)
