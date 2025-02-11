@@ -24,7 +24,7 @@ public class KafkaConfig {
 
     @Bean
     public NewTopic saleCallbackTopic() {
-        return new NewTopic(saleCallbackTopic, 1, (short) 1);
+        return new NewTopic(saleCallbackTopic, 2, (short) 1);
     }
 
     @Bean

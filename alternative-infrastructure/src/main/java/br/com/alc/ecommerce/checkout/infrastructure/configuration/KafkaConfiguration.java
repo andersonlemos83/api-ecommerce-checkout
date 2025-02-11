@@ -36,7 +36,7 @@ public class KafkaConfiguration {
 
     @Bean
     public NewTopic authorizeSaleTopic() {
-        return new NewTopic(authorizeSaleTopic, 1, (short) 1);
+        return new NewTopic(authorizeSaleTopic, 2, (short) 1);
     }
 
     @Bean
