@@ -32,10 +32,20 @@
             src/main/java/br/com/alc/ecommerce/checkout/infrastructure/EcommerceCheckoutAlternativeInfrastructureApplication.java,
 
             <!-- Excluding packages and classes whose duplication was intentional due to the creation of the alternative-infrastructure module.           -->
-            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/dto/**
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/adapter/input/**,
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/adapter/output/MostRecentSaleOrderFinderOutPortImpl.java,
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/adapter/output/TaxFinderOutPortImpl.java,
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/adapter/output/SaleAuthorizerOutPortImpl.java,
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/adapter/output/SaleOrderInserterOutPortImpl.java,
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/configuration/**,
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/dto/**,
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/persistence/entity/**,
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/web/**
         </sonar.exclusions>
         <sonar.inclusions>
-            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/**
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/**,
+
+            src/main/java/br/com/alc/ecommerce/checkout/infrastructure/configuration/KafkaConfiguration.java
         </sonar.inclusions>
 
         <!-- versions -->
