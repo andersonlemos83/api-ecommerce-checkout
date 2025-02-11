@@ -32,7 +32,7 @@ Os principais conceitos e tecnologias que desejo validar incluem:
 - **Linguagem**: Java 21 LTS, Gherkin (para BDD com Cucumber)
 - **Framework**: Spring Boot 3.1.4 (Web, Undertow, Validation, Data JPA, AMQP, Data Redis, Actuator, entre outros)
 - **Mensageria e Processamento Assíncrono**: RabbitMQ e Kafka
-- **Testes e Qualidade de Código**: JUnit 5, Mockito, Cucumber, WireMock, Testcontainers, Instancio, JaCoCo, SonarQube
+- **Testes e Qualidade de Código**: JUnit 5, Mockito, Cucumber, WireMock, Testcontainers, Instancio, JaCoCo e SonarQube
 - **Banco de Dados**: Oracle e PostgreSQL (com Hibernate e HikariCP)
 - **Cache e Tolerância a Falhas**: Redis e Resilience4j
 - **Documentação da API**: Swagger/OpenAPI
@@ -41,3 +41,29 @@ Os principais conceitos e tecnologias que desejo validar incluem:
 - **Logging e Monitoramento**: Log4j2 e Spring Boot Actuator
 - **Gerenciamento de Dependências**: Maven
 - **Controle de Versão**: Git
+
+## Domínio
+
+Um e-commerce fictício realiza centenas de milhares de vendas por múltiplos canais, incluindo site, aplicativo, loja física e caixa de autoatendimento. 
+Para garantir a correta tributação, autorização e registro das vendas, torna-se essencial a criação de um sistema orquestrador. 
+Esse orquestrador será responsável por compilar a matriz tributária dos itens da sacola, validar as formas de pagamento, 
+autorizar as vendas junto ao MidClient de vendas, notificar os canais e clientes sobre a emissão da nota fiscal e registrar todas as transações no banco de dados.
+
+## Features
+
+## authorize-sale.feature
+### Cenário Base - Autorizar venda com todos os dados válidos informados
+**Dado** que todos os dados válidos de uma venda tenham sido informados  
+**Quando** a venda for autorizada por meio do endpoint `/authorize-sale`  
+**Então** deverá publicar uma mensagem contendo os dados da venda na fila (ou tópico) `authorize-sale`  
+**E** deverá retornar uma resposta indicando que o processamento está em andamento
+
+## process-sale-authorization.feature
+### Cenário Base - Processar autorização de venda com todos os dados válidos informados
+**Dado** que todos os dados válidos de uma venda tenham sido informados  
+**E** que os dados da matriz tributária estejam disponíveis no endpoint `/findByCode` do serviço TaxClient  
+**E** que os dados da nota fiscal estejam disponíveis no endpoint `/authorize` do serviço MidClient  
+**Quando** a autorização da venda for processada por meio do listener `authorize-sale`  
+**Então** o sistema deverá autorizar a venda com sua matriz tributária junto ao endpoint `/authorize` do serviço MidClient  
+**E** deverá registrar a venda na base de dados  
+**E** deverá publicar uma mensagem contendo os dados da venda e sua nota fiscal na fila (ou tópico) `sale-callback`
