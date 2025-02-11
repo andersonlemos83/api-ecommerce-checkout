@@ -1,0 +1,35 @@
+spring:
+  kafka:
+    bootstrap-servers: localhost:9092
+  datasource:
+    url: jdbc:postgresql://localhost:5432/ecommerce_db
+    username: ecommerce_user
+    password: ecommerce_user
+  jpa:
+    show-sql: true
+  data:
+    redis:
+      host: localhost
+      port: 6379
+      password:
+
+server:
+  port: 8282
+
+management:
+  server:
+    port: 8282
+
+feign:
+  client:
+    config:
+      default:
+        connectTimeout: 15000
+        readTimeout: 15000
+        loggerLevel: FULL # NONE, BASIC, HEADERS, FULL
+
+client:
+  tax:
+    url: http://localhost:8443/
+  mid-client:
+    url: http://localhost:8443/

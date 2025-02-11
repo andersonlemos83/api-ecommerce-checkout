@@ -28,6 +28,6 @@ jobs:
       - name: Sonar
         env:
           SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
-        run: mvn -U -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization="andersonlemos83" -Dsonar.projectKey=andersonlemos83_api-ecommerce-checkout -Dsonar.host.url=https://sonarcloud.io -Dsonar.login=$SONAR_TOKEN -DargLine="-Xms512M -Xmx2G -Xss4M" --quiet
+        run: mvn -U -B clean verify org.sonarsource.scanner.maven:sonar-maven-plugin:sonar -Dsonar.organization="andersonlemos83" -Dsonar.projectKey=andersonlemos83_api-ecommerce-checkout -Dsonar.host.url=https://sonarcloud.io -Dsonar.token=$SONAR_TOKEN -DargLine="-Xms512M -Xmx2G -Xss4M" --quiet
       - name: Package
         run: mvn -B clean package -Dmaven.test.skip=true -DargLine="-Xms512M -Xmx2G -Xss4M"

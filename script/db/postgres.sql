@@ -1,0 +1,50 @@
+-- ATENÇÃO: Conectar com postgres
+-- CREATE DATABASE
+CREATE DATABASE ecommerce_db;
+
+-- CREATE USER
+CREATE USER ecommerce_user WITH ENCRYPTED PASSWORD 'ecommerce_user';
+GRANT ALL PRIVILEGES ON DATABASE ecommerce_db TO ecommerce_user;
+
+-- ATENÇÃO: Conectar com postgres em ecommerce_db
+-- CREATE SEQUENCE
+CREATE SEQUENCE PUBLIC.SALE_ORDER_SEQ
+    MINVALUE 1
+    START WITH 1
+    INCREMENT BY 1
+    NO CYCLE;
+
+-- CREATE TABLE
+CREATE TABLE PUBLIC.SALE_ORDER
+(
+    ID             BIGINT                              NOT NULL,
+    CHANNEL_CODE   VARCHAR(3)                          NOT NULL,
+    COMPANY_CODE   VARCHAR(3)                          NOT NULL,
+    STORE_CODE     VARCHAR(3)                          NOT NULL,
+    POS            BIGINT                              NOT NULL,
+    ORDER_NUMBER   VARCHAR(30)                         NOT NULL,
+    TOTAL_VALUE    NUMERIC(38, 2)                      NOT NULL,
+    FREIGHT_VALUE  NUMERIC(38, 2)                      NOT NULL,
+    INVOICE_KEY    VARCHAR(44),
+    INVOICE_NUMBER VARCHAR(30),
+    ISSUANCE_DATE  TIMESTAMP,
+    INVOICE_BASE64 TEXT,
+    STATUS         VARCHAR(30)                         NOT NULL CHECK (STATUS IN ('IN_PROCESSING', 'PROCESSED', 'ERROR')),
+    ERROR_REASON   VARCHAR(1000),
+    CREATED_DATE   TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    UPDATE_DATE    TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
+    CONSTRAINT PK_SALE_ORDER PRIMARY KEY (ID)
+);
+
+-- CREATE INDEX
+CREATE INDEX IX_SALE_ORDER_01 ON PUBLIC.SALE_ORDER (ORDER_NUMBER);
+
+-- CREATE GRANT
+GRANT ALL PRIVILEGES ON SEQUENCE public.SALE_ORDER_SEQ TO ecommerce_user;
+GRANT ALL PRIVILEGES ON TABLE public.SALE_ORDER TO ecommerce_user;
+
+-- ATENÇÃO: Conectar com postgres
+-- DROP
+DROP OWNED BY ecommerce_user CASCADE;
+DROP USER ecommerce_user;
+DROP DATABASE ecommerce_db;

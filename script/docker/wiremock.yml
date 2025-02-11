@@ -5,9 +5,11 @@ services:
     image: wiremock/wiremock:latest
     container_name: wiremock
     volumes:
-      - C:/Users/DEV/.wiremock:/home/wiremock
+      - .wiremock:/home/wiremock
     ports:
       - "8443:8080"
     expose:
       - 8443
     command: ["--verbose", "--root-dir", "/home/wiremock"]
+
+# curl --location 'http://localhost:8443/findByCode?code=100231933559'
