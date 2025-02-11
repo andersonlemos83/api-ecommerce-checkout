@@ -10,6 +10,7 @@ import br.com.alc.ecommerce.checkout.core.port.output.TaxFinderOutPort;
 import br.com.alc.ecommerce.checkout.core.service.authorize.factory.AuthorizePaymentFactory;
 import br.com.alc.ecommerce.checkout.core.service.authorize.impl.SaleAuthorizerServiceImpl;
 import br.com.alc.ecommerce.checkout.core.service.watch.WatchService;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.ArgumentCaptor;
@@ -53,7 +54,7 @@ public class SaleAuthorizerServiceImplTest {
     @Test
     void givenAnValidSaleRequestWhenExecutingTheSaleAuthorizerServiceThenShouldCallSaleAuthorizerOutPortAndReturnTheExpectedAuthorizeSaleResponse() {
         SaleRequest saleRequest = buildSaleRequest();
-        AuthorizeSaleResponse expectedResponse = AuthorizeSaleResponse.builder().build();
+        AuthorizeSaleResponse expectedResponse = Instancio.create(AuthorizeSaleResponse.class);
 
         when(saleAuthorizerOutPortMock.execute(any(AuthorizeSaleRequest.class))).thenReturn(expectedResponse);
         when(taxFinderOutPortMock.execute(saleRequest.getItems().get(0).getCode())).thenReturn(buildTaxResponse100231933559());

@@ -1,6 +1,7 @@
 package br.com.alc.ecommerce.checkout.infrastructure.messaging.producer.impl;
 
 import br.com.alc.ecommerce.checkout.infrastructure.dto.error.ErrorResponseDto;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -23,7 +24,7 @@ public class MessagingProducerImplTest {
     @Test
     void givenThatItThrowsAnyExceptionWhenExecutingThePublishMethodThenShouldGenerateAnErrorLog() {
         String topic = "topic";
-        ErrorResponseDto errorResponseDto = ErrorResponseDto.builder().build();
+        ErrorResponseDto errorResponseDto = Instancio.create(ErrorResponseDto.class);
 
         doThrow(RuntimeException.class).when(kafkaTemplateMock).send(topic, errorResponseDto);
 

@@ -1,6 +1,7 @@
 package br.com.alc.ecommerce.checkout.infrastructure.messaging.producer.impl;
 
 import br.com.alc.ecommerce.checkout.infrastructure.dto.error.ErrorResponseDto;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -29,7 +30,7 @@ public class MessagingProducerImplTest {
     void givenThatItThrowsAnyExceptionWhenExecutingThePublishMethodWithThreeParametersThenShouldGenerateAnErrorLog() {
         String exchange = "exchange";
         String queue = "queue";
-        ErrorResponseDto errorResponseDto = ErrorResponseDto.builder().build();
+        ErrorResponseDto errorResponseDto = Instancio.create(ErrorResponseDto.class);
         Message message = buildMessage(generateJson(errorResponseDto));
 
         doThrow(RuntimeException.class).when(rabbitTemplateMock).convertAndSend(exchange, queue, message);
@@ -42,7 +43,7 @@ public class MessagingProducerImplTest {
     @Test
     void givenThatItThrowsAnyExceptionWhenExecutingThePublishMethodWithTwoParametersThenShouldGenerateAnErrorLog() {
         String queue = "queue";
-        ErrorResponseDto errorResponseDto = ErrorResponseDto.builder().build();
+        ErrorResponseDto errorResponseDto = Instancio.create(ErrorResponseDto.class);
         Message message = buildMessage(generateJson(errorResponseDto));
 
         doThrow(RuntimeException.class).when(rabbitTemplateMock).convertAndSend(queue, message);
