@@ -68,7 +68,7 @@ autorizar as vendas junto ao MidClient de vendas, notificar os canais e clientes
 **E** deverá registrar a venda na base de dados  
 **E** deverá publicar uma mensagem contendo os dados da venda processada e sua nota fiscal na fila (ou tópico) `sale-callback`
 
-## Fluxo de orquestração de vendas
+## Fluxo de Orquestração de Vendas
 
 <img src="script/diagrams/sales-orchestration-flow.png" alt="Fluxo de orquestração de vendas" width="100%" height="100%">
 
@@ -76,6 +76,6 @@ autorizar as vendas junto ao MidClient de vendas, notificar os canais e clientes
 
 ## Arquitetura
 
-<img src="./script/diagrams/architecture.png" alt="Arquitetura Limpa" width="100%" height="100%">
+<img src="./script/diagrams/architecture.png" alt="Arquitetura Limpa" width="70%" height="70%">
 
 [Ver em tela cheia](./script/diagrams/architecture.png)
