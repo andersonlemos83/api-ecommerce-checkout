@@ -5,6 +5,7 @@ import org.testcontainers.containers.GenericContainer;
 import org.testcontainers.containers.KafkaContainer;
 
 import static java.util.Arrays.asList;
+import static org.testcontainers.utility.DockerImageName.parse;
 
 @Log4j2
 public class ContainerManagerKafka extends AbstractContainerManager {
@@ -13,7 +14,7 @@ public class ContainerManagerKafka extends AbstractContainerManager {
 
     @Override
     protected GenericContainer createContainer() {
-        KafkaContainer container = new KafkaContainer("5.4.3");
+        KafkaContainer container = new KafkaContainer(parse("confluentinc/cp-kafka:5.4.3"));
         container.setPortBindings(asList(SERVICE_PORT + ":" + SERVICE_PORT));
         container.withExposedPorts(SERVICE_PORT);
         return container;
