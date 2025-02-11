@@ -66,4 +66,10 @@ autorizar as vendas junto ao MidClient de vendas, notificar os canais e clientes
 **Quando** a autorização da venda for processada por meio do listener `authorize-sale`  
 **Então** o sistema deverá autorizar a venda com sua matriz tributária junto ao endpoint `/authorize` do serviço MidClient  
 **E** deverá registrar a venda na base de dados  
-**E** deverá publicar uma mensagem contendo os dados da venda e sua nota fiscal na fila (ou tópico) `sale-callback`
+**E** deverá publicar uma mensagem contendo os dados da venda processada e sua nota fiscal na fila (ou tópico) `sale-callback`
+
+## Fluxo de orquestração de vendas
+
+<img src="./script/diagrams/sales-orchestration-flow-100.png" alt="Fluxo de orquestração de vendas" width="60%" height="60%">
+
+[Ver em tela cheia](./script/diagrams/sales-orchestration-flow-100.png)
