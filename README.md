@@ -32,7 +32,7 @@ Os principais conceitos e tecnologias que desejo validar incluem:
 - **Linguagem**: Java 21 LTS, Gherkin (para BDD com Cucumber)
 - **Framework**: Spring Boot 3.1.4 (Web, Undertow, Validation, Data JPA, AMQP, Data Redis, Actuator, entre outros)
 - **Mensageria e Processamento Assíncrono**: RabbitMQ e Kafka
-- **Testes e Qualidade de Código**: JUnit 5, Mockito, Cucumber, WireMock, Testcontainers, Instancio, JaCoCo e SonarQube
+- **Testes de Unidade e Aceitação**: JUnit 5, Mockito, Cucumber, WireMock, Testcontainers e Instancio
 - **Banco de Dados**: Oracle e PostgreSQL (com Hibernate e HikariCP)
 - **Cache e Tolerância a Falhas**: Redis e Resilience4j
 - **Documentação da API**: Swagger/OpenAPI
@@ -41,6 +41,8 @@ Os principais conceitos e tecnologias que desejo validar incluem:
 - **Logging e Monitoramento**: Log4j2 e Spring Boot Actuator
 - **Gerenciamento de Dependências**: Maven
 - **Controle de Versão**: Git
+- **Integração Contínua (CI)**: GitHub Actions
+- **Qualidade de Código**: SonarQube
 
 ## Domínio
 
@@ -76,6 +78,44 @@ autorizar as vendas junto ao MidClient de vendas, notificar os canais e clientes
 
 ## Arquitetura
 
-<img src="./script/diagrams/architecture.png" alt="Arquitetura Limpa" width="70%" height="70%">
+<img src="./script/diagrams/architecture.png" alt="Arquitetura (Limpa + Hexagonal)" width="70%" height="70%">
 
 [Ver em tela cheia](./script/diagrams/architecture.png)
+
+## Requisitos
+
+- Java JDK 21
+- Maven 3.6.2 ou superior
+- Docker (Necessário para o Testcontainer e para subir a aplicação localmente)
+
+## Primeiros Passos
+
+- **Baixar todas as dependências do projeto**:
+  ```sh
+    mvn dependency:resolve -U
+  ```
+- **Executar o build do projeto**: 
+  ```sh
+    mvn -U -B clean install -Dmaven.test.skip=true
+  ```
+- **Executar o build do projeto executando todos os testes**: 
+  ```sh
+    mvn -U -B clean install
+  ```
+
+## Sobre os testes
+
+Para organizar os testes de acordo com seu tipo e função, eles foram agrupados em três grandes suítes:
+
+- **RunCucumberTest**: Contém todos os testes de aceitação implementados com Cucumber e BDD. Essa suíte possui uma execução mais lenta, pois exige a inicialização do contexto e da infraestrutura.
+- **UnitTests**: Reúne todos os testes de unidade do projeto. Por não possuir dependências externas, a sua execução é rápida.
+- **AllTests**: Agrupa todos os testes implementados, combinando os testes de aceitação (RunCucumberTest) e os testes de unidade (UnitTests).
+
+## Sobre a aplicação
+
+O projeto Ecommerce Checkout foi desenvolvido seguindo os princípios da arquitetura limpa e hexagonal, visando isolar as regras de negócio em um módulo Core e permitir a implementação de diferentes infraestruturas.
+
+Atualmente, foram implementados os seguintes módulos de infraestrutura:
+
+- **Módulo de Infraestrutura Padrão**: Utiliza Oracle como banco de dados e RabbitMQ como mensageria.
+- **Módulo de Infratrutura Alternativa**: Utiliza PostgreSQL como banco de dados e Kafka como mensageria.
