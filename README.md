@@ -91,15 +91,15 @@ autorizar as vendas junto ao MidClient de vendas, notificar os canais e clientes
 ## Primeiros Passos
 
 - **Baixar todas as dependências do projeto**:
-  ```sh
+  ```
     mvn dependency:resolve -U
   ```
 - **Executar o build do projeto**: 
-  ```sh
+  ```
     mvn -U -B clean install -Dmaven.test.skip=true
   ```
 - **Executar o build do projeto executando todos os testes**: 
-  ```sh
+  ```
     mvn -U -B clean install
   ```
 
@@ -119,3 +119,109 @@ Atualmente, foram implementados os seguintes módulos de infraestrutura:
 
 - **Módulo de Infraestrutura Padrão**: Utiliza Oracle como banco de dados e RabbitMQ como mensageria.
 - **Módulo de Infratrutura Alternativa**: Utiliza PostgreSQL como banco de dados e Kafka como mensageria.
+
+## Começando com a aplicação padrão
+
+- **Wiremock**:
+1. Subir uma instância do Wiremock:
+  ```
+    docker-compose -f .\script\docker\wiremock.yml up -d
+  ```
+
+2. Testar a instância do Wiremock:
+  ```
+    curl 'http://localhost:8443/findByCode?code=100231933559'
+  ```
+  [Testar Wiremock](http://localhost:8443/findByCode?code=100231933559)
+
+- **Redis**:
+1. Subir uma instância do Redis:
+  ```
+    docker-compose -f .\script\docker\redis.yml up -d
+  ```
+
+2. Testar a instância do Redis:
+  ```
+    1. docker exec -it redis /bin/bash
+    2. redis-cli
+    3. KEYS "*"
+    4. exit
+    5. exit
+  ```
+
+- **RabbitMQ**:
+1. Subir uma instância do RabbitMQ:
+  ```
+    docker-compose -f .\script\docker\rabbitmq.yml up -d
+  ```
+
+2. Testar a instância do RabbitMQ:
+   [Testar Rabbit](http://localhost:15672/)
+
+3. Logar no RabbitMQ Admin com guest:
+  ```
+    username: guest
+    password: guest
+  ```
+
+4. Criar um novo usuário ecommerce-checkout:
+  ```
+    1. Acessar /Admin/User
+    2. Preencha Username: ecommerce-checkout, Password: ecommerce-checkout e Tags: administrator
+    3. Aperte "Add user" 
+  ```
+
+5. Criar um novo virtual host ecommerce-checkout:
+  ```
+    1. Acessar /Admin/Virtual Hosts
+    2. Preencha Name: ecommerce-checkout e Default Queue Type: Classic
+    3. Aperte "Add virtual host" 
+  ```
+
+6. Adicionar permissão do usuário ecommerce-checkout ao virtual host ecommerce-checkout:
+  ```
+    1. Acessar /Admin/Virtual Hosts/ecommerce-checkout
+    2. Preencha User: ecommerce-checkout, Configure regexp: .*, Write regexp: .* e Read regexp: .*
+    3. Aperte "Set permissions" 
+  ```
+
+7. Logar no RabbitMQ Admin com ecommerce-checkout:
+  ```
+    username: ecommerce-checkout
+    password: ecommerce-checkout
+  ```
+
+8. Criar um nova fila sale-callback-queue:
+  ```
+    1. Acessar /Queues and Streams
+    2. Preencha Virtual host: ecommerce-checkout, Type: Default fo virtual host, Name: sale-callback-queue e Durability: Durable
+    3. Aperte "Add queue" 
+  ```
+
+- **Oracle**:
+1. Subir uma instância do Oracle:
+  ```
+    docker-compose -f .\script\docker\oracledb-12c-ee.yml up -d
+  ```
+
+2. Testar a instância através de algum client Oracle (recomendo SQL Developer ou DBeaver):
+   ```
+   database: ORCL
+
+   host: localhost
+   port: 1521
+   service name: ORCL
+   username: SYSTEM
+   password: oracle
+
+   jdbc:oracle:thin:@//localhost:1521/ORCL
+   
+   OBS: As vezes a instância do Oracle demora para subir!
+   ```
+
+3. Criar objetos do esquema ECOMMERCE_CHECKOUT_OWNER:
+[Script oracle.sql](./script/db/oracle.sql)
+   
+- **Execute EcommerceCheckoutInfrastructureApplication application-local.yml**: Java 21 LTS, Gherkin (para BDD com Cucumber)
+- **Framework**: Spring Boot 3.1.4 (Web, Undertow, Validation, Data JPA, AMQP, Data Redis, Actuator, entre outros)
+- **Mensageria e Processamento Assíncrono**: RabbitMQ e Kafka
