@@ -78,6 +78,13 @@ autorizar as vendas junto ao MidClient de vendas, notificar os canais e clientes
 
 ## Arquitetura
 
+O projeto Ecommerce Checkout foi desenvolvido seguindo os princípios da arquitetura limpa e hexagonal, visando isolar as regras de negócio em um módulo Core e permitir a implementação de diferentes infraestruturas.
+
+Atualmente, foram implementados os seguintes módulos de infraestrutura:
+
+- **Módulo de Infraestrutura Padrão**: Utiliza Oracle como banco de dados e RabbitMQ como mensageria.
+- **Módulo de Infratrutura Alternativa**: Utiliza PostgreSQL como banco de dados e Kafka como mensageria.
+
 <img src="./script/diagrams/architecture.png" alt="Arquitetura (Limpa + Hexagonal)" width="70%" height="70%">
 
 [Ver em tela cheia](./script/diagrams/architecture.png)
@@ -111,16 +118,7 @@ Para organizar os testes de acordo com seu tipo e função, eles foram agrupados
 - **UnitTests**: Reúne todos os testes de unidade do projeto. Por não possuir dependências externas, a sua execução é rápida.
 - **AllTests**: Agrupa todos os testes implementados, combinando os testes de aceitação (RunCucumberTest) e os testes de unidade (UnitTests).
 
-## Sobre a Aplicação
-
-O projeto Ecommerce Checkout foi desenvolvido seguindo os princípios da arquitetura limpa e hexagonal, visando isolar as regras de negócio em um módulo Core e permitir a implementação de diferentes infraestruturas.
-
-Atualmente, foram implementados os seguintes módulos de infraestrutura:
-
-- **Módulo de Infraestrutura Padrão**: Utiliza Oracle como banco de dados e RabbitMQ como mensageria.
-- **Módulo de Infratrutura Alternativa**: Utiliza PostgreSQL como banco de dados e Kafka como mensageria.
-
-## Começando com a Aplicação Padrão
+## Começando com a Aplicação Padrão (Oracle e RabbitMQ)
 
 - **Wiremock**:
 1. Subir uma instância do Wiremock:
@@ -204,10 +202,8 @@ Atualmente, foram implementados os seguintes módulos de infraestrutura:
     docker-compose -f .\script\docker\oracledb-12c-ee.yml up -d
   ```
 
-2. Testar a instância através de algum client Oracle (recomendo SQL Developer ou DBeaver):
+2. Testar a instância através de algum client Oracle (recomendo DBeaver ou SQL Developer):
   ```
-  database: ORCL
-
   host: localhost
   port: 1521
   service name: ORCL
@@ -232,7 +228,7 @@ Atualmente, foram implementados os seguintes módulos de infraestrutura:
 2. Acessar Swagger UI:
    [Acessar Swagger UI](http://localhost:8181/swagger-ui.html)
 
-3. Collection do Postman:
+3. Importar Collection do Postman:
    [api-ecommerce-checkout.postman_collection.json](./script/postman/api-ecommerce-checkout.postman_collection.json)
 
 4. Testar aplicação:
@@ -240,4 +236,92 @@ Atualmente, foram implementados os seguintes módulos de infraestrutura:
   1. Enviar um request POST para http://localhost:8181/authorize-sale (Swagger ou Postman!);
   2. Verificar se existe um registro PROCESSADO na tabela ECOMMERCE_CHECKOUT_OWNER.SALE_ORDER;
   3. Verificar se existe uma mensagem na fila sale-callback-queue;
+  ```
+
+## Começando com a Aplicação Alternativa (PostgreSQL e Kafka)
+
+- **Wiremock**:
+1. Subir uma instância do Wiremock:
+  ```
+    docker-compose -f .\script\docker\wiremock.yml up -d
+  ```
+
+2. Testar a instância do Wiremock:
+  ```
+    curl 'http://localhost:8443/findByCode?code=100231933559'
+  ```
+[Testar Wiremock](http://localhost:8443/findByCode?code=100231933559)
+
+- **Redis**:
+1. Subir uma instância do Redis:
+  ```
+    docker-compose -f .\script\docker\redis.yml up -d
+  ```
+
+2. Testar a instância do Redis:
+  ```
+    1. docker exec -it redis /bin/bash
+    2. redis-cli
+    3. KEYS "*"
+    4. exit
+    5. exit
+  ```
+
+???????
+
+- **Kafka**:
+1. Subir uma instância do Kafka:
+  ```
+    docker-compose -f .\script\docker\kafka.yml up -d
+  ```
+
+2. Acessar a instância do Kafka:
+   [Acessar Kafka Admin](http://localhost:8787/)
+
+3. Criar um novo tópico sale-callback-topic:
+  ```
+    1. Acessar /Topics
+    2. Aperte "Add a Topic"
+    2. Preencha Topic Name: sale-callback-topic, Number of Partitions: 2 e Cleanup policy: Delete
+    3. Aperte "Create topic" 
+  ```
+
+- **PostgreSQL**:
+1. Subir uma instância do PostgreSQL:
+  ```
+    docker-compose -f .\script\docker\postgresdb.yml up -d
+  ```
+
+2. Testar a instância através de algum client PostgreSQL (recomendo DBeaver ou PGAdmin):
+  ```
+  host: localhost
+  port: 5432
+  database: postgres
+  username: postgres
+  password: postgres
+
+  jdbc:postgresql://localhost:5432/postgres
+  ```
+
+3. Criar objetos do DB ecommerce_db:
+   [postgres.sql](./script/db/postgres.sql)
+
+- **Aplicação Alternativa (PostgreSQL e Kafka)**:
+1. Crie e execute um Spring Boot runner:
+  ```
+    Main Class: /alternative-infrastructure/src/main/java/br/com/alc/ecommerce/checkout/infrastructure/EcommerceCheckoutAlternativeInfrastructureApplication.java
+    Profile: local (application-local.yml)
+  ```
+
+2. Acessar Swagger UI:
+   [Acessar Swagger UI](http://localhost:8282/swagger-ui.html)
+
+3. Importar Collection do Postman:
+   [api-ecommerce-checkout.postman_collection.json](./script/postman/api-ecommerce-checkout.postman_collection.json)
+
+4. Testar aplicação:
+  ```
+  1. Enviar um request POST para http://localhost:8282/authorize-sale (Swagger ou Postman!);
+  2. Verificar se existe um registro PROCESSADO na tabela PUBLIC.SALE_ORDER;
+  3. Verificar se existe uma mensagem no tópico sale-callback-topic;
   ```

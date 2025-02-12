@@ -1,4 +1,4 @@
--- ATENÇÃO: Conectar com postgres
+-- ATENÇÃO: Conectar com postgres no DB postgres
 -- CREATE DATABASE
 CREATE DATABASE ecommerce_db;
 
@@ -43,7 +43,7 @@ CREATE INDEX IX_SALE_ORDER_01 ON PUBLIC.SALE_ORDER (ORDER_NUMBER);
 GRANT ALL PRIVILEGES ON SEQUENCE public.SALE_ORDER_SEQ TO ecommerce_user;
 GRANT ALL PRIVILEGES ON TABLE public.SALE_ORDER TO ecommerce_user;
 
--- ATENÇÃO: Conectar com postgres
+-- ATENÇÃO: Conectar com postgres no DB postgres
 -- DROP
 DROP OWNED BY ecommerce_user CASCADE;
 DROP USER ecommerce_user;

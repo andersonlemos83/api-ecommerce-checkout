@@ -42,3 +42,6 @@ volumes:
     driver: local
   kafka_data:
     driver: local
+
+# Aplicação
+# http://localhost:8787/
