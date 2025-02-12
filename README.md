@@ -4,141 +4,142 @@
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=andersonlemos83_api-ecommerce-checkout&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=andersonlemos83_api-ecommerce-checkout)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=andersonlemos83_api-ecommerce-checkout&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=andersonlemos83_api-ecommerce-checkout)
 
-# Sobre o projeto api-ecommerce-checkout
+This is the English version. For the Portuguese version, click [here](./README.pt.md).
 
-Este é um projeto fictício criado exclusivamente para estudo e validação de novas tecnologias.
+# About the api-ecommerce-checkout project
 
-## Tecnologias e Conceitos
+This is a fictional project created exclusively for studying and validating new technologies.
 
-Os principais conceitos e tecnologias que desejo validar incluem:
+## Technologies and Concepts
 
-- **Arquitetura**: Arquitetura Limpa e Arquitetura Hexagonal
-- **Testes de Aceitação**: Cucumber, WireMock e Testcontainers
-- **Mensageria e Processamento Assíncrono**: RabbitMQ e Kafka
-- **Cache e Tolerância a Falhas**: Redis e Resilience4j
+The main concepts and technologies I want to validate include:
 
-## Inspiração Bibliográfica
+- **Architecture**: Clean Architecture and Hexagonal Architecture
+- **Acceptance Testing**: Cucumber, WireMock, and Testcontainers
+- **Messaging and Asynchronous Processing**: RabbitMQ and Kafka
+- **Caching and Fault Tolerance**: Redis and Resilience4j
 
-📖 *Arquitetura Limpa: O Guia do Artesão Para Estrutura e Design de Software* – Robert C. Martin  
-📖 *Desenvolvimento Ágil Limpo: De Volta às Origens* – Robert C. Martin  
-📖 *Código Limpo: Habilidades Práticas do Agile Software* – Robert C. Martin  
-📖 *Desenvolvimento de Software Orientado a Objetos Guiado por Testes* – Steve Freeman  
-📖 *Refatoração: Aperfeiçoando o Design de Códigos Existentes* – Martin Fowler
+## Bibliographic Inspiration
 
-🎓 *[Formação de Especialista em Microservices Java Spring](https://e-certificado.com/login/visualizar?c=2343053A8150F7A015193380)* – Decoder Project
+📖 *Clean Architecture: A Craftsman's Guide to Software Structure and Design* – Robert C. Martin  
+📖 *Clean Agile: Back to Basics* – Robert C. Martin  
+📖 *Clean Code: A Handbook of Agile Software Craftsmanship* – Robert C. Martin  
+📖 *Growing Object-Oriented Software, Guided by Tests* – Steve Freeman  
+📖 *Refactoring: Improving the Design of Existing Code* – Martin Fowler
 
-## Principais Tecnologias e Ferramentas Utilizadas
+🎓 *[Java Spring Microservices Specialist Training](https://e-certificado.com/login/visualizar?c=2343053A8150F7A015193380)* – Decoder Project
 
-- **Linguagem**: Java 21 LTS, Gherkin (para BDD com Cucumber)
-- **Framework**: Spring Boot 3.1.4 (Web, Undertow, Validation, Data JPA, AMQP, Data Redis, Actuator, entre outros)
-- **Mensageria e Processamento Assíncrono**: RabbitMQ e Kafka
-- **Testes de Unidade e Aceitação**: JUnit 5, Mockito, Cucumber, WireMock, Testcontainers e Instancio
-- **Banco de Dados**: Oracle e PostgreSQL (com Hibernate e HikariCP)
-- **Cache e Tolerância a Falhas**: Redis e Resilience4j
-- **Documentação da API**: Swagger/OpenAPI
-- **Comunicação entre Serviços**: OpenFeign
-- **Containerização**: Docker
-- **Logging e Monitoramento**: Log4j2 e Spring Boot Actuator
-- **Gerenciamento de Dependências**: Maven
-- **Controle de Versão**: Git
-- **Integração Contínua (CI)**: GitHub Actions
-- **Qualidade de Código**: SonarQube
+## Main Technologies and Tools Used
 
-## Domínio
+- **Language**: Java 21 LTS, Gherkin (for BDD with Cucumber)
+- **Framework**: Spring Boot 3.1.4 (Web, Undertow, Validation, Data JPA, AMQP, Data Redis, Actuator, among others)
+- **Messaging and Asynchronous Processing**: RabbitMQ and Kafka
+- **Unit and Acceptance Testing**: JUnit 5, Mockito, Cucumber, WireMock, Testcontainers and Instancio
+- **Database**: Oracle and PostgreSQL (with Hibernate and HikariCP)
+- **Caching and Fault Tolerance**: Redis and Resilience4j
+- **API Documentation**: Swagger/OpenAPI
+- **Service Communication**: OpenFeign
+- **Containerization**: Docker
+- **Logging and Monitoring**: Log4j2 and Spring Boot Actuator
+- **Dependency Management**: Maven
+- **Version Control**: Git
+- **Continuous Integration (CI)**: GitHub Actions
+- **Code Quality**: SonarQube
 
-Um e-commerce fictício realiza centenas de milhares de vendas por múltiplos canais, incluindo site, aplicativo, loja física e caixa de autoatendimento. 
-Para garantir a correta tributação, autorização e registro das vendas, torna-se essencial a criação de um sistema orquestrador. 
-Esse orquestrador será responsável por compilar a matriz tributária dos itens da sacola, validar as formas de pagamento, 
-autorizar as vendas junto ao MidClient de vendas, notificar os canais e clientes sobre a emissão da nota fiscal e registrar todas as transações no banco de dados.
+## Domain
+
+A fictional e-commerce conducts hundreds of thousands of sales through multiple channels, including website, app, physical store, and self-checkout.
+To ensure correct taxation, authorization, and sales registration, an orchestrator system is essential.
+This orchestrator will be responsible for compiling the tax matrix of cart items, validating payment methods,
+authorizing sales with the MidClient service, notifying channels and customers about invoice issuance, and recording all transactions in the database.
 
 ## Features
 
 ## authorize-sale.feature
-### Cenário Base - Autorizar venda com todos os dados válidos informados
-**Dado** que todos os dados válidos de uma venda tenham sido informados  
-**Quando** a venda for autorizada por meio do endpoint `/authorize-sale`  
-**Então** deverá publicar uma mensagem contendo os dados da venda na fila (ou tópico) `authorize-sale`  
-**E** deverá retornar uma resposta indicando que o processamento está em andamento
+### Base Scenario - Authorize sale with all valid data provided
+**Given** that all valid sales data has been provided  
+**When** the sale is authorized via the `/authorize-sale`    
+**Then** a message containing the sale data must be published in the queue (or topic) `authorize-sale`  
+**And** a response must be returned indicating that processing is in progress
 
 ## process-sale-authorization.feature
-### Cenário Base - Processar autorização de venda com todos os dados válidos informados
-**Dado** que todos os dados válidos de uma venda tenham sido informados  
-**E** que os dados da matriz tributária estejam disponíveis no endpoint `/findByCode` do serviço TaxClient  
-**E** que os dados da nota fiscal estejam disponíveis no endpoint `/authorize` do serviço MidClient  
-**Quando** a autorização da venda for processada por meio do listener `authorize-sale`  
-**Então** o sistema deverá autorizar a venda com sua matriz tributária junto ao endpoint `/authorize` do serviço MidClient  
-**E** deverá registrar a venda na base de dados  
-**E** deverá publicar uma mensagem contendo os dados da venda processada e sua nota fiscal na fila (ou tópico) `sale-callback`
+### Base Scenario - Process sale authorization with all valid data provided
+**Given** that all valid sales data has been provided  
+**And** that the tax matrix data is available at the `/findByCode` of the TaxClient service    
+**And** that invoice data is available at the `/authorize` endpoint of the MidClient service    
+**When** the sale authorization is processed via the `authorize-sale` listener    
+**Then** the system must authorize the sale with its tax matrix via the `/authorize` endpoint of the MidClient service  
+**And** must record the sale in the database  
+**And** must publish a message containing the processed sale data and its invoice in the queue (or topic) `sale-callback`  
 
-## Fluxo de Orquestração de Vendas
+## Sales Orchestration Flow
 
-<img src="script/diagrams/sales-orchestration-flow.png" alt="Fluxo de orquestração de vendas" width="100%" height="100%">
+<img src="script/diagrams/sales-orchestration-flow.png" alt="Sales Orchestration Flow" width="100%" height="100%">
 
-[Ver em tela cheia](./script/diagrams/sales-orchestration-flow.png)
+[View in full screen](./script/diagrams/sales-orchestration-flow.png)
 
-## Arquitetura
+## Architecture
 
-O projeto Ecommerce Checkout foi desenvolvido seguindo os princípios da arquitetura limpa e hexagonal, visando isolar as regras de negócio em um módulo Core e permitir a implementação de diferentes infraestruturas.
+The Ecommerce Checkout project was developed following the principles of clean and hexagonal architecture, aiming to isolate business rules in a Core module and allow the implementation of different infrastructures.
 
-Atualmente, foram implementados os seguintes módulos de infraestrutura:
+Currently, the following infrastructure modules have been implemented:
 
-- **Módulo de Infraestrutura Padrão**: Utiliza Oracle como banco de dados e RabbitMQ como mensageria.
-- **Módulo de Infratrutura Alternativa**: Utiliza PostgreSQL como banco de dados e Kafka como mensageria.
+- **Default Infrastructure Module**: Uses Oracle as the database and RabbitMQ as the messaging system.
+- **Alternative Infrastructure Module**: Uses PostgreSQL as the database and Kafka as the messaging system.
 
-<img src="./script/diagrams/architecture.png" alt="Arquitetura (Limpa + Hexagonal)" width="70%" height="70%">
+<img src="./script/diagrams/architecture.png" alt="Architecture (Clean + Hexagonal)" width="70%" height="70%">
 
-[Ver em tela cheia](./script/diagrams/architecture.png)
+[View in full screen](./script/diagrams/architecture.png)
 
-## Requisitos
+## Requirements
 
 - Java JDK 21
-- Maven 3.6.2 ou superior
-- Docker (Necessário para o Testcontainer e para subir a aplicação localmente)
+- Maven 3.6.2 or higher
+- Docker (Necessary for Testcontainer and to run the application locally)
 
-## Primeiros Passos
+## First Steps
 
-- **Baixar todas as dependências do projeto**:
+- **Download all project dependencies**:
   ```
     mvn dependency:resolve -U
   ```
-- **Executar o build do projeto**: 
+- **Build the project**: 
   ```
     mvn -U -B clean install -Dmaven.test.skip=true
   ```
-- **Executar o build do projeto executando todos os testes**: 
+- **Build the project and run all tests**: 
   ```
     mvn -U -B clean install
   ```
 
-## Sobre os Testes
+## About the Tests
 
-Para organizar os testes de acordo com seu tipo e função, eles foram agrupados em três grandes suítes:
+To organize the tests according to their type and function, they were grouped into three main suites:
 
-- **RunCucumberTest**: Contém todos os testes de aceitação implementados com Cucumber e BDD. Essa suíte possui uma execução mais lenta, pois exige a inicialização do contexto e da infraestrutura.
-- **UnitTests**: Reúne todos os testes de unidade do projeto. Por não possuir dependências externas, a sua execução é rápida.
-- **AllTests**: Agrupa todos os testes implementados, combinando os testes de aceitação (RunCucumberTest) e os testes de unidade (UnitTests).
+- **RunCucumberTest**: Contains all acceptance tests implemented with Cucumber and BDD. This suite has a slower execution, as it requires the initialization of the context and infrastructure.
+- **UnitTests**: Contains all unit tests of the project. As it has no external dependencies, its execution is fast.
+- **AllTests**: Groups all implemented tests, combining acceptance tests (RunCucumberTest) and unit tests (UnitTests).
 
-## Começando com a Aplicação Padrão (Oracle e RabbitMQ)
+## Getting Started with the Default Application (Oracle and RabbitMQ)
 
 - **Wiremock**:
-1. Subir uma instância do Wiremock:
+1. Start a Wiremock instance:
   ```
     docker-compose -f .\script\docker\wiremock.yml up -d
   ```
 
-2. Testar a instância do Wiremock:
+2. Test the Wiremock instance: [Test Wiremock](http://localhost:8443/findByCode?code=100231933559)
   ```
     curl 'http://localhost:8443/findByCode?code=100231933559'
   ```
-  [Testar Wiremock](http://localhost:8443/findByCode?code=100231933559)
 
 - **Redis**:
-1. Subir uma instância do Redis:
+1. Start a Redis instance:
   ```
     docker-compose -f .\script\docker\redis.yml up -d
   ```
 
-2. Testar a instância do Redis:
+2. Test the Redis instance:
   ```
     1. docker exec -it redis /bin/bash
     2. redis-cli
@@ -148,61 +149,61 @@ Para organizar os testes de acordo com seu tipo e função, eles foram agrupados
   ```
 
 - **RabbitMQ**:
-1. Subir uma instância do RabbitMQ:
+1. Start a RabbitMQ instance:
   ```
     docker-compose -f .\script\docker\rabbitmq.yml up -d
   ```
 
-2. Acessar a instância do RabbitMQ:
-   [Acessar RabbitMQ Admin](http://localhost:15672/)
+2. Access the RabbitMQ instance:
+   [Access RabbitMQ Admin](http://localhost:15672/)
 
-3. Logar no RabbitMQ Admin com guest:
+3. Log in to RabbitMQ Admin with guest:
   ```
     username: guest
     password: guest
   ```
 
-4. Criar um novo usuário ecommerce-checkout:
+4. Create a new user ecommerce-checkout:
   ```
-    1. Acessar /Admin/User
-    2. Preencha Username: ecommerce-checkout, Password: ecommerce-checkout e Tags: administrator
-    3. Aperte "Add user" 
-  ```
-
-5. Criar um novo virtual host ecommerce-checkout:
-  ```
-    1. Acessar /Admin/Virtual Hosts
-    2. Preencha Name: ecommerce-checkout e Default Queue Type: Classic
-    3. Aperte "Add virtual host" 
+    1. Go to /Admin/User
+    2. Fill in Username: ecommerce-checkout, Password: ecommerce-checkout e Tags: administrator
+    3. Click "Add user" 
   ```
 
-6. Adicionar permissão do usuário ecommerce-checkout ao virtual host ecommerce-checkout:
+5. Create a new virtual host ecommerce-checkout:
   ```
-    1. Acessar /Admin/Virtual Hosts/ecommerce-checkout
-    2. Preencha User: ecommerce-checkout, Configure regexp: .*, Write regexp: .* e Read regexp: .*
-    3. Aperte "Set permissions" 
+    1. Go to /Admin/Virtual Hosts
+    2. Fill in Name: ecommerce-checkout e Default Queue Type: Classic
+    3. Click "Add virtual host" 
   ```
 
-7. Logar no RabbitMQ Admin com ecommerce-checkout:
+6. Add permissions for the ecommerce-checkout user to the ecommerce-checkout virtual host:
+  ```
+    1. Go to /Admin/Virtual Hosts/ecommerce-checkout
+    2. Fill in User: ecommerce-checkout, Configure regexp: .*, Write regexp: .* e Read regexp: .*
+    3. Click "Set permissions" 
+  ```
+
+7. Log in to RabbitMQ Admin with ecommerce-checkout:
   ```
     username: ecommerce-checkout
     password: ecommerce-checkout
   ```
 
-8. Criar um nova fila sale-callback-queue:
+8. Create a new queue sale-callback-queue:
   ```
-    1. Acessar /Queues and Streams
-    2. Preencha Virtual host: ecommerce-checkout, Type: Default fo virtual host, Name: sale-callback-queue e Durability: Durable
-    3. Aperte "Add queue" 
+    1. Go to /Queues and Streams
+    2. Fill in Virtual host: ecommerce-checkout, Type: Default fo virtual host, Name: sale-callback-queue e Durability: Durable
+    3. Click "Add queue" 
   ```
 
 - **Oracle**:
-1. Subir uma instância do Oracle:
+1. Start an Oracle instance:
   ```
     docker-compose -f .\script\docker\oracledb-12c-ee.yml up -d
   ```
 
-2. Testar a instância através de algum client Oracle (recomendo DBeaver ou SQL Developer):
+2. Test the instance through some Oracle client (I recommend DBeaver or SQL Developer):
   ```
   host: localhost
   port: 1521
@@ -212,53 +213,52 @@ Para organizar os testes de acordo com seu tipo e função, eles foram agrupados
 
   jdbc:oracle:thin:@//localhost:1521/ORCL
 
-  OBS: As vezes a instância do Oracle demora para subir!
+  OBS: Sometimes the Oracle instance takes a while to start!
   ```
 
-3. Criar objetos do esquema ECOMMERCE_CHECKOUT_OWNER:
+3. Create objects for the ECOMMERCE_CHECKOUT_OWNER schema:
 [oracle.sql](./script/db/oracle.sql)
 
-- **Aplicação Padrão (Oracle e RabbiMQ)**:
-1. Crie e execute um Spring Boot runner:
+- **Default Application (Oracle and RabbitMQ)**:
+1. Create and run a Spring Boot runner:
   ```
     Main Class: /infrastructure/src/main/java/br/com/alc/ecommerce/checkout/infrastructure/EcommerceCheckoutInfrastructureApplication.java
     Profile: local (application-local.yml)
   ```
 
-2. Acessar Swagger UI:
-   [Acessar Swagger UI](http://localhost:8181/swagger-ui.html)
+2. Access Swagger UI:
+   [Access Swagger UI](http://localhost:8181/swagger-ui.html)
 
-3. Importar Collection do Postman:
+3. Import Postman Collection:
    [api-ecommerce-checkout.postman_collection.json](./script/postman/api-ecommerce-checkout.postman_collection.json)
 
-4. Testar aplicação:
+4. Test application:
   ```
-  1. Enviar um request POST para http://localhost:8181/authorize-sale (Swagger ou Postman!);
-  2. Verificar se existe um registro PROCESSADO na tabela ECOMMERCE_CHECKOUT_OWNER.SALE_ORDER;
-  3. Verificar se existe uma mensagem na fila sale-callback-queue;
+  1. Send a POST request to http://localhost:8181/authorize-sale (Swagger or Postman!);
+  2. Verify if there is a PROCESSED record in the ECOMMERCE_CHECKOUT_OWNER.SALE_ORDER table;
+  3. Verify if there is a message in the sale-callback-queue queue.
   ```
 
-## Começando com a Aplicação Alternativa (PostgreSQL e Kafka)
+## Getting Started with the Alternative Application (PostgreSQL and Kafka)
 
 - **Wiremock**:
-1. Subir uma instância do Wiremock:
+1. Start a Wiremock instance:
   ```
     docker-compose -f .\script\docker\wiremock.yml up -d
   ```
 
-2. Testar a instância do Wiremock:
+2. Test the Wiremock instance: [Test Wiremock](http://localhost:8443/findByCode?code=100231933559)
   ```
     curl 'http://localhost:8443/findByCode?code=100231933559'
   ```
-[Testar Wiremock](http://localhost:8443/findByCode?code=100231933559)
 
 - **Redis**:
-1. Subir uma instância do Redis:
+1. Start a Redis instance:
   ```
     docker-compose -f .\script\docker\redis.yml up -d
   ```
 
-2. Testar a instância do Redis:
+2. Test the Redis instance:
   ```
     1. docker exec -it redis /bin/bash
     2. redis-cli
@@ -268,29 +268,29 @@ Para organizar os testes de acordo com seu tipo e função, eles foram agrupados
   ```
 
 - **Kafka**:
-1. Subir uma instância do Kafka:
+1. Start a Kafka instance:
   ```
     docker-compose -f .\script\docker\kafka.yml up -d
   ```
 
-2. Acessar a instância do Kafka:
-   [Acessar Kafka Admin](http://localhost:8787/)
+2. Access the Kafka instance:
+   [Access Kafka Admin](http://localhost:8787/)
 
-3. Criar um novo tópico sale-callback-topic:
+3. Create a new topic named sale-callback-topic:
   ```
-    1. Acessar /Topics
-    2. Aperte "Add a Topic"
-    2. Preencha Topic Name: sale-callback-topic, Number of Partitions: 2 e Cleanup policy: Delete
-    3. Aperte "Create topic" 
+    1. Go to /Topics
+    2. Click "Add a Topic"
+    2. Fill in Topic Name: sale-callback-topic, Number of Partitions: 2 e Cleanup policy: Delete
+    3. Click "Create topic" 
   ```
 
 - **PostgreSQL**:
-1. Subir uma instância do PostgreSQL:
+1. Start a PostgreSQL instance:
   ```
     docker-compose -f .\script\docker\postgresdb.yml up -d
   ```
 
-2. Testar a instância através de algum client PostgreSQL (recomendo DBeaver ou PGAdmin):
+2. Test the instance using a PostgreSQL client (I recommend DBeaver or PGAdmin):
   ```
   host: localhost
   port: 5432
@@ -301,25 +301,29 @@ Para organizar os testes de acordo com seu tipo e função, eles foram agrupados
   jdbc:postgresql://localhost:5432/postgres
   ```
 
-3. Criar objetos do DB ecommerce_db:
+3. Create the ecommerce_db database objects:
    [postgres.sql](./script/db/postgres.sql)
 
-- **Aplicação Alternativa (PostgreSQL e Kafka)**:
-1. Crie e execute um Spring Boot runner:
+- **Alternative Application (PostgreSQL e Kafka)**:
+1. Create and run a Spring Boot runner:
   ```
     Main Class: /alternative-infrastructure/src/main/java/br/com/alc/ecommerce/checkout/infrastructure/EcommerceCheckoutAlternativeInfrastructureApplication.java
     Profile: local (application-local.yml)
   ```
 
-2. Acessar Swagger UI:
-   [Acessar Swagger UI](http://localhost:8282/swagger-ui.html)
+2. Access Swagger UI:
+   [Access Swagger UI](http://localhost:8282/swagger-ui.html)
 
-3. Importar Collection do Postman:
+3. Import Postman Collection:
    [api-ecommerce-checkout.postman_collection.json](./script/postman/api-ecommerce-checkout.postman_collection.json)
 
-4. Testar aplicação:
+4. Test application:
   ```
   1. Enviar um request POST para http://localhost:8282/authorize-sale (Swagger ou Postman!);
-  2. Verificar se existe um registro PROCESSADO na tabela PUBLIC.SALE_ORDER;
-  3. Verificar se existe uma mensagem no tópico sale-callback-topic;
+  2. Verify if there is a PROCESSED record in the PUBLIC.SALE_ORDER table;
+  3. Verify if there is a message in the sale-callback-topic.
   ```
+
+## That's all folks!
+
+I hope you enjoyed it.

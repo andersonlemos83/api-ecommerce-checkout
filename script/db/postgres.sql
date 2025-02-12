@@ -1,4 +1,4 @@
--- ATENÇÃO: Conectar com postgres no DB postgres
+-- ATTENTION: Connect with postgres in the postgres DB
 -- CREATE DATABASE
 CREATE DATABASE ecommerce_db;
 
@@ -6,7 +6,7 @@ CREATE DATABASE ecommerce_db;
 CREATE USER ecommerce_user WITH ENCRYPTED PASSWORD 'ecommerce_user';
 GRANT ALL PRIVILEGES ON DATABASE ecommerce_db TO ecommerce_user;
 
--- ATENÇÃO: Conectar com postgres em ecommerce_db
+-- ATTENTION: Connect with postgres in ecommerce_db
 -- CREATE SEQUENCE
 CREATE SEQUENCE PUBLIC.SALE_ORDER_SEQ
     MINVALUE 1
@@ -43,7 +43,7 @@ CREATE INDEX IX_SALE_ORDER_01 ON PUBLIC.SALE_ORDER (ORDER_NUMBER);
 GRANT ALL PRIVILEGES ON SEQUENCE public.SALE_ORDER_SEQ TO ecommerce_user;
 GRANT ALL PRIVILEGES ON TABLE public.SALE_ORDER TO ecommerce_user;
 
--- ATENÇÃO: Conectar com postgres no DB postgres
+-- ATTENTION: Connect with postgres in the postgres DB
 -- DROP
 DROP OWNED BY ecommerce_user CASCADE;
 DROP USER ecommerce_user;
