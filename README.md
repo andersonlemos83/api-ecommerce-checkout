@@ -267,8 +267,6 @@ Para organizar os testes de acordo com seu tipo e função, eles foram agrupados
     5. exit
   ```
 
-???????
-
 - **Kafka**:
 1. Subir uma instância do Kafka:
   ```
