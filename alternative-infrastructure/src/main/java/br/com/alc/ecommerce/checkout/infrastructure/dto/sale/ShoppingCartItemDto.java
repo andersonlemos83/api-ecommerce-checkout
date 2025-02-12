@@ -18,7 +18,7 @@ public class ShoppingCartItemDto implements Serializable {
 
     @Min(1)
     @NotNull(message = "não foi informado")
-    @Schema(description = "Item code", example = "1002319335599")
+    @Schema(description = "Item code", example = "100231933559")
     private BigInteger code;
 
     @Min(1)

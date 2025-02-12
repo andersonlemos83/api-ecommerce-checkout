@@ -103,7 +103,7 @@ autorizar as vendas junto ao MidClient de vendas, notificar os canais e clientes
     mvn -U -B clean install
   ```
 
-## Sobre os testes
+## Sobre os Testes
 
 Para organizar os testes de acordo com seu tipo e função, eles foram agrupados em três grandes suítes:
 
@@ -111,7 +111,7 @@ Para organizar os testes de acordo com seu tipo e função, eles foram agrupados
 - **UnitTests**: Reúne todos os testes de unidade do projeto. Por não possuir dependências externas, a sua execução é rápida.
 - **AllTests**: Agrupa todos os testes implementados, combinando os testes de aceitação (RunCucumberTest) e os testes de unidade (UnitTests).
 
-## Sobre a aplicação
+## Sobre a Aplicação
 
 O projeto Ecommerce Checkout foi desenvolvido seguindo os princípios da arquitetura limpa e hexagonal, visando isolar as regras de negócio em um módulo Core e permitir a implementação de diferentes infraestruturas.
 
@@ -120,7 +120,7 @@ Atualmente, foram implementados os seguintes módulos de infraestrutura:
 - **Módulo de Infraestrutura Padrão**: Utiliza Oracle como banco de dados e RabbitMQ como mensageria.
 - **Módulo de Infratrutura Alternativa**: Utiliza PostgreSQL como banco de dados e Kafka como mensageria.
 
-## Começando com a aplicação padrão
+## Começando com a Aplicação Padrão
 
 - **Wiremock**:
 1. Subir uma instância do Wiremock:
@@ -155,8 +155,8 @@ Atualmente, foram implementados os seguintes módulos de infraestrutura:
     docker-compose -f .\script\docker\rabbitmq.yml up -d
   ```
 
-2. Testar a instância do RabbitMQ:
-   [Testar Rabbit](http://localhost:15672/)
+2. Acessar a instância do RabbitMQ:
+   [Acessar RabbitMQ Admin](http://localhost:15672/)
 
 3. Logar no RabbitMQ Admin com guest:
   ```
@@ -205,23 +205,39 @@ Atualmente, foram implementados os seguintes módulos de infraestrutura:
   ```
 
 2. Testar a instância através de algum client Oracle (recomendo SQL Developer ou DBeaver):
-   ```
-   database: ORCL
+  ```
+  database: ORCL
 
-   host: localhost
-   port: 1521
-   service name: ORCL
-   username: SYSTEM
-   password: oracle
+  host: localhost
+  port: 1521
+  service name: ORCL
+  username: SYSTEM
+  password: oracle
 
-   jdbc:oracle:thin:@//localhost:1521/ORCL
-   
-   OBS: As vezes a instância do Oracle demora para subir!
-   ```
+  jdbc:oracle:thin:@//localhost:1521/ORCL
+
+  OBS: As vezes a instância do Oracle demora para subir!
+  ```
 
 3. Criar objetos do esquema ECOMMERCE_CHECKOUT_OWNER:
-[Script oracle.sql](./script/db/oracle.sql)
-   
-- **Execute EcommerceCheckoutInfrastructureApplication application-local.yml**: Java 21 LTS, Gherkin (para BDD com Cucumber)
-- **Framework**: Spring Boot 3.1.4 (Web, Undertow, Validation, Data JPA, AMQP, Data Redis, Actuator, entre outros)
-- **Mensageria e Processamento Assíncrono**: RabbitMQ e Kafka
+[oracle.sql](./script/db/oracle.sql)
+
+- **Aplicação Padrão (Oracle e RabbiMQ)**:
+1. Crie e execute um Spring Boot runner:
+  ```
+    Main Class: /infrastructure/src/main/java/br/com/alc/ecommerce/checkout/infrastructure/EcommerceCheckoutInfrastructureApplication.java
+    Profile: local (application-local.yml)
+  ```
+
+2. Acessar Swagger UI:
+   [Acessar Swagger UI](http://localhost:8181/swagger-ui.html)
+
+3. Collection do Postman:
+   [api-ecommerce-checkout.postman_collection.json](./script/postman/api-ecommerce-checkout.postman_collection.json)
+
+4. Testar aplicação:
+  ```
+  1. Enviar um request POST para http://localhost:8181/authorize-sale (Swagger ou Postman!);
+  2. Verificar se existe um registro PROCESSADO na tabela ECOMMERCE_CHECKOUT_OWNER.SALE_ORDER;
+  3. Verificar se existe uma mensagem na fila sale-callback-queue;
+  ```
