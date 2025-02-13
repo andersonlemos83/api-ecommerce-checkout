@@ -10,6 +10,8 @@ import br.com.alc.ecommerce.checkout.core.port.output.SaleOrderInserterOutPort;
 import br.com.alc.ecommerce.checkout.core.service.authorize.SaleAuthorizerService;
 import br.com.alc.ecommerce.checkout.core.service.validator.SaleValidatorService;
 import br.com.alc.ecommerce.checkout.core.service.watch.WatchService;
+import org.instancio.Instancio;
+import org.instancio.Select;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -48,8 +50,8 @@ public class SaleProcessorUseCaseImplTest {
 
     @Test
     void givenAnProcessedSaleOrderWhenExecutingTheSaleProcessorUseCaseThenShouldCallSaleCallbackIntegrateOutPort() {
-        SaleRequest saleRequest = SaleRequest.builder().orderNumber("987654322").build();
-        SaleOrder saleOrderReturned = SaleOrder.builder().status(PROCESSED).build();
+        SaleRequest saleRequest = Instancio.of(SaleRequest.class).set(Select.field("orderNumber"), "987654322").create();
+        SaleOrder saleOrderReturned = Instancio.of(SaleOrder.class).set(Select.field("status"), PROCESSED).create();
 
         when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getOrderNumber())).thenReturn(Optional.of(saleOrderReturned));
 
@@ -61,8 +63,8 @@ public class SaleProcessorUseCaseImplTest {
 
     @Test
     void givenAnInProcessingSaleOrderWhenExecutingTheSaleProcessorUseCaseThenShouldNotCallAnyoneDependency() {
-        SaleRequest saleRequest = SaleRequest.builder().orderNumber("987654322").build();
-        SaleOrder saleOrderReturned = SaleOrder.builder().status(IN_PROCESSING).build();
+        SaleRequest saleRequest = Instancio.of(SaleRequest.class).set(Select.field("orderNumber"), "987654322").create();
+        SaleOrder saleOrderReturned = Instancio.of(SaleOrder.class).set(Select.field("status"), IN_PROCESSING).create();
 
         when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getOrderNumber())).thenReturn(Optional.of(saleOrderReturned));
 
@@ -73,8 +75,8 @@ public class SaleProcessorUseCaseImplTest {
 
     @Test
     void givenAnUnprocessedSaleOrderWhenExecutingTheSaleProcessorUseCaseThenShouldCallSaleValidatorServiceAndSaleOrderInserterOutPortAndSaleAuthorizerServiceAndSaleCallbackIntegrateOutPort() {
-        SaleRequest saleRequest = SaleRequest.builder().orderNumber("987654322").build();
-        AuthorizeSaleResponse authorizeSaleResponseReturned = AuthorizeSaleResponse.builder().invoiceNumber("000000001").build();
+        SaleRequest saleRequest = Instancio.of(SaleRequest.class).set(Select.field("orderNumber"), "987654322").create();
+        AuthorizeSaleResponse authorizeSaleResponseReturned = Instancio.of(AuthorizeSaleResponse.class).set(Select.field("invoiceNumber"), "000000001").create();
 
         when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getOrderNumber())).thenReturn(Optional.empty());
         when(saleAuthorizerServiceMock.execute(saleRequest)).thenReturn(authorizeSaleResponseReturned);
@@ -89,9 +91,9 @@ public class SaleProcessorUseCaseImplTest {
 
     @Test
     void givenAnErrorSaleOrderWhenExecutingTheSaleProcessorUseCaseThenShouldCallSaleValidatorServiceAndSaleOrderInserterOutPortAndSaleAuthorizerServiceAndSaleCallbackIntegrateOutPort() {
-        SaleRequest saleRequest = SaleRequest.builder().orderNumber("987654322").build();
-        SaleOrder saleOrderReturned = SaleOrder.builder().status(ERROR).build();
-        AuthorizeSaleResponse authorizeSaleResponseReturned = AuthorizeSaleResponse.builder().invoiceNumber("000000001").build();
+        SaleRequest saleRequest = Instancio.of(SaleRequest.class).set(Select.field("orderNumber"), "987654322").create();
+        SaleOrder saleOrderReturned = Instancio.of(SaleOrder.class).set(Select.field("status"), ERROR).create();
+        AuthorizeSaleResponse authorizeSaleResponseReturned = Instancio.of(AuthorizeSaleResponse.class).set(Select.field("invoiceNumber"), "000000001").create();
 
         when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getOrderNumber())).thenReturn(Optional.of(saleOrderReturned));
         when(saleAuthorizerServiceMock.execute(saleRequest)).thenReturn(authorizeSaleResponseReturned);
@@ -106,7 +108,7 @@ public class SaleProcessorUseCaseImplTest {
 
     @Test
     void givenAnInvalidSaleOrderWhenExecutingTheSaleProcessorUseCaseThenShouldCallSaleOrderInserterOutPortAndSaleCallbackIntegrateOutPort() {
-        SaleRequest saleRequest = SaleRequest.builder().orderNumber("987654322").build();
+        SaleRequest saleRequest = Instancio.of(SaleRequest.class).set(Select.field("orderNumber"), "987654322").create();
 
         when(mostRecentSaleOrderFinderOutPortMock.execute(saleRequest.getOrderNumber())).thenReturn(Optional.empty());
         doThrow(new RuntimeException("Validation Error")).when(saleValidatorServiceMock).execute(saleRequest);

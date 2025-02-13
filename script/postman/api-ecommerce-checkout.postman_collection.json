@@ -1,0 +1,131 @@
+{
+	"info": {
+		"_postman_id": "13d5c68b-ce3a-40ae-846a-b5843a9a8865",
+		"name": "api-ecommerce-checkout",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "2549117"
+	},
+	"item": [
+		{
+			"name": "Default Infrastructure (http://localhost:8181/authorize-sale)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"channelCode\": \"APP\",\r\n  \"companyCode\": \"001\",\r\n  \"storeCode\": \"100\",\r\n  \"pos\": 105,\r\n  \"orderNumber\": \"987654322\",\r\n  \"totalValue\": 105.04,\r\n  \"freightValue\": 5.05,\r\n  \"customer\": {\r\n    \"name\": \"Martin Kauê Lopes\",\r\n    \"document\": \"60778532402\",\r\n    \"documentType\": \"CPF\",\r\n    \"address\": \"Rua Projetada 913\",\r\n    \"addressNumber\": \"622\",\r\n    \"addressComplement\": \"Apt 202\",\r\n    \"neighborhood\": \"Antares\",\r\n    \"city\": \"Maceió\",\r\n    \"state\": \"AL\",\r\n    \"country\": \"Brasil\",\r\n    \"zipCode\": \"57048434\",\r\n    \"phone\": \"82992344475\",\r\n    \"email\": \"martin_lopes@rafaelmarin.net\"\r\n  },\r\n  \"items\": [\r\n    {\r\n      \"code\": 100231933559,\r\n      \"quantity\": 1,\r\n      \"value\": 7.09\r\n    },\r\n    {\r\n      \"code\": 874631202305,\r\n      \"quantity\": 2,\r\n      \"value\": 17.68\r\n    },\r\n    {\r\n      \"code\": 392084657819,\r\n      \"quantity\": 3,\r\n      \"value\": 19.18\r\n    }\r\n  ],\r\n  \"payments\": [\r\n    {\r\n      \"paymentMethod\": \"CREDIT\",\r\n      \"paymentDate\": \"2025-01-30T13:45:01\",\r\n      \"authorizationCode\": \"270606\",\r\n      \"cardNumber\": \"3556777163651312\",\r\n      \"pixKey\": null,\r\n      \"value\": 105.04\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8181/authorize-sale",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8181",
+					"path": [
+						"authorize-sale"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Alternative Infrastructure (http://localhost:8282/authorize-sale)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"channelCode\": \"APP\",\r\n  \"companyCode\": \"001\",\r\n  \"storeCode\": \"100\",\r\n  \"pos\": 105,\r\n  \"orderNumber\": \"987654322\",\r\n  \"totalValue\": 105.04,\r\n  \"freightValue\": 5.05,\r\n  \"customer\": {\r\n    \"name\": \"Martin Kauê Lopes\",\r\n    \"document\": \"60778532402\",\r\n    \"documentType\": \"CPF\",\r\n    \"address\": \"Rua Projetada 913\",\r\n    \"addressNumber\": \"622\",\r\n    \"addressComplement\": \"Apt 202\",\r\n    \"neighborhood\": \"Antares\",\r\n    \"city\": \"Maceió\",\r\n    \"state\": \"AL\",\r\n    \"country\": \"Brasil\",\r\n    \"zipCode\": \"57048434\",\r\n    \"phone\": \"82992344475\",\r\n    \"email\": \"martin_lopes@rafaelmarin.net\"\r\n  },\r\n  \"items\": [\r\n    {\r\n      \"code\": 100231933559,\r\n      \"quantity\": 1,\r\n      \"value\": 7.09\r\n    },\r\n    {\r\n      \"code\": 874631202305,\r\n      \"quantity\": 2,\r\n      \"value\": 17.68\r\n    },\r\n    {\r\n      \"code\": 392084657819,\r\n      \"quantity\": 3,\r\n      \"value\": 19.18\r\n    }\r\n  ],\r\n  \"payments\": [\r\n    {\r\n      \"paymentMethod\": \"CREDIT\",\r\n      \"paymentDate\": \"2025-01-30T13:45:01\",\r\n      \"authorizationCode\": \"270606\",\r\n      \"cardNumber\": \"3556777163651312\",\r\n      \"pixKey\": null,\r\n      \"value\": 105.04\r\n    }\r\n  ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8282/authorize-sale",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8282",
+					"path": [
+						"authorize-sale"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Wiremock (http://localhost:8443/findByCode?code=100231933559)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:8443/findByCode?code=100231933559",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"findByCode"
+					],
+					"query": [
+						{
+							"key": "code",
+							"value": "100231933559"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Wiremock (http://localhost:8443/authorize)",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"companyCode\": \"001\",\r\n    \"storeCode\": \"100\",\r\n    \"terminalNumber\": \"105\",\r\n    \"nsu\": \"98765432120250207142619\",\r\n    \"totalValue\": 105.04,\r\n    \"date\": \"2025-02-07T14:26:19\",\r\n    \"customer\": {\r\n        \"name\": \"Martin Kauê Lopes\",\r\n        \"document\": \"60778532402\",\r\n        \"documentType\": \"CPF\",\r\n        \"phone\": \"82992344475\",\r\n        \"email\": \"martin_lopes@rafaelmarin.net\",\r\n        \"address\": {\r\n            \"address\": \"Rua Projetada 913\",\r\n            \"addressNumber\": \"622\",\r\n            \"addressComplement\": \"Apt 202\",\r\n            \"neighborhood\": \"Antares\",\r\n            \"city\": \"Maceió\",\r\n            \"state\": \"AL\",\r\n            \"country\": \"Brasil\",\r\n            \"zipCode\": \"57048434\"\r\n        }\r\n    },\r\n    \"items\": [\r\n        {\r\n            \"sequence\": 1,\r\n            \"sku\": 100231933559,\r\n            \"amount\": 1,\r\n            \"value\": 7.09,\r\n            \"ivaCbsValue\": 1.06,\r\n            \"ivaIbsValue\": 0.7\r\n        },\r\n        {\r\n            \"sequence\": 2,\r\n            \"sku\": 874631202305,\r\n            \"amount\": 2,\r\n            \"value\": 17.68,\r\n            \"ivaCbsValue\": 2.65,\r\n            \"ivaIbsValue\": 1.76\r\n        },\r\n        {\r\n            \"sequence\": 3,\r\n            \"sku\": 392084657819,\r\n            \"amount\": 3,\r\n            \"value\": 19.18,\r\n            \"ivaCbsValue\": 2.87,\r\n            \"ivaIbsValue\": 1.91\r\n        }\r\n    ],\r\n    \"payments\": [\r\n        {\r\n            \"sequence\": 1,\r\n            \"type\": \"CREDIT\",\r\n            \"date\": \"2025-01-30T13:45:01\",\r\n            \"authorizationCode\": \"270606\",\r\n            \"cardNumber\": \"3556777163651312\",\r\n            \"pixKey\": null,\r\n            \"value\": 105.04\r\n        }\r\n    ]\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:8443/authorize",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "8443",
+					"path": [
+						"authorize"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}

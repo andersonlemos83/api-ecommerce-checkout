@@ -8,7 +8,7 @@
     <parent>
         <groupId>br.com.alc</groupId>
         <artifactId>api-ecommerce-checkout</artifactId>
-        <version>0.0.1-SNAPSHOT</version>
+        <version>1.0.0</version>
     </parent>
 
     <artifactId>api-ecommerce-checkout-infrastructure</artifactId>
@@ -294,6 +294,14 @@
             <groupId>org.wiremock</groupId>
             <artifactId>wiremock</artifactId>
             <version>3.2.0</version>
+            <scope>test</scope>
+        </dependency>
+
+        <!-- test - instancio -->
+        <dependency>
+            <groupId>org.instancio</groupId>
+            <artifactId>instancio-junit</artifactId>
+            <version>5.3.0</version>
             <scope>test</scope>
         </dependency>
 

@@ -4,6 +4,7 @@ import br.com.alc.ecommerce.checkout.core.domain.sale.SaleRequest;
 import br.com.alc.ecommerce.checkout.core.domain.sale.SaleResponse;
 import br.com.alc.ecommerce.checkout.core.port.output.SaleIntegratorOutPort;
 import br.com.alc.ecommerce.checkout.core.service.watch.WatchService;
+import org.instancio.Instancio;
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -32,7 +33,7 @@ public class SaleIntegratorUseCaseImplTest {
 
     @Test
     void whenExecutingTheSaleIntegratorUseCaseThenShouldCallSaleIntegratorOutPortAndReturnTheExpectedObject() {
-        SaleRequest saleRequest = new SaleRequest();
+        SaleRequest saleRequest = Instancio.create(SaleRequest.class);
         LocalDateTime nowExpected = LocalDateTime.now();
         when(watchServiceMock.nowLocalDateTime()).thenReturn(nowExpected);
 
