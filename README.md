@@ -8,7 +8,7 @@ This is the English version. For the Portuguese version, click [here](./README.p
 
 # About the api-ecommerce-checkout project
 
-This is a fictional project created exclusively for studying and validating new technologies.
+This is a fictional project exclusively created for studying and validating new technologies.
 
 ## Technologies and Concepts
 
@@ -84,8 +84,8 @@ The Ecommerce Checkout project was developed following the principles of clean a
 
 Currently, the following infrastructure modules have been implemented:
 
-- **Default Infrastructure Module**: Uses Oracle as the database and RabbitMQ as the messaging system.
-- **Alternative Infrastructure Module**: Uses PostgreSQL as the database and Kafka as the messaging system.
+- **Default Infrastructure Module**: It uses Oracle as the database and RabbitMQ as the messaging system.
+- **Alternative Infrastructure Module**: It uses PostgreSQL as the database and Kafka as the messaging system.
 
 <img src="./script/diagrams/architecture.png" alt="Architecture (Clean + Hexagonal)" width="70%" height="70%">
 
@@ -116,9 +116,9 @@ Currently, the following infrastructure modules have been implemented:
 
 To organize the tests according to their type and function, they were grouped into three main suites:
 
-- **RunCucumberTest**: Contains all acceptance tests implemented with Cucumber and BDD. This suite has a slower execution, as it requires the initialization of the context and infrastructure.
-- **UnitTests**: Contains all unit tests of the project. As it has no external dependencies, its execution is fast.
-- **AllTests**: Groups all implemented tests, combining acceptance tests (RunCucumberTest) and unit tests (UnitTests).
+- **RunCucumberTest**: It contains all acceptance tests implemented with Cucumber and BDD. This suite has a slower execution, as it requires the initialization of the context and infrastructure.
+- **UnitTests**: It contains all unit tests of the project. As it has no external dependencies, its execution is fast.
+- **AllTests**: It groups all implemented tests, combining acceptance tests (RunCucumberTest) and unit tests (UnitTests).
 
 ## Getting Started with the Default Application (Oracle and RabbitMQ)
 
@@ -166,21 +166,21 @@ To organize the tests according to their type and function, they were grouped in
 4. Create a new user ecommerce-checkout:
   ```
     1. Go to /Admin/User
-    2. Fill in Username: ecommerce-checkout, Password: ecommerce-checkout e Tags: administrator
+    2. Fill in Username: ecommerce-checkout, Password: ecommerce-checkout and Tags: administrator
     3. Click "Add user" 
   ```
 
 5. Create a new virtual host ecommerce-checkout:
   ```
     1. Go to /Admin/Virtual Hosts
-    2. Fill in Name: ecommerce-checkout e Default Queue Type: Classic
+    2. Fill in Name: ecommerce-checkout and Default Queue Type: Classic
     3. Click "Add virtual host" 
   ```
 
 6. Add permissions for the ecommerce-checkout user to the ecommerce-checkout virtual host:
   ```
     1. Go to /Admin/Virtual Hosts/ecommerce-checkout
-    2. Fill in User: ecommerce-checkout, Configure regexp: .*, Write regexp: .* e Read regexp: .*
+    2. Fill in User: ecommerce-checkout, Configure regexp: .*, Write regexp: .* and Read regexp: .*
     3. Click "Set permissions" 
   ```
 
@@ -193,7 +193,7 @@ To organize the tests according to their type and function, they were grouped in
 8. Create a new queue sale-callback-queue:
   ```
     1. Go to /Queues and Streams
-    2. Fill in Virtual host: ecommerce-checkout, Type: Default fo virtual host, Name: sale-callback-queue e Durability: Durable
+    2. Fill in Virtual host: ecommerce-checkout, Type: Default fo virtual host, Name: sale-callback-queue and Durability: Durable
     3. Click "Add queue" 
   ```
 
@@ -280,7 +280,7 @@ To organize the tests according to their type and function, they were grouped in
   ```
     1. Go to /Topics
     2. Click "Add a Topic"
-    2. Fill in Topic Name: sale-callback-topic, Number of Partitions: 2 e Cleanup policy: Delete
+    2. Fill in Topic Name: sale-callback-topic, Number of Partitions: 2 and Cleanup policy: Delete
     3. Click "Create topic" 
   ```
 
@@ -304,7 +304,7 @@ To organize the tests according to their type and function, they were grouped in
 3. Create the ecommerce_db database objects:
    [postgres.sql](./script/db/postgres.sql)
 
-- **Alternative Application (PostgreSQL e Kafka)**:
+- **Alternative Application (PostgreSQL and Kafka)**:
 1. Create and run a Spring Boot runner:
   ```
     Main Class: /alternative-infrastructure/src/main/java/br/com/alc/ecommerce/checkout/infrastructure/EcommerceCheckoutAlternativeInfrastructureApplication.java
@@ -319,7 +319,7 @@ To organize the tests according to their type and function, they were grouped in
 
 4. Test application:
   ```
-  1. Enviar um request POST para http://localhost:8282/authorize-sale (Swagger ou Postman!);
+  1. Send a POST request to http://localhost:8282/authorize-sale (Swagger or Postman!);
   2. Verify if there is a PROCESSED record in the PUBLIC.SALE_ORDER table;
   3. Verify if there is a message in the sale-callback-topic.
   ```
