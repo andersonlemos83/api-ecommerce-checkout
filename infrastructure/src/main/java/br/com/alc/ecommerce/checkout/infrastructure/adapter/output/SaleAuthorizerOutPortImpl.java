@@ -27,9 +27,9 @@ public class SaleAuthorizerOutPortImpl implements SaleAuthorizerOutPort {
     public AuthorizeSaleResponse execute(AuthorizeSaleRequest authorizeSaleRequest) {
         log.debug("Incoming into SaleAuthorizerOutPortImpl: {}", generateJson(authorizeSaleRequest));
         AuthorizeSaleRequestDto authorizeSaleRequestDto = modelMapper.map(authorizeSaleRequest, AuthorizeSaleRequestDto.class);
-        log.info("---> Request /authorize: {}", generateJson(authorizeSaleRequestDto));
+        log.info("---> Request POST /authorize: {}", generateJson(authorizeSaleRequestDto));
         AuthorizeSaleResponseDto authorizeSaleResponseDto = midClient.authorize(authorizeSaleRequestDto);
-        log.info("<--- Response /authorize: {}", generateJson(authorizeSaleResponseDto));
+        log.info("<--- Response POST /authorize: {}", generateJson(authorizeSaleResponseDto));
         AuthorizeSaleResponse authorizeSaleResponse = modelMapper.map(authorizeSaleResponseDto, AuthorizeSaleResponse.class);
         log.debug("Outgoing from SaleAuthorizerOutPortImpl: {}", generateJson(authorizeSaleResponse));
         return authorizeSaleResponse;
