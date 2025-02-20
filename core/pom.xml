@@ -54,21 +54,6 @@
             <artifactId>spring-boot</artifactId>
         </dependency>
 
-        <!-- spring-boot - devtools -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-devtools</artifactId>
-            <scope>runtime</scope>
-            <optional>true</optional>
-        </dependency>
-
-        <!-- spring-boot - migrator -->
-        <dependency>
-            <groupId>org.springframework.boot</groupId>
-            <artifactId>spring-boot-properties-migrator</artifactId>
-            <scope>runtime</scope>
-        </dependency>
-
         <!-- lombok -->
         <dependency>
             <groupId>org.projectlombok</groupId>
