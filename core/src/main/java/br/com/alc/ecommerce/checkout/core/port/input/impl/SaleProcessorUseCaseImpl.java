@@ -53,8 +53,8 @@ public final class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
         try {
             saleValidatorService.execute(saleRequest);
 
-            SaleOrder prossingSaleOrdersaleOrder = buildProssingSaleOrder(saleRequest);
-            saleOrderInserterOutPort.execute(prossingSaleOrdersaleOrder);
+            SaleOrder processingSaleOrdersaleOrder = buildProcessingSaleOrder(saleRequest);
+            saleOrderInserterOutPort.execute(processingSaleOrdersaleOrder);
 
             AuthorizeSaleResponse authorizeSaleResponse = saleAuthorizerService.execute(saleRequest);
 
@@ -74,7 +74,7 @@ public final class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
         }
     }
 
-    private SaleOrder buildProssingSaleOrder(SaleRequest saleRequest) {
+    private SaleOrder buildProcessingSaleOrder(SaleRequest saleRequest) {
         SaleOrder.SaleOrderBuilder saleOrderBuilder = buildSaleOrder(saleRequest);
         return saleOrderBuilder
                 .status(IN_PROCESSING)

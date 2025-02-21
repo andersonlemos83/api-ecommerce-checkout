@@ -88,6 +88,8 @@ springdoc:
     path: /swagger-ui.html
 
 feign:
+  circuitbreaker:
+    enabled: true
   client:
     config:
       default:
@@ -100,11 +102,11 @@ resilience4j:
     instances:
       sale-authorizer-circuitbreaker:
         slidingWindowType: TIME_BASED
-        slidingWindowSize: 30
-        minimumNumberOfCalls: 2
-        failureRateThreshold: 80
-        permittedNumberOfCallsInHalfOpenState: 2
-        waitDurationInOpenState: 30s
+        slidingWindowSize: 60
+        minimumNumberOfCalls: 10
+        failureRateThreshold: 50
+        permittedNumberOfCallsInHalfOpenState: 5
+        waitDurationInOpenState: 20s
 
 management:
   server:
