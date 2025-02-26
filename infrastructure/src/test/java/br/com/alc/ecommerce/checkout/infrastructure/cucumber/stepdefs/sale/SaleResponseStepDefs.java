@@ -14,7 +14,7 @@ public class SaleResponseStepDefs extends StepDefs {
     private final SaleResponseVerifier saleResponseVerifier;
 
     @Entao("^deveria receber os dados de Sale Response$")
-    public void deveriaReceberOsDadosDeVendaResponse(List<SaleResponseDataTable> saleResponseDataTableList) throws Exception {
+    public void deveriaReceberOsDadosDeVendaResponse(List<SaleResponseDataTable> saleResponseDataTableList) {
         saleResponseVerifier.verify(saleResponseDataTableList, transitionDataTable.getResponse());
     }
 }

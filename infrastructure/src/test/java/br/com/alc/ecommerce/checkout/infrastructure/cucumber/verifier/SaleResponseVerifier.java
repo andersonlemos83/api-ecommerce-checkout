@@ -15,8 +15,8 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 @Component
 public class SaleResponseVerifier {
 
-    public void verify(List<SaleResponseDataTable> expected, ResultActions response) {
-        expected.forEach(e -> verify(e, response));
+    public void verify(List<SaleResponseDataTable> expecteds, ResultActions response) {
+        expecteds.forEach(e -> verify(e, response));
     }
 
     @SneakyThrows
