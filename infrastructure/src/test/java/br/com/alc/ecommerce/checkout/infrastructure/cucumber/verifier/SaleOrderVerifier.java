@@ -28,10 +28,10 @@ public class SaleOrderVerifier {
         assertEquals("Should return the expected number of Sale Orders.", expecteds.size(), returneds.size());
 
         for (int i = 0; i < expecteds.size(); i++) {
-            SaleOrderDataTable esperado = expecteds.get(i);
+            SaleOrderDataTable expected = expecteds.get(i);
             SaleOrderEntity returned = returneds.get(i);
 
-            verify(esperado, returned);
+            verify(expected, returned);
         }
     }
 

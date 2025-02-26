@@ -41,7 +41,7 @@ public final class AuthorizePaymentFactoryImpl implements AuthorizePaymentFactor
     private AuthorizePayment.AuthorizePaymentBuilder buildAuthorizePaymentBuilder(Payment payment, int sequence) {
         return AuthorizePayment.builder()
                 .sequence(sequence)
-                .type(payment.getNamePaymentMethod())
+                .type(payment.fetchNamePaymentMethod())
                 .date(DateUtil.format(payment.getPaymentDate()))
                 .authorizationCode(payment.getAuthorizationCode())
                 .value(payment.getValue());

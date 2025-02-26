@@ -28,27 +28,27 @@ public final class SaleRequest implements Serializable {
     private List<ShoppingCartItem> items;
     private List<Payment> payments;
 
-    public String getTerminalNumber() {
+    public String generateTerminalNumber() {
         return Optional.ofNullable(pos)
                 .map(String::valueOf)
                 .orElse(null);
     }
 
-    public BigDecimal getTotalValueMinusFreightValue() {
+    public BigDecimal generateTotalValueMinusFreightValue() {
         BigDecimal total = Optional.ofNullable(totalValue).orElse(ZERO);
         BigDecimal freight = Optional.ofNullable(freightValue).orElse(ZERO);
         return total.subtract(freight);
     }
 
-    public BigDecimal getTotalItemValue() {
+    public BigDecimal generateTotalItemValue() {
         return Optional.ofNullable(items)
                 .orElse(emptyList())
                 .stream()
-                .map(ShoppingCartItem::getTotalItemValue)
+                .map(ShoppingCartItem::generateTotalItemValue)
                 .reduce(ZERO, BigDecimal::add);
     }
 
-    public BigDecimal getTotalPaymentValue() {
+    public BigDecimal generateTotalPaymentValue() {
         return Optional.ofNullable(payments)
                 .orElse(emptyList())
                 .stream()

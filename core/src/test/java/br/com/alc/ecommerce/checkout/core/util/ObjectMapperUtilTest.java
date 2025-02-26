@@ -18,7 +18,7 @@ public class ObjectMapperUtilTest {
     void givenAnSerializableObjectWhenExecutingTheGenerateJsonMethodThenShouldReturnAnSerializedObject() {
         ShoppingCartItem shoppingCartItem = ShoppingCartItem.builder().code(BigInteger.valueOf(100231933559L)).quantity(1).value(BigDecimal.valueOf(7.09)).build();
         String jsonReturned = ObjectMapperUtil.generateJson(shoppingCartItem);
-        assertEquals("{\"code\":100231933559,\"quantity\":1,\"value\":7.09,\"totalItemValue\":7.09}", jsonReturned);
+        assertEquals("{\"code\":100231933559,\"quantity\":1,\"value\":7.09}", jsonReturned);
     }
 
     @Test

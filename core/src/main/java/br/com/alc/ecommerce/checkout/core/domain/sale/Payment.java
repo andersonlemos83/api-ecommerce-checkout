@@ -23,7 +23,7 @@ public final class Payment implements Serializable {
     private String pixKey;
     private BigDecimal value;
 
-    public String getNamePaymentMethod() {
+    public String fetchNamePaymentMethod() {
         return EnumUtil.toName(paymentMethod);
     }
 
