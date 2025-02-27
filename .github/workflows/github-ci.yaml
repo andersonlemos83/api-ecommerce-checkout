@@ -1,4 +1,4 @@
-name: Spring Boot CI with Docker
+name: CI/CD api-ecommerce-checkout
 
 on:
   push:
