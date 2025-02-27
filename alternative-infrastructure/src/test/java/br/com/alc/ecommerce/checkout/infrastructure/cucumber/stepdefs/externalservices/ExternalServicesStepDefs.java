@@ -36,8 +36,8 @@ public class ExternalServicesStepDefs extends StepDefs {
         midClientVerifier.verifyAuthorizeEnpoint(jsonRequestDataTableList);
     }
 
-    @E("^nao deveria enviar para o endpoint authorize nenhum request$")
-    public void naoDeveriaEnviarParaOhEndpointAuthorizeNenhumRequest() {
+    @E("^nao deveria enviar nenhum request para o endpoint authorize$")
+    public void naoDeveriaEnviarNenhumRequestParaOhEndpointAuthorize() {
         midClientVerifier.verifyAuthorizeEnpoint(emptyList());
     }
 }

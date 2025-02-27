@@ -16,11 +16,11 @@ public final class SaleValidatorServiceImpl implements SaleValidatorService {
     @Override
     public void execute(SaleRequest saleRequest) {
         log.info("Incoming into SaleValidatorServiceImpl: {}", generateJson(saleRequest));
-        if (saleRequest.getTotalPaymentValue().compareTo(saleRequest.getTotalValue()) != 0) {
+        if (saleRequest.generateTotalPaymentValue().compareTo(saleRequest.getTotalValue()) != 0) {
             throw new TotalPaymentValueMismatchException();
         }
 
-        if (saleRequest.getTotalItemValue().compareTo(saleRequest.getTotalValueMinusFreightValue()) != 0) {
+        if (saleRequest.generateTotalItemValue().compareTo(saleRequest.generateTotalValueMinusFreightValue()) != 0) {
             throw new TotalItemValueMismatchException();
         }
     }

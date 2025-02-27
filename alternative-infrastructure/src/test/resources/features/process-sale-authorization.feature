@@ -173,7 +173,7 @@ Funcionalidade: Processar Autorizacao Venda
     E deveria publicar o JSON esperado no topico
       | Topic Name          | Json Key  |
       | sale-callback-topic | 987654326 |
-    E nao deveria enviar para o endpoint authorize nenhum request
+    E nao deveria enviar nenhum request para o endpoint authorize
 
   Cenario: 06 - (Re)Processar autorizacao venda qualquer ja processada com erro - Sucesso
     Dado que seja informado os dados de Sale Request
@@ -240,7 +240,7 @@ Funcionalidade: Processar Autorizacao Venda
     E deveria publicar o JSON esperado no topico
       | Topic Name          | Json Key  |
       | sale-callback-topic | 987654328 |
-    E nao deveria enviar para o endpoint authorize nenhum request
+    E nao deveria enviar nenhum request para o endpoint authorize
 
   Cenario: 08 - Processar autorizacao venda qualquer com valor de item divergente - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
@@ -269,7 +269,7 @@ Funcionalidade: Processar Autorizacao Venda
     E deveria publicar o JSON esperado no topico
       | Topic Name          | Json Key  |
       | sale-callback-topic | 987654329 |
-    E nao deveria enviar para o endpoint authorize nenhum request
+    E nao deveria enviar nenhum request para o endpoint authorize
 
   Cenario: 09 - Processar autorizacao venda qualquer com impostos nao encontrados - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
@@ -298,7 +298,7 @@ Funcionalidade: Processar Autorizacao Venda
     E deveria publicar o JSON esperado no topico
       | Topic Name          | Json Key  |
       | sale-callback-topic | 987654330 |
-    E nao deveria enviar para o endpoint authorize nenhum request
+    E nao deveria enviar nenhum request para o endpoint authorize
 
   Cenario: 10 - Processar autorizacao venda qualquer com erro inesperado ao consultar Sale Order - Fluxo excepcional
     Dado que seja informado os dados de Sale Request
@@ -322,7 +322,7 @@ Funcionalidade: Processar Autorizacao Venda
       | 874631202305 | OK     | /fixtures/TaxResponseDto-874631202305.json |
     Quando processar autorizacao venda
     Entao nao deveria existir nenhuma Sale Order na base
-    E nao deveria enviar para o endpoint authorize nenhum request
+    E nao deveria enviar nenhum request para o endpoint authorize
     E nao deveria publicar nenhum JSON no topico
       | Topic Name           |
       | authorize-sale-topic |
@@ -354,7 +354,7 @@ Funcionalidade: Processar Autorizacao Venda
     Entao deveria existir as seguintes Sale Order na base
       | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key | Invoice Number | Issuance Date | Invoice Base64 | Status        | Error Reason | Created Date            | Updated Date            |
       | 1  | APP         | 001          | 100        | 105 | 987654332    | 105.04      | 5.05          |             |                |               |                | IN_PROCESSING |              | 2025-01-30T13:47:26.000 | 2025-01-30T13:47:26.000 |
-    E nao deveria enviar para o endpoint authorize nenhum request
+    E nao deveria enviar nenhum request para o endpoint authorize
     E nao deveria publicar nenhum JSON no topico
       | Topic Name           |
       | authorize-sale-topic |

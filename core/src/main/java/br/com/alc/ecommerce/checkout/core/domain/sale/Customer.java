@@ -26,7 +26,7 @@ public final class Customer implements Serializable {
     private String phone;
     private String email;
 
-    public String getNameDocumentType() {
+    public String fetchNameDocumentType() {
         return EnumUtil.toName(documentType);
     }
 }

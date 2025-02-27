@@ -14,7 +14,7 @@ public class ErrorResponseStepDefs extends StepDefs {
     private final ErrorResponseVerifier errorResponseVerifier;
 
     @Entao("^deveria receber os dados de Error Response$")
-    public void deveriaReceberOsDadosDeErrorResponse(List<ErrorResponseDataTable> errorResponseDataTableList) throws Exception {
+    public void deveriaReceberOsDadosDeErrorResponse(List<ErrorResponseDataTable> errorResponseDataTableList) {
         errorResponseVerifier.verify(errorResponseDataTableList, transitionDataTable.getResponse());
     }
 }

@@ -14,15 +14,15 @@ import static org.junit.jupiter.api.Assertions.assertEquals;
 @Component
 public class ErrorResponseVerifier {
 
-    public void verify(List<ErrorResponseDataTable> expected, ResultActions response) {
-        expected.forEach(e -> verify(e, response));
+    public void verify(List<ErrorResponseDataTable> expected, ResultActions resultActions) {
+        expected.forEach(e -> verify(e, resultActions));
     }
 
     @SneakyThrows
-    private void verify(ErrorResponseDataTable expected, ResultActions response) {
-        ErrorResponseDto returned = ObjectMapperHelper.generateErrorResponseDto(response);
+    private void verify(ErrorResponseDataTable expected, ResultActions resultActions) {
+        ErrorResponseDto response = ObjectMapperHelper.generateErrorResponseDto(resultActions);
 
-        assertEquals(expected.getHttpStatus(), returned.getHttpStatus());
-        assertEquals(expected.getMessage(), returned.getMessage());
+        assertEquals(expected.getHttpStatus(), response.getHttpStatus());
+        assertEquals(expected.getMessage(), response.getMessage());
     }
 }
