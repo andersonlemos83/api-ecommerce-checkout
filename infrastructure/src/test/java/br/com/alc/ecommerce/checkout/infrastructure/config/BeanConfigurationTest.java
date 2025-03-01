@@ -17,6 +17,6 @@ public class BeanConfigurationTest {
     void whenExecutingWatchServiceMethodThenShouldReturnAnInstanceOfRealWatchService() {
         BeanConfiguration beanConfiguration = new BeanConfiguration();
         WatchService watchService = beanConfiguration.watchService();
-        assertTrue("", watchService instanceof RealWatchService);
+        assertTrue("Should return an instance of RealWatchService", watchService instanceof RealWatchService);
     }
 }
