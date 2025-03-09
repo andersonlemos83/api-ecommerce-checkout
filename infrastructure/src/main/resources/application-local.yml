@@ -6,7 +6,7 @@ spring:
     password: ecommerce-checkout
     virtual-host: ecommerce-checkout
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:ORCL
+    url: jdbc:oracle:thin:@//localhost:1521/ORCL
     username: ECOMMERCE_CHECKOUT_OWNER
     password: ECOMMERCE_CHECKOUT_OWNER
   jpa:
@@ -16,6 +16,14 @@ spring:
       host: localhost
       port: 6379
       password:
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 15000
+            readTimeout: 15000
+            loggerLevel: FULL # NONE, BASIC, HEADERS, FULL
 
 server:
   port: 8181
@@ -23,14 +31,6 @@ server:
 management:
   server:
     port: 9191
-
-feign:
-  client:
-    config:
-      default:
-        connectTimeout: 15000
-        readTimeout: 15000
-        loggerLevel: FULL # NONE, BASIC, HEADERS, FULL
 
 client:
   tax:

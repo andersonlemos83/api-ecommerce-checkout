@@ -1,5 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.client;
 
+import br.com.alc.ecommerce.checkout.infrastructure.client.fallback.TaxClientFallbackFactory;
 import br.com.alc.ecommerce.checkout.infrastructure.dto.tax.TaxResponseDto;
 import feign.Headers;
 import org.springframework.cloud.openfeign.FeignClient;
@@ -10,7 +11,10 @@ import java.math.BigInteger;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@FeignClient(name = "api-tax", url = "${client.mid-client.url}")
+@SuppressWarnings("squid:S7091") // Circular dependencies between classes across packages
+@FeignClient(name = "api-tax",
+        url = "${client.tax.url}",
+        fallbackFactory = TaxClientFallbackFactory.class)
 public interface TaxClient {
 
     @Headers("Content-Type: " + APPLICATION_JSON_VALUE)

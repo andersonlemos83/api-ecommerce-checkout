@@ -13,32 +13,31 @@ spring:
     password: ecommerce-checkout
     virtual-host: ecommerce-checkout
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:XE
+    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
     username: ECOMMERCE_CHECKOUT_OWNER
     password: ECOMMERCE_CHECKOUT_OWNER
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.OracleDialect
         default_schema: ECOMMERCE_CHECKOUT_OWNER
         generate_statistics: true
     hibernate:
       ddl-auto: update
     show-sql: true
-  web:
-    locale: pt_BR
-    locale-resolver: fixed
   data:
     redis:
       host: localhost
       port: 6379
       password: null
-
-feign:
-  client:
-    config:
-      default:
-        loggerLevel: FULL # NONE, BASIC, HEADERS, FULL
+  web:
+    locale: pt_BR
+    locale-resolver: fixed
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            loggerLevel: FULL # NONE, BASIC, HEADERS, FULL
 
 client:
   tax:

@@ -17,6 +17,7 @@ spring:
     default-domain: ~project.artifactId~
   main:
     allow-bean-definition-overriding: true
+    web-application-type: servlet
   cache:
     redis:
       time-to-live: 172800
@@ -41,16 +42,9 @@ spring:
           batch_size: 10
         order_inserts: true
         order_updates: true
-    database-platform: org.hibernate.dialect.PostgreSQLDialect
     hibernate:
       ddl-auto: none
     show-sql: false
-  web:
-    locale: pt_BR
-    locale-resolver: accept_header
-  mvc:
-    pathmatch:
-      matching-strategy: path_pattern_parser
   data:
     jdbc:
       repositories:
@@ -61,6 +55,22 @@ spring:
       host: localhost
       port: 6379
       password: null
+  web:
+    locale: pt_BR
+    locale-resolver: accept_header
+  mvc:
+    pathmatch:
+      matching-strategy: path_pattern_parser
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+      client:
+        config:
+          default:
+            connectTimeout: 15000
+            readTimeout: 15000
+            loggerLevel: BASIC # NONE, BASIC, HEADERS, FULL
 
 server:
   compression:
@@ -79,16 +89,6 @@ springdoc:
   swagger-ui:
     path: /swagger-ui.html
 
-feign:
-  circuitbreaker:
-    enabled: true
-  client:
-    config:
-      default:
-        connectTimeout: 15000
-        readTimeout: 15000
-        loggerLevel: BASIC # NONE, BASIC, HEADERS, FULL
-
 resilience4j:
   circuitbreaker:
     instances:
@@ -99,6 +99,7 @@ resilience4j:
         failureRateThreshold: 50
         permittedNumberOfCallsInHalfOpenState: 5
         waitDurationInOpenState: 20s
+        automaticTransitionFromOpenToHalfOpenEnabled: true
 
 management:
   server:
@@ -119,7 +120,7 @@ management:
     health:
       show-details: always
     prometheus:
-      enabled: true
+      access: unrestricted
   health:
     redis:
       enabled: false
