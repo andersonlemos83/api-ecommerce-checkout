@@ -35,7 +35,7 @@
         </sonar.inclusions>
 
         <!-- versions -->
-        <oracle.database.version>19.25.0.0</oracle.database.version>
+        <oracle.database.version>21.17.0.0</oracle.database.version>
     </properties>
 
     <dependencyManagement>
@@ -175,7 +175,7 @@
         <!-- oracle.database - ojdbc8 -->
         <dependency>
             <groupId>com.oracle.database.jdbc</groupId>
-            <artifactId>ojdbc8</artifactId>
+            <artifactId>ojdbc11</artifactId>
             <version>${oracle.database.version}</version>
             <scope>runtime</scope>
         </dependency>

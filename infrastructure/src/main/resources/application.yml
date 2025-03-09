@@ -50,7 +50,6 @@ spring:
           batch_size: 10
         order_inserts: true
         order_updates: true
-    database-platform: org.hibernate.dialect.OracleDialect
     hibernate:
       ddl-auto: none
     show-sql: false
