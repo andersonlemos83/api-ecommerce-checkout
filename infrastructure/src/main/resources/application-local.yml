@@ -6,7 +6,7 @@ spring:
     password: ecommerce-checkout
     virtual-host: ecommerce-checkout
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:ORCL
+    url: jdbc:oracle:thin:@//localhost:1521/ORCL
     username: ECOMMERCE_CHECKOUT_OWNER
     password: ECOMMERCE_CHECKOUT_OWNER
   jpa:

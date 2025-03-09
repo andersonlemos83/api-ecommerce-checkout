@@ -17,6 +17,7 @@ spring:
     default-domain: ~project.artifactId~
   main:
     allow-bean-definition-overriding: true
+    web-application-type: servlet
   cache:
     redis:
       time-to-live: 172800
@@ -38,7 +39,7 @@ spring:
     hikari:
       minimum-idle: 10
       maximum-pool-size: 30
-    url: jdbc:oracle:thin:@localhost:1521:ORCL
+    url: jdbc:oracle:thin:@//localhost:1521/ORCL
     username: null
     password: null
   jpa:
@@ -107,6 +108,7 @@ resilience4j:
         failureRateThreshold: 50
         permittedNumberOfCallsInHalfOpenState: 5
         waitDurationInOpenState: 20s
+        automaticTransitionFromOpenToHalfOpenEnabled: true
 
 management:
   server:
@@ -127,7 +129,7 @@ management:
     health:
       show-details: always
     prometheus:
-      enabled: true
+      access: unrestricted
   health:
     redis:
       enabled: false

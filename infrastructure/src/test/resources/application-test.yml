@@ -13,13 +13,12 @@ spring:
     password: ecommerce-checkout
     virtual-host: ecommerce-checkout
   datasource:
-    url: jdbc:oracle:thin:@localhost:1521:XE
+    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
     username: ECOMMERCE_CHECKOUT_OWNER
     password: ECOMMERCE_CHECKOUT_OWNER
   jpa:
     properties:
       hibernate:
-        dialect: org.hibernate.dialect.OracleDialect
         default_schema: ECOMMERCE_CHECKOUT_OWNER
         generate_statistics: true
     hibernate:

@@ -12,7 +12,7 @@ public class ContainerManagerOracle extends AbstractContainerManager {
 
     @Override
     protected GenericContainer createContainer() {
-        OracleContainer container = new OracleContainer("gvenzl/oracle-xe:11-slim-faststart")
+        OracleContainer container = new OracleContainer("gvenzl/oracle-xe:18.4.0-slim-faststart")
                 .withPassword("oracle") // SYSTEM
                 .withPrivilegedMode(true)
                 .withReuse(false)
