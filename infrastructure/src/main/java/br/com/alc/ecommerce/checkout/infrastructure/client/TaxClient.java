@@ -10,7 +10,7 @@ import java.math.BigInteger;
 
 import static org.springframework.http.MediaType.APPLICATION_JSON_VALUE;
 
-@FeignClient(name = "api-tax", url = "${client.mid-client.url}")
+@FeignClient(name = "api-tax", url = "${client.tax.url}")
 public interface TaxClient {
 
     @Headers("Content-Type: " + APPLICATION_JSON_VALUE)

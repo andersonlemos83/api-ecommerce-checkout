@@ -54,9 +54,6 @@ spring:
     hibernate:
       ddl-auto: none
     show-sql: false
-  web:
-    locale: pt_BR
-    locale-resolver: accept_header
   mvc:
     pathmatch:
       matching-strategy: path_pattern_parser
@@ -70,6 +67,19 @@ spring:
       host: localhost
       port: 6379
       password: null
+  web:
+    locale: pt_BR
+    locale-resolver: accept_header
+  cloud:
+    openfeign:
+      circuitbreaker:
+        enabled: true
+      client:
+        config:
+          default:
+            connectTimeout: 15000
+            readTimeout: 15000
+            loggerLevel: BASIC # NONE, BASIC, HEADERS, FULL
 
 server:
   compression:
@@ -87,16 +97,6 @@ endpoints:
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
-
-feign:
-  circuitbreaker:
-    enabled: true
-  client:
-    config:
-      default:
-        connectTimeout: 15000
-        readTimeout: 15000
-        loggerLevel: BASIC # NONE, BASIC, HEADERS, FULL
 
 resilience4j:
   circuitbreaker:
