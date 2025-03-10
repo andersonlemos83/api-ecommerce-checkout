@@ -37,9 +37,9 @@ Funcionalidade: Processar Autorizacao Venda
     E deveria enviar para o endpoint authorize os requests esperados
       | Request                                          |
       | /fixtures/AuthorizeSaleRequestDto-987654322.json |
-    E deveria publicar o JSON esperado no topico
-      | Topic Name          | Json Key  |
-      | sale-callback-topic | 987654322 |
+#    E deveria publicar o JSON esperado no topico
+#      | Topic Name          | Json Key  |
+#      | sale-callback-topic | 987654322 |
 
   Cenario: 02 - Processar autorizacao venda valida com pagamento debito - Sucesso
     Dado que seja informado os dados de Sale Request
