@@ -3,7 +3,6 @@ package br.com.alc.ecommerce.checkout.infrastructure.cucumber.stepdefs.processsa
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.datatable.sale.SaleRequestDataTable;
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.feature.ProcessSaleAuthorizationFeature;
 import br.com.alc.ecommerce.checkout.infrastructure.cucumber.stepdefs.StepDefs;
-import io.cucumber.java.pt.E;
 import io.cucumber.java.pt.Quando;
 import lombok.AllArgsConstructor;
 
@@ -21,8 +20,9 @@ public class ProcessSaleAuthorizationStepsDefs extends StepDefs {
         processSaleAuthorizationFeature.execute(saleRequestDataTable);
     }
 
-    @E("^deveria aguadar \"([^\"]*)\" milisegundos$")
-    public void processarAutorizacaoVenda(long timeout) throws Exception {
+    @Quando("^processar autorizacao venda com espera de \"([^\"]*)\" milisegundos$")
+    public void processarAutorizacaoVendaComEspera(long timeout) throws Exception {
+        processarAutorizacaoVenda();
         TimeUnit.MILLISECONDS.sleep(timeout);
     }
 }
