@@ -31,7 +31,7 @@ Funcionalidade: Processar Autorizacao Venda
       | Status | Response                                          |
       | OK     | /fixtures/AuthorizeSaleResponseDto-987654322.json |
     Quando processar autorizacao venda
-    Entao deveria aguadar "2500" milisegundos
+    Entao deveria aguadar "3000" milisegundos
     E deveria existir as seguintes Sale Order na base
       | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status    | Error Reason | Created Date            | Updated Date            |
       | 1  | APP         | 001          | 100        | 105 | 987654322    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | PROCESSED |              | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
@@ -66,7 +66,7 @@ Funcionalidade: Processar Autorizacao Venda
       | Status | Response                                          |
       | OK     | /fixtures/AuthorizeSaleResponseDto-987654323.json |
     Quando processar autorizacao venda
-    Entao deveria aguadar "1500" milisegundos
+    Entao deveria aguadar "3000" milisegundos
     E deveria existir as seguintes Sale Order na base
       | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status    | Error Reason | Created Date            | Updated Date            |
       | 1  | APP         | 001          | 100        | 105 | 987654323    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | PROCESSED |              | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
@@ -101,7 +101,7 @@ Funcionalidade: Processar Autorizacao Venda
       | Status | Response                                          |
       | OK     | /fixtures/AuthorizeSaleResponseDto-987654324.json |
     Quando processar autorizacao venda
-    Entao deveria aguadar "1500" milisegundos
+    Entao deveria aguadar "3000" milisegundos
     E deveria existir as seguintes Sale Order na base
       | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status    | Error Reason | Created Date            | Updated Date            |
       | 1  | APP         | 001          | 100        | 105 | 987654324    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | PROCESSED |              | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
@@ -136,7 +136,7 @@ Funcionalidade: Processar Autorizacao Venda
       | Status | Response                                          |
       | OK     | /fixtures/AuthorizeSaleResponseDto-987654325.json |
     Quando processar autorizacao venda
-    Entao deveria aguadar "1500" milisegundos
+    Entao deveria aguadar "3000" milisegundos
     E deveria existir as seguintes Sale Order na base
       | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key                                  | Invoice Number | Issuance Date           | Invoice Base64                                                           | Status    | Error Reason | Created Date            | Updated Date            |
       | 1  | APP         | 001          | 100        | 105 | 987654325    | 105.04      | 5.05          | 27250212345678550010000000011234567898765432 | 000000001      | 2025-01-30T13:48:00.000 | /fixtures/InvoiceBase64-27250212345678550010000000011234567898765432.txt | PROCESSED |              | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
@@ -300,7 +300,7 @@ Funcionalidade: Processar Autorizacao Venda
       | 392084657819 | OK          | /fixtures/TaxResponseDto-392084657819.json |
       | 874631202305 | BAD_REQUEST | Imposto não encontrado.                    |
     Quando processar autorizacao venda
-    Entao deveria aguadar "2500" milisegundos
+    Entao deveria aguadar "3000" milisegundos
     E deveria existir as seguintes Sale Order na base
       | Id | ChannelCode | Company Code | Store Code | Pos | Order Number | Total Value | Freight Value | Invoice Key | Invoice Number | Issuance Date | Invoice Base64 | Status | Error Reason            | Created Date            | Updated Date            |
       | 1  | APP         | 001          | 100        | 105 | 987654330    | 105.04      | 5.05          |             |                |               |                | ERROR  | Imposto não encontrado. | 2025-01-30T13:48:06.000 | 2025-01-30T13:48:06.000 |
