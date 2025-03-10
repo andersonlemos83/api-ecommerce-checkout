@@ -7,7 +7,7 @@ spring:
     allow-bean-definition-overriding: true
     allow-circular-references: true
   kafka:
-    bootstrap-servers: localhost:9093
+    bootstrap-servers: localhost:9092
   datasource:
     url: jdbc:postgresql://localhost:5432/ecommerce_db
     username: ecommerce_user
