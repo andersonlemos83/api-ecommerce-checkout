@@ -10,7 +10,6 @@ import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
-import java.util.concurrent.TimeUnit;
 
 import static java.util.Arrays.asList;
 
@@ -37,6 +36,5 @@ public class EnvironmentConfigurator {
         redisManager.clearCache();
         wireMockServer.resetAll();
         log.info("END - Configure Environment");
-        TimeUnit.MILLISECONDS.sleep(2000);
     }
 }
