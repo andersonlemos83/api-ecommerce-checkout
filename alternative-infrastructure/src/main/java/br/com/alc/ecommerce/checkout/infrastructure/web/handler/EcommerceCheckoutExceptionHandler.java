@@ -1,6 +1,7 @@
 package br.com.alc.ecommerce.checkout.infrastructure.web.handler;
 
 import br.com.alc.ecommerce.checkout.infrastructure.dto.error.ErrorResponseDto;
+import lombok.extern.log4j.Log4j2;
 import org.springframework.core.annotation.Order;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -14,10 +15,12 @@ import org.springframework.web.servlet.mvc.method.annotation.ResponseEntityExcep
 
 import java.text.MessageFormat;
 
+import static br.com.alc.ecommerce.checkout.core.util.ObjectMapperUtil.generateJson;
 import static java.util.Comparator.naturalOrder;
 import static java.util.stream.Collectors.joining;
 import static org.springframework.core.Ordered.HIGHEST_PRECEDENCE;
 
+@Log4j2
 @RestControllerAdvice
 @Order(HIGHEST_PRECEDENCE)
 public class EcommerceCheckoutExceptionHandler extends ResponseEntityExceptionHandler {
@@ -35,6 +38,7 @@ public class EcommerceCheckoutExceptionHandler extends ResponseEntityExceptionHa
                 .httpStatus((HttpStatus) status)
                 .message(message)
                 .build();
+        log.debug("Outgoing from EcommerceCheckoutExceptionHandler: {}", generateJson(errorResponseDto));
         return handleExceptionInternal(ex, errorResponseDto, new HttpHeaders(), status, request);
     }
 
