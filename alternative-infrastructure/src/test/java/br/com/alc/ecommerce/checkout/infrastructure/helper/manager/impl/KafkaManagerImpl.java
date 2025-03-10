@@ -122,7 +122,7 @@ public class KafkaManagerImpl implements KafkaManager {
             consumer.seekToBeginning(consumer.assignment());
 
             List<String> messages = new ArrayList<>();
-            int maxAttempts = 3;
+            int maxAttempts = 5;
             for (int i = 0; i < maxAttempts; i++) {
                 ConsumerRecords<String, Object> records = consumer.poll(Duration.ofMillis(1000));
                 records.records(topicName).forEach(r -> messages.add(generateJson(r.value())));
