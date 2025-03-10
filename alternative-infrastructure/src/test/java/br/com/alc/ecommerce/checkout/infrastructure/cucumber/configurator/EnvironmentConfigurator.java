@@ -5,10 +5,12 @@ import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.PostgresManag
 import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.RedisManager;
 import com.github.tomakehurst.wiremock.WireMockServer;
 import lombok.AllArgsConstructor;
+import lombok.SneakyThrows;
 import lombok.extern.log4j.Log4j2;
 import org.springframework.stereotype.Component;
 
 import java.util.List;
+import java.util.concurrent.TimeUnit;
 
 import static java.util.Arrays.asList;
 
@@ -24,8 +26,9 @@ public class EnvironmentConfigurator {
     private final RedisManager redisManager;
     private final WireMockServer wireMockServer;
 
+    @SneakyThrows
     public void configureEnvironment() {
-        log.info("START - Initializing Context");
+        log.info("START - Configure Environment");
         postgresManager.removeForeignKeys();
         postgresManager.cleanDatabase();
         postgresManager.resetSequences();
@@ -33,6 +36,7 @@ public class EnvironmentConfigurator {
         kafkaManager.clearTopics(TOPICS);
         redisManager.clearCache();
         wireMockServer.resetAll();
-        log.info("END - Initializing Context");
+        log.info("END - Configure Environment");
+        TimeUnit.MILLISECONDS.sleep(2000);
     }
 }
