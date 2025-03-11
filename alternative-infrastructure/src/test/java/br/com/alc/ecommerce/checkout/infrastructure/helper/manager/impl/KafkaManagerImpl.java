@@ -1,14 +1,11 @@
 package br.com.alc.ecommerce.checkout.infrastructure.helper.manager.impl;
 
 import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.KafkaManager;
-import br.com.alc.ecommerce.checkout.infrastructure.helper.util.ObjectMapperHelper;
 import lombok.extern.log4j.Log4j2;
 import org.apache.kafka.clients.admin.AdminClient;
 import org.apache.kafka.clients.admin.ListOffsetsResult;
 import org.apache.kafka.clients.admin.OffsetSpec;
 import org.apache.kafka.clients.admin.RecordsToDelete;
-import org.apache.kafka.clients.consumer.Consumer;
-import org.apache.kafka.clients.consumer.ConsumerRecord;
 import org.apache.kafka.clients.consumer.ConsumerRecords;
 import org.apache.kafka.clients.consumer.KafkaConsumer;
 import org.apache.kafka.common.TopicPartition;
@@ -22,13 +19,15 @@ import org.springframework.kafka.support.serializer.JsonDeserializer;
 import org.springframework.stereotype.Component;
 
 import java.time.Duration;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.Properties;
-import java.util.stream.StreamSupport;
 
 import static br.com.alc.ecommerce.checkout.infrastructure.helper.util.ObjectMapperHelper.generateJson;
+import static java.time.Duration.ZERO;
 import static java.util.Arrays.asList;
+import static java.util.Collections.emptyList;
 import static java.util.Collections.singletonList;
 import static java.util.stream.Collectors.toMap;
 import static org.apache.kafka.clients.consumer.ConsumerConfig.*;
@@ -117,15 +116,22 @@ public class KafkaManagerImpl implements KafkaManager {
 
     @Override
     public List<String> getMessages(String topicName) {
-        try (Consumer<String, Object> consumer = new KafkaConsumer<>(buildConsumeProperties())) {
+        try (KafkaConsumer<String, Object> consumer = new KafkaConsumer<>(buildConsumeProperties())) {
             consumer.subscribe(singletonList(topicName));
-            ConsumerRecords<String, Object> records = consumer.poll(Duration.ofSeconds(4));
-            Iterable<ConsumerRecord<String, Object>> iterable = () -> records.records(topicName).iterator();
-            return StreamSupport.stream(iterable.spliterator(), true)
-                    .map(ConsumerRecord::value)
-                    .map(ObjectMapperHelper::generateJson)
-                    .toList();
+            consumer.poll(ZERO);
+            consumer.seekToBeginning(consumer.assignment());
+
+            List<String> messages = new ArrayList<>();
+            int maxAttempts = 5;
+            for (int i = 0; i < maxAttempts; i++) {
+                ConsumerRecords<String, Object> records = consumer.poll(Duration.ofMillis(1000));
+                records.records(topicName).forEach(r -> messages.add(generateJson(r.value())));
+                if (!messages.isEmpty()) {
+                    return messages;
+                }
+            }
         }
+        return emptyList();
     }
 
     @Override

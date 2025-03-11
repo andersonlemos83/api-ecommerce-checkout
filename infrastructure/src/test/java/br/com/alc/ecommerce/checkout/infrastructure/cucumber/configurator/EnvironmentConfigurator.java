@@ -25,7 +25,7 @@ public class EnvironmentConfigurator {
     private final WireMockServer wireMockServer;
 
     public void configureEnvironment() {
-        log.info("START - Initializing Context");
+        log.info("START - Configure Environment");
         oracleManager.removeForeignKeys();
         oracleManager.cleanDatabase();
         oracleManager.resetSequences();
@@ -33,6 +33,6 @@ public class EnvironmentConfigurator {
         rabbitMqManager.clearQueues(QUEUES);
         redisManager.clearCache();
         wireMockServer.resetAll();
-        log.info("END - Initializing Context");
+        log.info("END - Configure Environment");
     }
 }
