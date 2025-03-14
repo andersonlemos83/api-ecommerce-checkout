@@ -5,6 +5,12 @@
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=andersonlemos83_api-ecommerce-checkout&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=andersonlemos83_api-ecommerce-checkout)
 ![Build Status](https://github.com/andersonlemos83/api-ecommerce-checkout/actions/workflows/github-ci.yaml/badge.svg)
 
+![GitHub Created At](https://img.shields.io/github/created-at/andersonlemos83/api-ecommerce-checkout)
+![Build Status](https://github.com/andersonlemos83/api-ecommerce-checkout/actions/workflows/github-ci.yaml/badge.svg)
+
+![Docker Image Version](https://img.shields.io/docker/v/andersonlemos83/api-ecommerce-checkout-infrastructure?sort=semver&label=api-ecommerce-checkout-infrastructure)
+![Docker Image Version](https://img.shields.io/docker/v/andersonlemos83/api-ecommerce-checkout-alt-infrastructure?sort=semver&label=api-ecommerce-checkout-alt-infrastructure)
+
 Esta é a versão em português. Para a versão em inglês, clique [aqui](./README.md).
 
 # Sobre o projeto api-ecommerce-checkout
@@ -221,10 +227,9 @@ Para organizar os testes de acordo com seu tipo e função, eles foram agrupados
 [oracle.sql](./script/db/oracle.sql)
 
 - **Aplicação Padrão (Oracle e RabbiMQ)**:
-1. Crie e execute um Spring Boot runner:
+1. Subir uma instância da api-ecommerce-checkout-infrastructure:
   ```
-    Main Class: /infrastructure/src/main/java/br/com/alc/ecommerce/checkout/infrastructure/EcommerceCheckoutInfrastructureApplication.java
-    Profile: local (application-local.yml)
+    docker-compose -f .\script\docker\api-ecommerce-checkout-infrastructure.yml up -d
   ```
 
 2. Acessar Swagger UI:
@@ -306,10 +311,9 @@ Para organizar os testes de acordo com seu tipo e função, eles foram agrupados
    [postgres.sql](./script/db/postgres.sql)
 
 - **Aplicação Alternativa (PostgreSQL e Kafka)**:
-1. Crie e execute um Spring Boot runner:
+1. Subir uma instância da api-ecommerce-checkout-alt-infrastructure:
   ```
-    Main Class: /alternative-infrastructure/src/main/java/br/com/alc/ecommerce/checkout/infrastructure/EcommerceCheckoutAlternativeInfrastructureApplication.java
-    Profile: local (application-local.yml)
+    docker-compose -f .\script\docker\api-ecommerce-checkout-alt-infrastructure.yml up -d
   ```
 
 2. Acessar Swagger UI:
