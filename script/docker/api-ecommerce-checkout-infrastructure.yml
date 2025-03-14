@@ -5,7 +5,7 @@ services:
     image: andersonlemos83/api-ecommerce-checkout-infrastructure:latest
     environment:
       SPRING_PROFILES_ACTIVE: "docker"
-      TZ: America/Maceio
+      TZ: "America/Maceio"
       RABBITMQ_HOST: "host.docker.internal"
       RABBITMQ_PORT: "5672"
       RABBITMQ_USERNAME: "ecommerce-checkout"

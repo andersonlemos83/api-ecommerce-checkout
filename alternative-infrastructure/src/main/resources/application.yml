@@ -23,7 +23,7 @@ spring:
       time-to-live: 172800
     type: redis
   kafka:
-    bootstrap-servers: localhost:9092
+    bootstrap-servers: null
     authorize-sale-topic: authorize-sale-topic
     sale-callback-topic: sale-callback-topic
   datasource:
@@ -75,7 +75,7 @@ spring:
 server:
   compression:
     enabled: true
-  port: 8181
+  port: 8282
   servlet:
     context-path: /
 
@@ -103,7 +103,7 @@ resilience4j:
 
 management:
   server:
-    port: 9191
+    port: 9292
   endpoints:
     web:
       base-path: /
