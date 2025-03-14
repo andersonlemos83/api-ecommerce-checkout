@@ -73,7 +73,7 @@ public class SpringContextStepDefs extends StepDefs {
     @BeforeAll
     public static void initializeContainers() throws Exception {
         new ContainerFactoryImpl().getInstances().forEach(ContainerManager::restart);
-        TimeUnit.MILLISECONDS.sleep(5000);
+        TimeUnit.MILLISECONDS.sleep(6000);
     }
 
     @AfterAll
