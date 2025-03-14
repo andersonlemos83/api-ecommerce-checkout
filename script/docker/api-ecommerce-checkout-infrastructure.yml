@@ -1,0 +1,23 @@
+version: '3.8'
+services:
+  api-ecommerce-checkout-infrastructure:
+    container_name: api-ecommerce-checkout-infrastructure
+    image: andersonlemos83/api-ecommerce-checkout-infrastructure:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: "docker"
+      TZ: "America/Maceio"
+      RABBITMQ_HOST: "host.docker.internal"
+      RABBITMQ_PORT: "5672"
+      RABBITMQ_USERNAME: "ecommerce-checkout"
+      RABBITMQ_PASSWORD: "ecommerce-checkout"
+      RABBITMQ_VIRTUAL_HOST: "ecommerce-checkout"
+      DATASOURCE_URL: "jdbc:oracle:thin:@//host.docker.internal:1521/ORCL"
+      DATASOURCE_USERNAME: "ECOMMERCE_CHECKOUT_OWNER"
+      DATASOURCE_PASSWORD: "ECOMMERCE_CHECKOUT_OWNER"
+      REDIS_HOST: "host.docker.internal"
+      REDIS_PORT: "6379"
+      REDIS_PASSWORD: ""
+      TAX_CLIENT_URL: "http://host.docker.internal:8443/"
+      MID_CLIENT_URL: "http://host.docker.internal:8443/"
+    ports:
+      - 8181:8080

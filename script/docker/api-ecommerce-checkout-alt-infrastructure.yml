@@ -1,0 +1,19 @@
+version: '3.8'
+services:
+  api-ecommerce-checkout-alt-infrastructure:
+    container_name: api-ecommerce-checkout-alt-infrastructure
+    image: andersonlemos83/api-ecommerce-checkout-alt-infrastructure:latest
+    environment:
+      SPRING_PROFILES_ACTIVE: "docker"
+      TZ: "America/Maceio"
+      KAFKA_BOOTSTRAP_SERVERS: "kafka:29092"
+      DATASOURCE_URL: "jdbc:postgresql://host.docker.internal:5432/ecommerce_db"
+      DATASOURCE_USERNAME: "ecommerce_user"
+      DATASOURCE_PASSWORD: "ecommerce_user"
+      REDIS_HOST: "host.docker.internal"
+      REDIS_PORT: "6379"
+      REDIS_PASSWORD: ""
+      TAX_CLIENT_URL: "http://host.docker.internal:8443/"
+      MID_CLIENT_URL: "http://host.docker.internal:8443/"
+    ports:
+      - 8282:8080
