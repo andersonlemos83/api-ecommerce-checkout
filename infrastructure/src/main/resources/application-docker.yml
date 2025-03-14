@@ -1,0 +1,45 @@
+logging:
+  level:
+    br.com.alc.ecommerce.checkout.infrastructure: TRACE
+    org.springframework: INFO
+    com.zaxxer.hikari: INFO
+
+spring:
+  rabbitmq:
+    host: ${RABBITMQ_HOST}
+    port: ${RABBITMQ_PORT}
+    username: ${RABBITMQ_USERNAME}
+    password: ${RABBITMQ_PASSWORD}
+    virtual-host: ${RABBITMQ_VIRTUAL_HOST}
+  datasource:
+    url: ${DATASOURCE_URL}
+    username: ${DATASOURCE_USERNAME}
+    password: ${DATASOURCE_PASSWORD}
+  jpa:
+    show-sql: false
+  data:
+    redis:
+      host: ${REDIS_HOST}
+      port: ${REDIS_PORT}
+      password: ${REDIS_PASSWORD}
+  cloud:
+    openfeign:
+      client:
+        config:
+          default:
+            connectTimeout: 15000
+            readTimeout: 15000
+            loggerLevel: BASIC # NONE, BASIC, HEADERS, FULL
+
+server:
+  port: 8080
+
+management:
+  server:
+    port: 9090
+
+client:
+  tax:
+    url: ${TAX_CLIENT_URL}
+  mid-client:
+    url: ${MID_CLIENT_URL}
