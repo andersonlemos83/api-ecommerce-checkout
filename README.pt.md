@@ -3,6 +3,7 @@
 [![Coverage](https://sonarcloud.io/api/project_badges/measure?project=andersonlemos83_api-ecommerce-checkout&metric=coverage)](https://sonarcloud.io/summary/new_code?id=andersonlemos83_api-ecommerce-checkout)
 [![Code Smells](https://sonarcloud.io/api/project_badges/measure?project=andersonlemos83_api-ecommerce-checkout&metric=code_smells)](https://sonarcloud.io/summary/new_code?id=andersonlemos83_api-ecommerce-checkout)
 [![Duplicated Lines (%)](https://sonarcloud.io/api/project_badges/measure?project=andersonlemos83_api-ecommerce-checkout&metric=duplicated_lines_density)](https://sonarcloud.io/summary/new_code?id=andersonlemos83_api-ecommerce-checkout)
+![Build Status](https://github.com/andersonlemos83/api-ecommerce-checkout/actions/workflows/github-ci.yaml/badge.svg)
 
 Esta é a versão em português. Para a versão em inglês, clique [aqui](./README.md).
 
