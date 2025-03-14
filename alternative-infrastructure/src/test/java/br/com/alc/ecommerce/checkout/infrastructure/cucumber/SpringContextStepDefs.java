@@ -21,10 +21,12 @@ import org.springframework.test.context.web.WebAppConfiguration;
 import java.lang.reflect.Type;
 import java.util.LinkedHashMap;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
 
 @WebAppConfiguration
 @ActiveProfiles("test")
 @CucumberContextConfiguration
+@SuppressWarnings("squid:S2925") // "Thread.sleep" should not be used in tests
 @AutoConfigureMockMvc(printOnlyOnFailure = true) // Set false for debug
 @SpringBootTest(classes = EcommerceCheckoutAlternativeInfrastructureApplication.class)
 @ContextConfiguration(classes = {EcommerceCheckoutAlternativeInfrastructureApplication.class, EcommerceCheckoutInfrastructureConfig.class, KafkaConfig.class, WireMockConfig.class})
@@ -69,8 +71,9 @@ public class SpringContextStepDefs extends StepDefs {
     }
 
     @BeforeAll
-    public static void initializeContainers() {
-        new ContainerFactoryImpl().getInstances().forEach(ContainerManager::start);
+    public static void initializeContainers() throws Exception {
+        new ContainerFactoryImpl().getInstances().forEach(ContainerManager::restart);
+        TimeUnit.MILLISECONDS.sleep(5000);
     }
 
     @AfterAll
