@@ -6,7 +6,7 @@ import br.com.alc.ecommerce.checkout.core.domain.order.SaleOrder;
 import br.com.alc.ecommerce.checkout.core.domain.sale.SaleRequest;
 import br.com.alc.ecommerce.checkout.core.port.input.SaleProcessorUseCase;
 import br.com.alc.ecommerce.checkout.core.port.output.MostRecentSaleOrderFinderOutPort;
-import br.com.alc.ecommerce.checkout.core.port.output.SaleCallbackIntegrateOutPort;
+import br.com.alc.ecommerce.checkout.core.port.output.SaleCallbackIntegratorOutPort;
 import br.com.alc.ecommerce.checkout.core.port.output.SaleOrderInserterOutPort;
 import br.com.alc.ecommerce.checkout.core.service.authorize.SaleAuthorizerService;
 import br.com.alc.ecommerce.checkout.core.service.validator.SaleValidatorService;
@@ -31,7 +31,7 @@ public final class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
     private final SaleValidatorService saleValidatorService;
     private final SaleOrderInserterOutPort saleOrderInserterOutPort;
     private final SaleAuthorizerService saleAuthorizerService;
-    private final SaleCallbackIntegrateOutPort saleCallbackIntegrateOutPort;
+    private final SaleCallbackIntegratorOutPort saleCallbackIntegratorOutPort;
     private final WatchService watchService;
 
     @Override
@@ -115,7 +115,7 @@ public final class SaleProcessorUseCaseImpl implements SaleProcessorUseCase {
 
     private void integrateSaleCallback(SaleOrder saleOrder) {
         SaleCallbackRequest saleCallbackRequest = buildSaleCallbackRequest(saleOrder);
-        saleCallbackIntegrateOutPort.execute(saleCallbackRequest);
+        saleCallbackIntegratorOutPort.execute(saleCallbackRequest);
     }
 
     private SaleCallbackRequest buildSaleCallbackRequest(SaleOrder saleOrder) {

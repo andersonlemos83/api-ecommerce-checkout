@@ -43,10 +43,10 @@ public class BeanConfiguration {
                                                      SaleValidatorService saleValidatorService,
                                                      SaleOrderInserterOutPort saleOrderInserterOutPort,
                                                      SaleAuthorizerService saleAuthorizerService,
-                                                     SaleCallbackIntegrateOutPort saleCallbackIntegrateOutPort,
+                                                     SaleCallbackIntegratorOutPort saleCallbackIntegratorOutPort,
                                                      WatchService watchService) {
         return new SaleProcessorUseCaseImpl(mostRecentSaleOrderFinderOutPort, saleValidatorService, saleOrderInserterOutPort,
-                saleAuthorizerService, saleCallbackIntegrateOutPort, watchService);
+                saleAuthorizerService, saleCallbackIntegratorOutPort, watchService);
     }
 
     @Lazy
