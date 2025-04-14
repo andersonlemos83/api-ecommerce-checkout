@@ -18,38 +18,44 @@ import org.modelmapper.ModelMapper;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.context.annotation.Lazy;
 
 @Configuration
 @ComponentScan(basePackageClasses = EcommerceCheckoutInfrastructureApplication.class)
 public class BeanConfiguration {
 
+    @Lazy
     @Bean
     public SaleIntegratorUseCase saleIntegratorUseCase(SaleIntegratorOutPort saleIntegratorOutPort,
                                                        WatchService watchService) {
         return new SaleIntegratorUseCaseImpl(saleIntegratorOutPort, watchService);
     }
 
+    @Lazy
     @Bean
     public WatchService watchService() {
         return new RealWatchService();
     }
 
+    @Lazy
     @Bean
     public SaleProcessorUseCase saleProcessorUseCase(MostRecentSaleOrderFinderOutPort mostRecentSaleOrderFinderOutPort,
                                                      SaleValidatorService saleValidatorService,
                                                      SaleOrderInserterOutPort saleOrderInserterOutPort,
                                                      SaleAuthorizerService saleAuthorizerService,
-                                                     SaleCallbackIntegrateOutPort saleCallbackIntegrateOutPort,
+                                                     SaleCallbackIntegratorOutPort saleCallbackIntegratorOutPort,
                                                      WatchService watchService) {
         return new SaleProcessorUseCaseImpl(mostRecentSaleOrderFinderOutPort, saleValidatorService, saleOrderInserterOutPort,
-                saleAuthorizerService, saleCallbackIntegrateOutPort, watchService);
+                saleAuthorizerService, saleCallbackIntegratorOutPort, watchService);
     }
 
+    @Lazy
     @Bean
     public SaleValidatorService saleValidatorService() {
         return new SaleValidatorServiceImpl();
     }
 
+    @Lazy
     @Bean
     public SaleAuthorizerService saleAuthorizerService(SaleAuthorizerOutPort saleAuthorizerOutPort,
                                                        TaxFinderOutPort taxFinderOutPort,
@@ -58,11 +64,13 @@ public class BeanConfiguration {
         return new SaleAuthorizerServiceImpl(saleAuthorizerOutPort, taxFinderOutPort, authorizePaymentFactory, watchService);
     }
 
+    @Lazy
     @Bean
     public AuthorizePaymentFactory authorizePaymentFactory() {
         return new AuthorizePaymentFactoryImpl();
     }
 
+    @Lazy
     @Bean
     public ModelMapper modelMapper() {
         return new ModelMapper();

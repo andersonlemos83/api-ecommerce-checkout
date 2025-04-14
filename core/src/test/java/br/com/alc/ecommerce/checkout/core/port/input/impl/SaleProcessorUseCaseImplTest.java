@@ -5,7 +5,7 @@ import br.com.alc.ecommerce.checkout.core.domain.callback.SaleCallbackRequest;
 import br.com.alc.ecommerce.checkout.core.domain.order.SaleOrder;
 import br.com.alc.ecommerce.checkout.core.domain.sale.SaleRequest;
 import br.com.alc.ecommerce.checkout.core.port.output.MostRecentSaleOrderFinderOutPort;
-import br.com.alc.ecommerce.checkout.core.port.output.SaleCallbackIntegrateOutPort;
+import br.com.alc.ecommerce.checkout.core.port.output.SaleCallbackIntegratorOutPort;
 import br.com.alc.ecommerce.checkout.core.port.output.SaleOrderInserterOutPort;
 import br.com.alc.ecommerce.checkout.core.service.authorize.SaleAuthorizerService;
 import br.com.alc.ecommerce.checkout.core.service.validator.SaleValidatorService;
@@ -43,7 +43,7 @@ public class SaleProcessorUseCaseImplTest {
     private SaleAuthorizerService saleAuthorizerServiceMock;
 
     @Mock
-    private SaleCallbackIntegrateOutPort saleCallbackIntegrateOutPortMock;
+    private SaleCallbackIntegratorOutPort saleCallbackIntegratorOutPortMock;
 
     @Mock
     private WatchService watchServiceMock;
@@ -57,7 +57,7 @@ public class SaleProcessorUseCaseImplTest {
 
         saleProcessorUseCase.execute(saleRequest);
 
-        verify(saleCallbackIntegrateOutPortMock).execute(any(SaleCallbackRequest.class));
+        verify(saleCallbackIntegratorOutPortMock).execute(any(SaleCallbackRequest.class));
         verifyNoInteractions(saleValidatorServiceMock, saleOrderInserterOutPortMock, saleAuthorizerServiceMock, watchServiceMock);
     }
 
@@ -70,7 +70,7 @@ public class SaleProcessorUseCaseImplTest {
 
         saleProcessorUseCase.execute(saleRequest);
 
-        verifyNoInteractions(saleValidatorServiceMock, saleOrderInserterOutPortMock, saleAuthorizerServiceMock, saleCallbackIntegrateOutPortMock, watchServiceMock);
+        verifyNoInteractions(saleValidatorServiceMock, saleOrderInserterOutPortMock, saleAuthorizerServiceMock, saleCallbackIntegratorOutPortMock, watchServiceMock);
     }
 
     @Test
@@ -86,7 +86,7 @@ public class SaleProcessorUseCaseImplTest {
         verify(saleValidatorServiceMock).execute(saleRequest);
         verify(saleOrderInserterOutPortMock, times(2)).execute(any(SaleOrder.class));
         verify(saleAuthorizerServiceMock).execute(any(SaleRequest.class));
-        verify(saleCallbackIntegrateOutPortMock).execute(any(SaleCallbackRequest.class));
+        verify(saleCallbackIntegratorOutPortMock).execute(any(SaleCallbackRequest.class));
     }
 
     @Test
@@ -103,7 +103,7 @@ public class SaleProcessorUseCaseImplTest {
         verify(saleValidatorServiceMock).execute(saleRequest);
         verify(saleOrderInserterOutPortMock, times(2)).execute(any(SaleOrder.class));
         verify(saleAuthorizerServiceMock).execute(any(SaleRequest.class));
-        verify(saleCallbackIntegrateOutPortMock).execute(any(SaleCallbackRequest.class));
+        verify(saleCallbackIntegratorOutPortMock).execute(any(SaleCallbackRequest.class));
     }
 
     @Test
@@ -116,7 +116,7 @@ public class SaleProcessorUseCaseImplTest {
         saleProcessorUseCase.execute(saleRequest);
 
         verify(saleOrderInserterOutPortMock).execute(any(SaleOrder.class));
-        verify(saleCallbackIntegrateOutPortMock).execute(any(SaleCallbackRequest.class));
+        verify(saleCallbackIntegratorOutPortMock).execute(any(SaleCallbackRequest.class));
         verifyNoInteractions(saleAuthorizerServiceMock);
     }
 }
