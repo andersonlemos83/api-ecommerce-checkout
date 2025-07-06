@@ -7,6 +7,8 @@ import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.kafka.config.TopicBuilder;
 import org.springframework.kafka.core.KafkaAdmin;
+import org.springframework.kafka.test.EmbeddedKafkaBroker;
+import org.springframework.kafka.test.EmbeddedKafkaZKBroker;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -22,6 +24,13 @@ public class KafkaConfig {
 
     @Value(value = "${spring.kafka.sale-callback-topic}")
     private String saleCallbackTopic;
+
+    @Bean(initMethod = "afterPropertiesSet", destroyMethod = "destroy")
+    public EmbeddedKafkaBroker embeddedKafkaBroker() {
+        EmbeddedKafkaBroker embeddedKafkaBroker = new EmbeddedKafkaZKBroker(1, true, 2);
+        embeddedKafkaBroker.kafkaPorts(9092);
+        return embeddedKafkaBroker;
+    }
 
     @Bean
     public NewTopic saleCallbackTopic() {
