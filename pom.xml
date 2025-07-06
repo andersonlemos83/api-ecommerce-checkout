@@ -13,7 +13,7 @@
 
     <groupId>br.com.alc</groupId>
     <artifactId>api-ecommerce-checkout</artifactId>
-    <version>1.0.0</version>
+    <version>1.0.1</version>
     <name>api-ecommerce-checkout</name>
 
     <modules>
