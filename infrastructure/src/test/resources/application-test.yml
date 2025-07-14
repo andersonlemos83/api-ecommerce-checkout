@@ -13,9 +13,10 @@ spring:
     password: ecommerce-checkout
     virtual-host: ecommerce-checkout
   datasource:
-    url: jdbc:oracle:thin:@//localhost:1521/XEPDB1
-    username: ECOMMERCE_CHECKOUT_OWNER
-    password: ECOMMERCE_CHECKOUT_OWNER
+    driver-class-name: org.h2.Driver
+    url: jdbc:h2:mem:ecommerce-checkout-db-test;MODE=Oracle;INIT=RUNSCRIPT FROM 'classpath:schema.sql';DB_CLOSE_DELAY=-1;DB_CLOSE_ON_EXIT=FALSE
+    username: sa
+    password: sa
   jpa:
     properties:
       hibernate:
@@ -24,6 +25,10 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+  h2:
+    console:
+      path: /h2-console
+      enabled: true
   data:
     redis:
       host: localhost

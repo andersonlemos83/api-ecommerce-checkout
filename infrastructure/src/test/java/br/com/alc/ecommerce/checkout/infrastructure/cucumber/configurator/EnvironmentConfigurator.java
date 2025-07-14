@@ -1,6 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.cucumber.configurator;
 
-import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.OracleManager;
+import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.H2Manager;
 import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.RabbitMqManager;
 import br.com.alc.ecommerce.checkout.infrastructure.helper.manager.RedisManager;
 import com.github.tomakehurst.wiremock.WireMockServer;
@@ -19,16 +19,16 @@ public class EnvironmentConfigurator {
 
     private static final List<String> QUEUES = asList("authorize-sale-queue", "sale-callback-queue");
 
-    private final OracleManager oracleManager;
+    private final H2Manager h2Manager;
     private final RabbitMqManager rabbitMqManager;
     private final RedisManager redisManager;
     private final WireMockServer wireMockServer;
 
     public void configureEnvironment() {
         log.info("START - Configure Environment");
-        oracleManager.removeForeignKeys();
-        oracleManager.cleanDatabase();
-        oracleManager.resetSequences();
+        h2Manager.removeForeignKeys();
+        h2Manager.cleanDatabase();
+        h2Manager.resetSequences();
         rabbitMqManager.disableAllListeners();
         rabbitMqManager.clearQueues(QUEUES);
         redisManager.clearCache();

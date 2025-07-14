@@ -1,6 +1,6 @@
 package br.com.alc.ecommerce.checkout.infrastructure.helper.manager;
 
-public interface OracleManager {
+public interface H2Manager {
 
     void removeForeignKeys();
 
